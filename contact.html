@@ -1,30 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact Shivastras</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shivastras — Calm, Energy & Focus</title>
+
+    <!-- Minimal Apple Style -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            background: #fff;
+            color: #111;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        header a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #222;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        header a:hover { opacity: 1; }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: black;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        button:hover { opacity: 0.7; }
+
+        .section {
+            padding: 120px 12%;
+            text-align: center;
+        }
+
+        .hero-img {
+            width: 55%;
+            margin: 40px auto;
+            display: block;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            padding: 20px;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input, select {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-  <section class="contact glass">
-    <h1>Contact Us</h1>
-    <p>Email: contact@shivastras.com</p>
-    <p>Instagram: @shivastras</p>
-    <form>
-      <input type="text" placeholder="Your name"/>
-      <input type="email" placeholder="Your email"/>
-      <textarea placeholder="Message"></textarea>
-      <button class="btn">Send Message</button>
-    </form>
-    <a href="index.html" class="btn">Back to Home</a>
-  </section>
-  <footer class="footer glass">
+
+<header>
+    <div class="logo">Shivastras</div>
     <nav>
-      <a href="about.html">About</a>
-      <a href="product.html">Product</a>
-      <a href="contact.html">Contact</a>
+        <a href="#product">Product</a>
+        <a href="#features">Features</a>
+        <a href="#preorder">Pre-Order</a>
     </nav>
-    <p>© 2025 Shivastras.</p>
-  </footer>
+</header>
+
+<section class="hero">
+    <h1>Calm. Energy. Focus.</h1>
+    <p>The world's first energy-empowered ring designed for modern life.</p>
+    <button onclick="location.href='#preorder'">Pre-order Now</button>
+</section>
+
+<section id="product" class="section">
+    <h2>The Shivastras Ring</h2>
+    <p>Crafted with precision. Powered by gemstone energy. Worn with purpose.</p>
+    
+    <!-- Replace with your image -->
+    <img src="assets/images/ring.png" class="hero-img" alt="Shivastras Ring" />
+</section>
+
+<section id="features" class="section features">
+    <div class="feature">
+        <h3>⚡ Precision Design</h3>
+        <p>Aerospace-grade alloy meets ancient gemstone wisdom.</p>
+    </div>
+
+    <div class="feature">
+        <h3>🧘 Increase Focus</h3>
+        <p>Built for calm, balance, and clarity in chaos.</p>
+    </div>
+
+    <div class="feature">
+        <h3>🔥 Limited Edition</h3>
+        <p>Only 500 rings in the first global release.</p>
+    </div>
+</section>
+
+<section id="preorder" class="section">
+    <h2>Secure Your Ring</h2>
+    <p>Pre-orders open now. Deliveries begin March 2026.</p>
+
+    <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+
+        <select name="ring-size" required>
+            <option disabled selected>Select Ring Size</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+
+        <button type="submit">Reserve Now — ₹499 Deposit</button>
+    </form>
+</section>
+
+<div class="footer">© 2025 Shivastras. All rights reserved.</div>
+
 </body>
 </html>
