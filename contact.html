@@ -1,186 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shivastra Ring — Divine Power</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivastra Ring — Divine Power</title>
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            background: #000;
-            color: #fff;
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
+    :root {
+      --bg: #050509;
+      --bg-soft: #080814;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.25);
+      --text-main: #f9fafb;
+      --text-soft: #9ca3af;
+      --card: #0b0b15;
+    }
 
-        header {
-            position: fixed;
-            width: 100%;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #02010a 40%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
 
-        nav a {
-            margin-left: 20px;
-            color: #ddd;
-            text-decoration: none;
-            opacity: .7;
-        }
+    /* PRELOADER */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    #preloader span {
+      font-size: 1.4rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
 
-        nav a:hover { opacity: 1; }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent);
+      z-index: 1000;
+    }
 
-        .logo { font-weight: 600; font-size: 1.2rem; }
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            text-align: center;
-        }
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.85;
+    }
 
-        .hero img {
-            width: 75%;
-            max-width: 500px;
-            filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
-            margin-bottom: 25px;
-        }
+    nav a:hover {
+      color: #fff;
+      opacity: 1;
+    }
 
-        .hero h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-        }
+    main {
+      padding-top: 80px;
+    }
 
-        button {
-            margin-top: 20px;
-            padding: 14px 30px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            background: #1e90ff;
-            color: white;
-            transition: .3s;
-        }
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      align-items: center;
+      padding: 40px 7% 80px;
+      gap: 40px;
+    }
 
-        button:hover { opacity: .7; }
+    .hero-copy h1 {
+      font-size: clamp(2.7rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
 
-        .section {
-            padding: 100px 10%;
-            text-align: center;
-        }
+    .hero-copy p.lead {
+      font-size: 1rem;
+      color: var(--text-soft);
+      max-width: 460px;
+      margin-bottom: 26px;
+    }
 
-        .gallery {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    .hero-tagline {
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
 
-        .gallery img {
-            width: 30%;
-            min-width: 250px;
-            border-radius: 10px;
-            filter: brightness(1);
-            transition: .3s;
-        }
+    .hero-meta {
+      display: flex;
+      gap: 28px;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.3);
-        }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-        form {
-            max-width: 400px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .btn-main, .btn-ghost {
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
 
-        input, select {
-            padding: 12px;
-            border-radius: 6px;
-            border: none;
-            font-size: 1rem;
-        }
+    .btn-main {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
 
-        .footer {
-            margin-top: 100px;
-            padding: 50px;
-            text-align: center;
-            opacity: .6;
-            font-size: .9rem;
-        }
-    </style>
+    .btn-main:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-soft);
+      border-color: rgba(148,163,184,0.5);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: #e5e7eb;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(59,130,246,0.32), transparent 60%);
+      filter: blur(2px);
+      z-index: 0;
+      transform: translateY(10px);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.9; transform: translateY(10px) scale(1); }
+      50% { opacity: 0.4; transform: translateY(14px) scale(1.07); }
+    }
+
+    .hero-img-frame {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #111827, #020617);
+      box-shadow:
+        0 18px 60px rgba(0,0,0,0.9),
+        0 0 60px var(--accent-soft);
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      z-index: 1;
+    }
+
+    .hero-img-frame:hover {
+      transform: translateY(-6px) rotate3d(1, -1, 0, 8deg);
+      box-shadow:
+        0 26px 90px rgba(0,0,0,1),
+        0 0 90px rgba(56,189,248,0.45);
+    }
+
+    .hero-img-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      border-radius: 20px;
+      padding: 22px 22px 20px;
+      border: 1px solid rgba(148,163,184,0.18);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .spec-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      display: grid;
+      gap: 8px;
+    }
+
+    .spec-label {
+      color: #e5e7eb;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      display: block;
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+      gap: 18px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      height: 260px;
+      filter: brightness(0.96);
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    .gallery img:hover {
+      transform: translateY(-6px);
+      filter: brightness(1.15);
+    }
+
+    /* PREORDER */
+    .preorder-wrapper {
+      max-width: 420px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, #020617, #020617 40%, #0f172a);
+      border-radius: 26px;
+      padding: 26px 24px 24px;
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.85);
+    }
+
+    .preorder-badge {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .preorder-copy {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input, select {
+      padding: 11px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.85);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    input::placeholder {
+      color: #6b7280;
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .footer {
+      padding: 40px 7% 30px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid rgba(31,41,55,0.9);
+      margin-top: 40px;
+    }
+
+    /* REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 60px;
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        padding-inline: 18px;
+      }
+      nav a {
+        margin-left: 14px;
+        letter-spacing: 0.12em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-inline: 18px;
+      }
+      section {
+        padding-inline: 18px;
+      }
+      .hero-meta { flex-direction: column; gap: 6px; }
+      .hero-img-frame { border-radius: 22px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <span>SHIVASTRA</span>
+  </div>
+
+  <header>
     <div class="logo">SHIVASTRA</div>
     <nav>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#preorder">Pre-Order</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#preorder">Pre-Order</a>
     </nav>
-</header>
+  </header>
 
-<section class="hero">
-    <img src="assets/images/hero.jpg" alt="Shivastra Ring">
-    <h1>Experience Divine Power</h1>
-    <p>The ring of clarity, energy and inner strength.</p>
-    <button onclick="location.href='#preorder'">Pre-Order Now</button>
-</section>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="hero-tagline">Divine Power · Modern Artifact</div>
+        <h1>Calm, Energy & Focus<br>On Your Finger.</h1>
+        <p class="lead">
+          Shivastra is a dark luxury ring infused with sacred geometry and gemstone energy —
+          engineered for those who build, battle and become more every single day.
+        </p>
 
-<section id="about" class="section">
-    <h2 style="margin-bottom:15px;">What is Shivastra?</h2>
-    <p style="max-width:600px; margin:auto;">
-        A fusion of ancient energy science and modern engineering. Crafted with sacred precision.
-        Designed to awaken focus, calm, and inner power.
-    </p>
-</section>
+        <div class="hero-cta">
+          <button class="btn-main" onclick="document.getElementById('preorder').scrollIntoView({behavior:'smooth'})">
+            Pre-Order Now
+          </button>
+          <button class="btn-ghost" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+            View the Ring
+          </button>
+        </div>
 
-<section id="gallery" class="section">
-    <h2>Gallery</h2>
-    <div class="gallery">
-        <img src="assets/images/hero.jpg">
-        <img src="assets/images/gallery1.jpg">
-        <img src="assets/images/gallery2.jpg">
-    </div>
-</section>
+        <div class="hero-meta">
+          <span>First Edition · 500 Units</span>
+          <span>Deliveries Start · March 2026</span>
+        </div>
+      </div>
 
-<section id="preorder" class="section">
-    <h2>Secure Your Ring</h2>
-    <p>Limited first edition — Only 500 units.</p>
-    <p>Deliveries start March 2026.</p>
+      <div class="hero-visual">
+        <div class="hero-glow"></div>
+        <div class="hero-img-frame" id="heroFrame">
+          <img src="assets/images/hero.jpg" alt="Shivastra Ring" id="heroImg">
+          <div class="hero-caption">SHIVASTRA RING · OBSIDIAN BLUE</div>
+        </div>
+      </div>
+    </section>
 
-    <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
+    <!-- ABOUT / SPECS -->
+    <section id="about">
+      <h2 class="section-title reveal">What is Shivastra?</h2>
+      <p class="section-subtitle reveal">
+        Not just jewellery. A personal power artifact — merging ancient devotion, gemstone resonance
+        and precision-machined metal into one signature ring.
+      </p>
 
-        <select name="ring-size" required>
-            <option disabled selected>Select Ring Size</option>
+      <div class="about-grid">
+        <div class="card reveal">
+          <h3>Designed for Builders & Believers</h3>
+          <p>
+            Every curve, edge and proportion of the Shivastra Ring is tuned to feel
+            substantial yet invisible in daily wear. The gemstone core is carefully chosen for
+            clarity, protection and energetic alignment.
+          </p>
+        </div>
+
+        <div class="card reveal">
+          <h3>Specifications</h3>
+          <ul class="spec-list">
+            <li>
+              <span class="spec-label">Core Material</span>
+              Aerospace-grade steel alloy with matte black finish.
+            </li>
+            <li>
+              <span class="spec-label">Gemstone Node</span>
+              Obsidian Blue crystal set in sacred geometry bezel.
+            </li>
+            <li>
+              <span class="spec-label">Symbol Mark</span>
+              Subtle Trishula engraving — a reminder of protection & purpose.
+            </li>
+            <li>
+              <span class="spec-label">Edition</span>
+              First drop limited to 500 individually numbered rings.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <h2 class="section-title reveal">The Ring in Detail</h2>
+      <p class="section-subtitle reveal">
+        Cinematic renders of the Shivastra Ring. Darkness, metal and light — captured in motionless frames.
+      </p>
+
+      <div class="gallery">
+        <img src="assets/images/hero.jpg" alt="Shivastra Ring Front View" class="reveal">
+        <img src="assets/images/gallery1.jpg" alt="Shivastra Ring Side View" class="reveal">
+        <img src="assets/images/gallery2.jpg" alt="Shivastra Lifestyle Shot" class="reveal">
+      </div>
+    </section>
+
+    <!-- PREORDER -->
+    <section id="preorder">
+      <h2 class="section-title reveal">Secure Your Ring</h2>
+      <p class="section-subtitle reveal">
+        Join the founding circle of Shivastra bearers. A small deposit today locks in your number.
+      </p>
+
+      <div class="preorder-wrapper reveal">
+        <div class="preorder-badge">First Edition · Pre-Order</div>
+        <div class="preorder-copy">
+          Pay a fully refundable ₹499 to reserve your Shivastra Ring.
+          We’ll confirm your size, shipping details and final payment closer to launch.
+        </div>
+
+        <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email Address" required>
+
+          <select name="ring-size" required>
+            <option value="" disabled selected>Select Ring Size</option>
             <option>7</option>
             <option>8</option>
             <option>9</option>
             <option>10</option>
-        </select>
+          </select>
 
-        <button type="submit">Reserve Now (₹499 Deposit)</button>
-    </form>
-</section>
+          <button class="btn-main" type="submit">Reserve Now · ₹499</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-<div class="footer">
-    © 2025 SHIVASTRA — Awakening Human Potential.
-</div>
+  <footer class="footer">
+    <span>© 2025 Shivastra. All rights reserved.</span>
+    <span>Forged in darkness. Worn in light.</span>
+  </footer>
 
+  <script>
+    // Preloader
+    window.addEventListener('load', function () {
+      const pre = document.getElementById('preloader');
+      setTimeout(() => pre.classList.add('hidden'), 400);
+    });
+
+    // Parallax effect for hero image
+    window.addEventListener('scroll', function () {
+      const img = document.getElementById('heroImg');
+      const frame = document.getElementById('heroFrame');
+      const scrolled = window.scrollY || window.pageYOffset;
+      const offset = scrolled * 0.12;
+      const tilt = Math.min(scrolled * 0.02, 10);
+
+      img.style.transform = 'translateY(' + offset + 'px)';
+      frame.style.transform = 'translateY(' + (-offset * 0.15) + 'px) rotate3d(1,-1,0,' + tilt + 'deg)';
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
