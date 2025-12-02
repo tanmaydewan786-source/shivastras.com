@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  background: #f9fafb;
+  color: #222;
+}
+.glass {
+  background: rgba(255,255,255,0.90);
+  border-radius: 24px;
+  box-shadow: 0 8px 40px rgba(80,80,120,0.08);
+  margin: 32px auto;
+  padding: 32px;
+  max-width: 740px;
+}
+.hero {
+  background: linear-gradient(120deg,#F7D6E0 0%,#D5E1F2 100%);
+  text-align: center;
+  padding: 80px 0 40px 0;
+}
+.headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+.subtext {
+  font-size: 1.2rem;
+  margin-bottom: 28px;
+}
+.cta-buttons .btn {
+  margin: 0 8px;
+  padding: 16px 32px;
+}
+.ring-image {
+  width: 180px;
+  border-radius: 50%;
+  margin-top: 24px;
+  box-shadow: 0 2px 30px #bc5b71a0;
+}
+/* ... rest of previously posted CSS ... */
+.footer nav a {
+  margin: 0 12px;
+  color: #3067ca;
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer nav a:hover {
+  text-decoration: underline;
+}
+@media (max-width:900px) {
+  .glass { max-width: 96vw; padding: 18px;}
+  .features-list,
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery-wrapper img { width: 96vw;}
+}
