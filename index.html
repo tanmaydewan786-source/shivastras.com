@@ -1,303 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivastras — Divine Power</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shivastras — Mystical Dark Luxury</title>
 
-  <!-- Disable caching -->
+  <!-- Prevent stale cached versions -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <!-- Plausible Analytics -->
+  <!-- ========== Plausible Analytics (your script) ========== -->
+  <!-- Paste the exact script you shared earlier if different -->
+  <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-0IUKSZSYLEBpEEp-dKNxj.js"></script>
   <script>
-    window.plausible = window.plausible || function () {
-      (plausible.q = plausible.q || []).push(arguments)
-    },
-    plausible.init = plausible.init || function (i) {
-      plausible.o = i || {}
-    };
-    plausible.init();
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
   </script>
 
+  <!-- ========== Styles ========== -->
   <style>
-    /* --- GLOBAL STYLES (same cinematic style as before) --- */
-
-    * { margin:0; padding:0; box-sizing:border-box; }
-    :root {
+    /* -------------------------
+       Base: dark luxury system
+       ------------------------- */
+    :root{
+      --bg-1:#02020b;
+      --bg-2:#0b0b12;
+      --card:#0f1724;
+      --muted:#9aa3ad;
+      --text:#f8fafc;
       --accent:#3b82f6;
-      --accent-soft:rgba(59,130,246,0.28);
-      --text:#fafafa;
-      --text-soft:#9ca3af;
-      --dark:#000;
-      --dark2:#020617;
+      --accent-soft: rgba(59,130,246,0.24);
+      --glass: rgba(255,255,255,0.03);
+      --radius-xl: 28px;
+      --radius-lg: 14px;
     }
-    body {
-      background: radial-gradient(circle at top, #020617, #02010a, #000);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(circle at 10% 10%, #0b1220 0%, #03030a 45%, #000 100%);
       color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"Inter","SF Pro Text",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
+      line-height:1.5;
       scroll-behavior:smooth;
     }
 
-    /* Intro veil */
-    .intro-veil {
-      position:fixed; inset:0; background:#000;
-      display:flex; justify-content:center; align-items:center;
-      z-index:2000; transition:opacity 1.2s ease;
+    /* ---------- Utilities ---------- */
+    .container{width:100%; max-width:1200px; margin:0 auto; padding:0 20px;}
+    .center{text-align:center}
+    .muted{color:var(--muted)}
+    .caps{ text-transform:uppercase; letter-spacing:0.18em; font-size:0.8rem; }
+
+    /* ========== PRELOADER / INTRO ========== */
+    #intro {
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background:#000; z-index:3000;
+      transition:opacity .9s ease,visibility .9s ease;
     }
-    body.loaded .intro-veil { opacity:0; visibility:hidden; }
-
-    /* Header */
-    header {
-      position:fixed; top:0; left:0; width:100%;
-      padding:16px 7%; display:flex; justify-content:space-between; align-items:center;
-      backdrop-filter:blur(20px);
-      background:rgba(0,0,0,0.5);
-      z-index:1000;
-    }
-    .logo { letter-spacing:0.22em; font-size:1rem; text-transform:uppercase; }
-    nav a {
-      margin-left:20px; text-decoration:none;
-      color:var(--text-soft); font-size:.85rem;
-      text-transform:uppercase; letter-spacing:.18em;
-    }
-    nav a:hover { color:var(--text); }
-
-    main { padding-top:90px; }
-
-    /* HERO */
-    .hero { min-height:95vh; display:grid; grid-template-columns:1fr 1fr; padding:40px 7%; gap:40px; }
-    .hero-copy { opacity:0; transform:translateY(30px); transition:1s; }
-    body.loaded .hero-copy { opacity:1; transform:translateY(0); }
-
-    .hero-tagline { color:var(--accent); font-size:.7rem; letter-spacing:.3em; }
-    h1 { font-size:3rem; margin:14px 0; }
-    .lead { color:var(--text-soft); max-width:460px; }
-
-    .btn-main {
-      background:var(--accent); border:none; padding:12px 26px;
-      border-radius:999px; color:white; cursor:pointer;
-      text-transform:uppercase; letter-spacing:.18em;
+    #intro.hidden{ opacity:0; visibility:hidden; }
+    #intro .label{
+      font-size:1.05rem; letter-spacing:0.4em; color:rgba(255,255,255,0.95); text-transform:uppercase;
     }
 
-    .btn-ghost {
-      background:transparent; padding:12px 26px;
-      border-radius:999px; cursor:pointer;
-      border:1px solid var(--text-soft); color:var(--text-soft);
+    /* ========== HEADER (nav) ========== */
+    header.site-header{
+      position:fixed; top:0; left:0; right:0; height:76px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 28px; z-index:1200;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.18));
+      border-bottom:1px solid rgba(255,255,255,0.02);
+    }
+    .logo {
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+      font-size:0.98rem;
+    }
+    .logo img{height:30px; display:block;}
+    nav.main-nav a{
+      color:var(--muted); text-decoration:none; margin-left:20px; font-size:0.85rem;
+      transition: color .18s, transform .18s;
+    }
+    nav.main-nav a:hover{ color:var(--text); transform:translateY(-1px) }
+
+    /* ========== HERO (cinematic) ========== */
+    .hero {
+      min-height:calc(100vh - 76px);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:36px;
+      align-items:center;
+      padding:120px 0 80px;
+      position:relative;
+    }
+    @media (max-width:940px){
+      .hero{ grid-template-columns: 1fr; padding-top:110px; gap:26px; }
     }
 
-    /* Hero visual */
-    .hero-visual { opacity:0; transform:translateY(30px); transition:1s; transition-delay:.3s; display:flex; justify-content:center; }
-    body.loaded .hero-visual { opacity:1; transform:translateY(0); }
-
-    .hero-img-frame {
-      width:340px; border-radius:30px; overflow:hidden;
-      background:#020617; position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,0.9), 0 0 60px var(--accent-soft);
-      transition:.4s;
-    }
-    .hero-img-frame img { width:100%; display:block; }
-
-    /* Sections */
-    section { padding:80px 7%; text-align:center; }
-    .section-title { font-size:1.7rem; margin-bottom:10px; }
-    .section-subtitle { color:var(--text-soft); max-width:520px; margin:auto; margin-bottom:40px; }
-
-    .reveal { opacity:0; transform:translateY(20px); transition:.8s; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-
-    /* Gallery */
-    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
-    .gallery img { width:100%; border-radius:12px; }
-
-    /* PREORDER SURVEY FORM */
-    .preorder-wrapper {
-      max-width:460px; margin:auto;
-      padding:26px; border-radius:20px;
-      background:#020617; border:1px solid #333;
-    }
-    form { display:flex; flex-direction:column; gap:12px; }
-    input, select, textarea {
-      padding:12px; border-radius:10px; border:none;
-      background:#0f172a; color:white;
-    }
-    textarea { height:100px; resize:none; }
-
-    /* GAME POPUP */
-    #gamePopup {
-      position:fixed; inset:0; background:rgba(0,0,0,0.85);
-      display:flex; justify-content:center; align-items:center;
-      visibility:hidden; opacity:0; transition:.5s;
-      z-index:3000;
-    }
-    #gamePopup.active { visibility:visible; opacity:1; }
-    #gameBox {
-      width:320px; height:420px; background:#111827;
-      border-radius:20px; border:1px solid #333;
-      text-align:center; padding:20px; position:relative;
-    }
-    #ringTarget {
-      width:60px; position:absolute; cursor:pointer;
-      transition:transform .1s;
-    }
-    #closeGame {
-      position:absolute; top:10px; right:14px; cursor:pointer; font-size:22px;
+    .hero-left{
+      padding-right:20px;
+      max-width:760px;
     }
 
+    .eyebrow { color:var(--accent); font-weight:600; font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase; margin-bottom:12px; }
+
+    .hero-title{
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
+      line-height:1.02;
+      margin:6px 0 16px;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+    .hero-sub{ color:var(--muted); font-size:1.02rem; max-width:560px; margin-bottom:22px; }
+
+    .hero-meta{ display:flex; gap:18px; margin-top:20px; color:var(--muted); font-size:0.82rem; text-transform:uppercase; }
+
+    .ctas{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; }
+
+    .btn {
+      padding:12px 26px; border-radius:999px; cursor:pointer; font-weight:700; letter-spacing:0.12em;
+      border:1px solid rgba(255,255,255,0.03); text-transform:uppercase;
+    }
+    .btn-primary{ background:var(--accent); color:#fff; border-color:transparent; box-shadow:0 8px 30px rgba(59,130,246,0.12); }
+    .btn-ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04); }
+
+    /* hero visual */
+    .hero-right{ display:flex; align-items:center; justify-content:center; position:relative; }
+    .visual-card{
+      width:420px; max-width:86%; border-radius:var(--radius-xl);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:28px; border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 30px 120px rgba(0,0,0,0.8), 0 0 100px var(--accent-soft);
+      transform-style:preserve-3d;
+      transition: transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .45s;
+    }
+    .visual-card:hover{ transform: translateY(-8px) rotate3d(0.02,-0.02,0,4deg); box-shadow:0 36px 140px rgba(0,0,0,0.95), 0 0 120px rgba(59,130,246,0.25); }
+
+    .visual-frame{ border-radius:20px; overflow:hidden; background:linear-gradient(120deg,#06060b,#0c0d12); }
+    .visual-frame img{ width:100%; height:auto; display:block; transform:translateY(0); transition:transform .6s; }
+
+    .visual-caption{ position:absolute; left:28px; bottom:28px; font-size:0.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.18em; }
+
+    /* subtle aura behind visual */
+    .halo{
+      position:absolute; width:340px; height:340px; border-radius:999px; z-index:0;
+      background: radial-gradient(circle at center, rgba(59,130,246,0.32) 0%, transparent 60%);
+      filter:blur(14px);
+      transform:translateY(10px);
+      animation:haloPulse 5s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes haloPulse{ 0%,100%{ transform:translateY(10px) scale(1) } 50%{ transform:translateY(16px) scale(1.06) } }
+
+    /* ========== Long scroll story sections (Digital journey) ========== */
+    .story { padding:90px 0; display:grid; gap:36px; align-items:center; }
+    .story .two-col { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+    @media (max-width:940px){ .story .two-col{ grid-template-columns:1fr } }
+
+    .panel { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); padding:26px; border-radius:16px; border:1px solid rgba(255,255,255,0.03); }
+
+    .feature { display:flex; gap:16px; align-items:flex-start; }
+    .feature .icon { width:54px; height:54px; border-radius:12px; background:linear-gradient(180deg,#0b1220,#05060a); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.03); }
+    .feature h4{ margin:0 0 6px; font-size:1.02rem }
+    .feature p{ margin:0; color:var(--muted) }
+
+    /* Specs grid */
+    .specs { display:grid; gap:10px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); margin-top:18px; }
+    .spec { padding:14px; border-radius:12px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02); }
+
+    /* ========== Gallery, Media ========== */
+    .gallery { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:18px; }
+    @media (max-width:940px){ .gallery{ grid-template-columns:1fr; } }
+    .gallery img{ width:100%; height:320px; object-fit:cover; border-radius:14px; transition:transform .35s, filter .35s; filter:brightness(.95); }
+    .gallery img:hover{ transform:translateY(-6px); filter:brightness(1.15) }
+
+    /* ========== SURVEY (investor readiness) ========== */
+    .survey-wrap{ max-width:680px; margin:0 auto; padding:28px; border-radius:18px; background: linear-gradient(135deg, rgba(255,255,255,0.015), rgba(255,255,255,0.008)); border:1px solid rgba(255,255,255,0.03); box-shadow: 0 20px 80px rgba(0,0,0,0.7); }
+    .survey-grid{ display:grid; gap:12px; }
+    input[type="text"], input[type="email"], select, textarea {
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+      background: rgba(10,12,15,0.6); color:var(--text); font-size:0.95rem;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+    .muted-small{ font-size:0.88rem; color:var(--muted); margin-bottom:12px; }
+
+    /* ========== POPUP GAME (premium) ========== */
+    #gameModal {
+      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9)); z-index:3500;
+      visibility:hidden; opacity:0; transition:opacity .28s ease, visibility .28s;
+    }
+    #gameModal.active{ visibility:visible; opacity:1; }
+    .game-card { width:420px; max-width:94%; background:linear-gradient(180deg,#05060a,#0b0d12); border-radius:18px; padding:22px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 40px 120px rgba(0,0,0,0.8) }
+    .game-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .game-area { height:320px; background:linear-gradient(180deg,#06060a,#0c0d12); border-radius:12px; position:relative; overflow:hidden; border:1px solid rgba(255,255,255,0.02); }
+    .game-ring { position:absolute; width:72px; height:72px; border-radius:999px; cursor:pointer; transition:transform .08s ease; box-shadow:0 8px 30px rgba(59,130,246,0.12); }
+    .game-info{ display:flex; gap:12px; align-items:center; color:var(--muted); }
+
+    /* ========== FOOTER ========== */
+    footer.site-footer{ padding:40px 0; color:var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,0.02); margin-top:60px; }
+
+    /* ========== Reveal helper classes ========== */
+    .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease; }
+    .reveal.visible{ opacity:1; transform:translateY(0); }
+
+    /* responsive tweaks */
+    @media (max-width:720px){
+      .hero-right{ justify-content:flex-start }
+      .hero-right .visual-card{ width:100% }
+      .hero-left{ padding-right:0 }
+      .hero-meta{ flex-direction:column; align-items:flex-start; gap:8px; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Intro -->
-  <div class="intro-veil"><span>SHIVASTRAS</span></div>
 
-  <header>
-    <div class="logo">Shivastras</div>
-    <nav>
+  <!-- ========== INTRO / PRELOADER ========== -->
+  <div id="intro"><div class="label">SHIVASTRAS</div></div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header container">
+    <div class="logo">
+      <!-- Optional: if logo.png exists it will show; otherwise text remains -->
+      <img src="assets/images/logo.png" alt="logo" onerror="this.style.display='none'"/> <span style="display:inline-block">Shivastras</span>
+    </div>
+
+    <nav class="main-nav" aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#gallery">Gallery</a>
-      <a href="#preorder">Survey</a>
+      <a href="#story">Story</a>
+      <a href="#survey">Survey</a>
     </nav>
   </header>
 
+  <!-- ========== MAIN CONTENT ========== -->
   <main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-copy">
-        <div class="hero-tagline">Mystical · Luxury · Artifact</div>
-        <h1>Calm. Energy. Presence.</h1>
-        <p class="lead">A ring designed for those who build, lead and elevate — a symbol of inner power.</p>
-        <div style="margin-top:20px;">
-          <button class="btn-main" onclick="document.getElementById('preorder').scrollIntoView({behavior:'smooth'})">Take Survey</button>
-          <button class="btn-ghost" onclick="openGame()">Play Game</button>
+    <!-- HERO: Cinematic reveal + floating artifact -->
+    <section class="hero container">
+      <div class="hero-left">
+        <div class="eyebrow">Divine Power · Modern Artifact</div>
+        <h1 class="hero-title">Calm. Energy. Focus — On Your Finger.</h1>
+        <p class="hero-sub">Shivastras is a dark-luxury ring crafted at the intersection of sacred geometry, gemstone resonance and modern precision. Wear it as a reminder to return to stillness, focus and purpose.</p>
+
+        <div class="ctas">
+          <button class="btn btn-primary" onclick="document.getElementById('survey').scrollIntoView({behavior:'smooth'})">Reserve / Survey</button>
+          <button class="btn btn-ghost" onclick="openGameModal()">Experience the Sigil</button>
+        </div>
+
+        <div class="hero-meta" style="margin-top:18px">
+          <div class="muted">First edition · 500 pieces</div>
+          <div class="muted">Deliveries from March 2026</div>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-img-frame" id="heroFrame">
-          <img src="assets/images/hero.jpg" id="heroImg">
+      <div class="hero-right" aria-hidden="false">
+        <div class="halo" aria-hidden="true" style="right:6%; top:12%"></div>
+
+        <div class="visual-card" id="visualCard" role="img" aria-label="Shivastras ring visual">
+          <div class="visual-frame">
+            <img id="heroImage" src="assets/images/hero.jpg" alt="Shivastras ring hero">
+          </div>
+          <div class="visual-caption" style="position:absolute; bottom:18px; left:20px; font-size:0.78rem; color:var(--muted)">Shivastras — Obsidian Blue</div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <h2 class="section-title reveal">What is Shivastras?</h2>
-      <p class="section-subtitle reveal">A luxury wearable infused with intention — calm, power and focus.</p>
-    </section>
+    <!-- DIGITAL JOURNEY / STORY (scroll reveals) -->
+    <section id="story" class="story container">
+      <div class="two-col reveal">
+        <div>
+          <h2 class="section-title">A Ring That Reminds</h2>
+          <p class="muted">Not a gadget. Not a fad. A daily object that anchors your attention — a physical signal to return to calm, to focus, to lead.</p>
+          <div style="height:18px"></div>
 
-    <!-- GALLERY -->
-    <section id="gallery">
-      <h2 class="section-title reveal">Gallery</h2>
-      <div class="gallery">
-        <img src="assets/images/hero.jpg" class="reveal">
-        <img src="assets/images/gallery1.jpg" class="reveal">
-        <img src="assets/images/gallery2.jpg" class="reveal">
+          <div class="feature">
+            <div class="icon" aria-hidden="true">🔷</div>
+            <div>
+              <h4>Gemstone Resonance</h4>
+              <p class="muted">A curated obsidian core selected for grounding and clarity, set within a sacred geometry bezel.</p>
+            </div>
+          </div>
+
+          <div style="height:14px"></div>
+
+          <div class="feature">
+            <div class="icon" aria-hidden="true">⚙️</div>
+            <div>
+              <h4>Precision Craft</h4>
+              <p class="muted">Aerospace-grade alloy, balanced weight, polished to a tactile finish for daily wear.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin-top:0">How it works</h3>
+          <p class="muted">Shivastras combines material presence and symbolic geometry — no active electronics, just a designed experience that nudges your nervous system toward stillness. It complements breathwork, micro-meditations and daily rituals.</p>
+
+          <div class="specs" style="margin-top:18px">
+            <div class="spec"><strong>Core</strong><div class="muted-small">Obsidian Blue crystal</div></div>
+            <div class="spec"><strong>Metal</strong><div class="muted-small">Matte black precision alloy</div></div>
+            <div class="spec"><strong>Finish</strong><div class="muted-small">Satin / Polished options</div></div>
+            <div class="spec"><strong>Edition</strong><div class="muted-small">1 / 500 numbered</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:36px"></div>
+
+      <div class="two-col reveal">
+        <div class="panel">
+          <h3>Worn with purpose</h3>
+          <p class="muted">We designed the ring to be unobtrusive but present — a physical anchor for attention. It works with your day, not against it.</p>
+
+          <ul style="margin-top:12px; color:var(--muted);">
+            <li>Daily ritual: 30s micro-breathe + place attention on the ring</li>
+            <li>Meetings: wear on your dominant hand for subtle reminder</li>
+            <li>Travel: durable materials for everyday use</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="margin-top:0">Design notes</h3>
+          <p class="muted">Sacred proportions etched into the inner bezel. The symbol is subtle — only visible on close inspection. The effect is intentional: it becomes your private signal.</p>
+        </div>
       </div>
     </section>
 
-    <!-- SURVEY FORM -->
-    <section id="preorder">
-      <h2 class="section-title reveal">Interest Survey</h2>
-      <p class="section-subtitle reveal">Help us shape the first edition — your opinion matters.</p>
+    <!-- GALLERY: cinematic images -->
+    <section id="gallery" class="container reveal">
+      <h2 class="section-title center">Gallery</h2>
+      <p class="section-subtitle center muted">Shivastras in light, shadow, and motion.</p>
 
-      <div class="preorder-wrapper reveal">
+      <div class="gallery" style="margin-top:18px">
+        <img src="assets/images/hero.jpg" alt="Front view">
+        <img src="assets/images/gallery1.jpg" alt="Close angle">
+        <img src="assets/images/gallery2.jpg" alt="Lifestyle">
+      </div>
+    </section>
 
-        <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+    <!-- SURVEY: investor-ready market validation -->
+    <section id="survey" class="container">
+      <div class="survey-wrap reveal">
+        <div class="center" style="margin-bottom:12px">
+          <div class="caps muted">Customer Interest Survey</div>
+          <h2 style="margin:8px 0 6px">Reserve & Tell Us What Matters</h2>
+          <div class="muted-small">Your answers help shape production — this is the data we show investors.</div>
+        </div>
 
-          <input type="text" name="name" placeholder="Name" required>
-          <input type="email" name="email" placeholder="Email" required>
+        <!-- IMPORTANT: replace the action URL with your Formspree endpoint -->
+        <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" class="survey-grid" style="margin-top:18px">
+          <!-- Contact -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+            <input name="name" type="text" placeholder="Full name" required>
+            <input name="email" type="email" placeholder="Email address" required>
+          </div>
 
-          <select name="interest" required>
-            <option disabled selected>Would you buy this ring?</option>
-            <option>Yes</option>
-            <option>Maybe</option>
-            <option>No</option>
-          </select>
+          <!-- Interest & price -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+            <select name="would_buy" required>
+              <option value="" disabled selected>Would you consider buying?</option>
+              <option>Yes - definitely</option>
+              <option>Maybe - curious</option>
+              <option>No - not for me</option>
+            </select>
 
-          <select name="price" required>
-            <option disabled selected>Expected Price Range</option>
-            <option>₹999 – ₹1499</option>
-            <option>₹1499 – ₹1999</option>
-            <option>₹1999 – ₹2999</option>
-            <option>₹3000+</option>
-          </select>
+            <select name="expected_price" required>
+              <option value="" disabled selected>What price would you expect?</option>
+              <option>₹999 – ₹1499</option>
+              <option>₹1499 – ₹1999</option>
+              <option>₹1999 – ₹2999</option>
+              <option>₹3000+</option>
+            </select>
+          </div>
 
-          <textarea name="features" placeholder="Features you'd want..."></textarea>
+          <!-- Use-case & feedback -->
+          <div>
+            <label class="muted-small">What would you use this ring for? (pick one or write)</label>
+            <select name="use_case" required>
+              <option value="" disabled selected>Select primary use</option>
+              <option>Daily ritual / mindfulness</option>
+              <option>Style / fashion</option>
+              <option>Gift</option>
+              <option>Other</option>
+            </select>
+          </div>
 
-          <textarea name="why" placeholder="Why does this idea interest you?"></textarea>
+          <div>
+            <label class="muted-small">Features you'd like / feedback</label>
+            <textarea name="features" placeholder="What features or options would matter to you?"></textarea>
+          </div>
 
-          <select name="ring-size">
-            <option disabled selected>Select Ring Size</option>
-            <option>7</option><option>8</option><option>9</option><option>10</option>
-          </select>
+          <div>
+            <label class="muted-small">Why does this idea interest you?</label>
+            <textarea name="why" placeholder="Your brief thoughts help us shape the product"></textarea>
+          </div>
 
-          <button class="btn-main" type="submit">Submit Survey</button>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <select name="ring_size">
+              <option value="" disabled selected>Ring size (optional)</option>
+              <option>7</option><option>8</option><option>9</option><option>10</option>
+            </select>
 
+            <input name="referral" type="text" placeholder="Where did you hear about us? (Instagram / Friend / etc.)">
+          </div>
+
+          <div style="display:flex; gap:12px; align-items:center; margin-top:6px;">
+            <button type="submit" class="btn btn-primary">Submit & Reserve (₹499)</button>
+            <div class="muted-small">We will contact you to confirm size & final payment</div>
+          </div>
         </form>
+      </div>
+    </section>
+
+    <!-- CTA / urgency -->
+    <section class="container reveal">
+      <div style="display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap;">
+        <div style="padding:18px 22px; border-radius:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03);">
+          <strong style="display:block; font-size:1.1rem">Limited first edition</strong>
+          <div class="muted-small">Only 500 pieces. Early supporters will be individually numbered.</div>
+        </div>
+
+        <div style="padding:18px 22px; border-radius:14px; background:linear-gradient(90deg, rgba(59,130,246,0.12), rgba(59,130,246,0.04)); border:1px solid rgba(59,130,246,0.08)">
+          <strong style="display:block">Why this matters</strong>
+          <div class="muted-small">Pre-orders fund the first batch and validate demand to investors.</div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer style="text-align:center; padding:30px; opacity:.7;">
-     © 2025 Shivastras — Crafted with Intention.
-  </footer>
+  <!-- ========== PREMIUM POPUP GAME (popup after delay) ========== -->
+  <div id="gameModal" aria-hidden="true" role="dialog" aria-label="Experience the Sigil">
+    <div class="game-card">
+      <div class="game-top">
+        <div>
+          <div class="caps muted">Experience the Sigil</div>
+          <h3 style="margin:6px 0 0">A moment of attention</h3>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center">
+          <div class="game-info muted-small">Score: <span id="gameScore">0</span></div>
+          <button id="closeGameBtn" aria-label="Close game" style="background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer">✕</button>
+        </div>
+      </div>
 
-  <!-- GAME POPUP -->
-  <div id="gamePopup">
-    <div id="gameBox">
-      <div id="closeGame" onclick="closeGame()">✕</div>
-      <h3 style="margin-bottom:10px;">Catch the Shivastras Ring!</h3>
-      <p>Score: <span id="score">0</span></p>
-      <img id="ringTarget" src="assets/images/hero.jpg">
+      <div class="game-area" id="gameArea" aria-hidden="false">
+        <!-- The ring element will be positioned via JS inside gameArea -->
+      </div>
+
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:12px;">
+        <button class="btn btn-primary" id="claimHintBtn">Claim a Hint</button>
+        <button class="btn btn-ghost" id="closeGameFooter">Close</button>
+      </div>
     </div>
   </div>
 
-<script>
-/* Page Load Reveal */
-window.addEventListener('load', ()=>{ document.body.classList.add('loaded'); });
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer container">
+    <div class="muted">© 2025 Shivastras. Forged in darkness. Worn in light.</div>
+  </footer>
 
-/* Scroll Reveal */
-const reveals=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver((entries)=>{
- entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target);} });
-},{threshold:.15});
-reveals.forEach(r=>obs.observe(r));
+  <!-- ========== SCRIPTS: interactions, reveal, parallax, popup game ========== -->
+  <script>
+    /* ---------- Helper: add/remove visible class for reveal on scroll ---------- */
+    (function(){
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
 
-/* Parallax */
-window.addEventListener('scroll',()=>{
-  let y=window.scrollY;
-  heroImg.style.transform=`translateY(${y*0.2}px)`;
-});
+      document.querySelectorAll('.reveal').forEach(n => observer.observe(n));
+    })();
 
-/* Game Logic */
-let score=0;
-const popup=document.getElementById('gamePopup');
-const ring=document.getElementById('ringTarget');
+    /* ---------- Intro preloader fade ---------- */
+    window.addEventListener('load', () => {
+      const intro = document.getElementById('intro');
+      setTimeout(() => intro.classList.add('hidden'), 420);
+      // small delay for hero to animate in (CSS handles transitions)
+    });
 
-function openGame(){ popup.classList.add('active'); moveRing(); }
-function closeGame(){ popup.classList.remove('active'); }
+    /* ---------- Parallax micro-motion for hero image ---------- */
+    (function(){
+      const heroImage = document.getElementById('heroImage');
+      const visualCard = document.getElementById('visualCard');
+      if (!heroImage || !visualCard) return;
 
-setTimeout(openGame,10000); // auto popup after 10 sec
+      window.addEventListener('scroll', () => {
+        const sc = window.scrollY || window.pageYOffset;
+        // gentle translate & rotation proportional to scroll
+        heroImage.style.transform = `translateY(${sc * 0.06}px)`;
+        visualCard.style.transform = `translateY(${Math.min(sc * -0.02, 0)}px)`;
+      });
 
-ring.onclick=function(){
-  score++;
-  document.getElementById('score').textContent=score;
-  moveRing();
-};
+      // subtle 3D tilt on pointer
+      visualCard.addEventListener('mousemove', (ev) => {
+        const rect = visualCard.getBoundingClientRect();
+        const dx = (ev.clientX - rect.left) / rect.width - 0.5;
+        const dy = (ev.clientY - rect.top) / rect.height - 0.5;
+        visualCard.style.transform = `rotateX(${dy * 6}deg) rotateY(${dx * -8}deg) translateZ(0)`;
+      });
+      visualCard.addEventListener('mouseleave', () => visualCard.style.transform = '');
+    })();
 
-function moveRing(){
-  let box=document.getElementById('gameBox').getBoundingClientRect();
-  ring.style.left=Math.random()*(box.width-80)+20+"px";
-  ring.style.top=Math.random()*(box.height-140)+80+"px";
-}
-</script>
+    /* ---------- Popup Game: premium experience ---------- */
+    (function(){
+      const modal = document.getElementById('gameModal');
+      const gameArea = document.getElementById('gameArea');
+      const closeBtn = document.getElementById('closeGameBtn');
+      const closeFooter = document.getElementById('closeGameFooter');
+      const claimBtn = document.getElementById('claimHintBtn');
+      const scoreNode = document.getElementById('gameScore');
+      let score = 0, ringEl = null, autoOpenTimeout = null, spawnTimeout = null;
 
+      // create ring element
+      function createRing(){
+        ringEl = document.createElement('div');
+        ringEl.className = 'game-ring';
+        ringEl.style.width = '72px';
+        ringEl.style.height = '72px';
+        ringEl.style.borderRadius = '999px';
+        ringEl.style.background = 'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.05), rgba(59,130,246,0.12))';
+        ringEl.style.left = '20px';
+        ringEl.style.top = '20px';
+        ringEl.style.display = 'block';
+        // inner visual: use a small image if exists
+        const img = document.createElement('img');
+        img.src = 'assets/images/hero.jpg';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '999px';
+        ringEl.appendChild(img);
+        ringEl.addEventListener('click', onRingClick);
+        return ringEl;
+      }
+
+      function onRingClick(e){
+        // gentle pop animation
+        ringEl.style.transform = 'scale(0.92)';
+        setTimeout(()=> ringEl.style.transform = '', 120);
+        score += 1;
+        scoreNode.textContent = score;
+        // move ring to new random location after click
+        clearTimeout(spawnTimeout);
+        spawnTimeout = setTimeout(moveRingRandom, 200);
+      }
+
+      function moveRingRandom(){
+        const r = gameArea.getBoundingClientRect();
+        const w = r.width - 90;
+        const h = r.height - 90;
+        const x = Math.max(10, Math.random() * w);
+        const y = Math.max(10, Math.random() * h);
+        ringEl.style.left = x + 'px';
+        ringEl.style.top = y + 'px';
+      }
+
+      // open/close modal
+      window.openGameModal = function(){
+        if(!modal) return;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden','false');
+        if(!ringEl) gameArea.appendChild( createRing() );
+        moveRingRandom();
+      };
+      function closeModal(){
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden','true');
+      }
+      closeBtn.addEventListener('click', closeModal);
+      closeFooter.addEventListener('click', closeModal);
+
+      // claim hint (small animation + small score)
+      claimBtn.addEventListener('click', () => {
+        score += 1;
+        scoreNode.textContent = score;
+        claimBtn.textContent = 'Hint Claimed ✓';
+        claimBtn.disabled = true;
+        setTimeout(()=>{ claimBtn.textContent = 'Claim a Hint'; claimBtn.disabled=false; }, 5000);
+      });
+
+      // auto-open popup after 10-12 seconds (only once per page load)
+      autoOpenTimeout = setTimeout(()=> {
+        openGameModal();
+      }, 11000);
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+    })();
+
+    /* ---------- Survey form UX: show simple toast on success ---------- */
+    (function(){
+      const form = document.getElementById('surveyForm');
+      if(!form) return;
+      form.addEventListener('submit', (e) => {
+        // allow normal post to Formspree (no JS handling)
+        // but show a small confirmation overlay after a short delay
+        setTimeout(()=> {
+          alert('Thanks — your answers were submitted. We will contact you about your reservation.');
+        }, 600);
+      });
+    })();
+
+    /* ---------- Accessibility helpers: trap focus in modal when open (basic) ---------- */
+    (function(){
+      const modal = document.getElementById('gameModal');
+      document.addEventListener('focus', (ev) => {
+        if(modal && modal.classList.contains('active')){
+          if(!modal.contains(ev.target)) ev.stopPropagation(), modal.querySelector('.game-card').focus();
+        }
+      }, true);
+    })();
+  </script>
 </body>
 </html>
+
 
