@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<!-- index.html
+     Final production-grade page for Shivastras
+     - Gallery includes gallery3.jpeg (your corrected ring image)
+     - Full survey with consent, popup game, analytics
+     - Replace Formspree action with your endpoint before publishing
+-->
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,193 +16,243 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <!-- Fonts: Inter for UI, Cormorant Garamond for brand (ancient serif) -->
+  <!-- SEO -->
+  <meta name="description" content="Shivastras — a dark-luxury ring: obsidian core, modern precision. Sign up for early interest and win the first ring." />
+
+  <!-- Fonts: UI + brand (ancient serif) -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Plausible (analytics) -->
+  <!-- Plausible analytics (provided) -->
   <script async src="https://plausible.io/js/pa-0IUKSZSYLEBpEEp-dKNxj.js"></script>
   <script>
-    window.plausible = window.plausible || function(){(plausible.q=plausible.q||[]).push(arguments)};
-    plausible.init = plausible.init || function(i){plausible.o=i||{}};
+    window.plausible = window.plausible || function(){(plausible.q = plausible.q || []).push(arguments)};
+    plausible.init = plausible.init || function(i){plausible.o = i || {}};
     plausible.init();
   </script>
 
+  <!-- Styles: explicit and verbose for clarity -->
   <style>
-    /* ---------- Design tokens ---------- */
+    /********* Design tokens *********/
     :root{
-      --bg-1:#03030a;
-      --bg-2:#070713;
-      --muted:#9aa3ad;
-      --text:#f7fafc;
-      --accent:#3b82f6;
-      --accent-soft: rgba(59,130,246,0.22);
-      --glass: rgba(255,255,255,0.02);
+      --bg-1: #03030a;
+      --bg-2: #070713;
+      --muted: #9aa3ad;
+      --text: #f7fafc;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.18);
+      --glass: rgba(255,255,255,0.03);
       --radius-xl: 28px;
       --radius-lg: 12px;
-      --max-width:1200px;
+      --max-width: 1200px;
+      --header-height: 76px;
     }
 
-    /* ---------- Base ---------- */
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    /* ---------- base ---------- */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body{
       margin:0;
+      font-family: Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
       background: radial-gradient(circle at 10% 10%, #0b1220 0%, #02010a 45%, #000 100%);
-      color:var(--text);
-      font-family:Inter, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.55;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;}
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 22px; }
 
-    /* ---------- Intro / preloader ---------- */
-    #intro {
-      position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-      background:#000; z-index:4000; transition:opacity .9s ease, visibility .9s ease;
-    }
-    #intro.hidden{ opacity:0; visibility:hidden; }
-    #intro .label{ font-family: "Cormorant Garamond", serif; letter-spacing: .28em; text-transform:uppercase; color:#e9eef7; font-size:0.95rem; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* ---------- Header ---------- */
-    header.site-header{
-      position:fixed; top:0; left:0; right:0; height:76px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      padding:0 22px; z-index:1600;
-      backdrop-filter: blur(12px);
+    /* ---------- header ---------- */
+    header.site-header {
+      position: fixed;
+      left: 0; right: 0; top: 0;
+      height: var(--header-height);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px;
+      z-index: 1600;
       background: linear-gradient(180deg, rgba(0,0,0,0.56), rgba(0,0,0,0.12));
-      border-bottom:1px solid rgba(255,255,255,0.02);
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      backdrop-filter: blur(12px);
     }
     .brand {
       font-family: "Cormorant Garamond", serif;
-      font-weight:700;
-      font-size:1.2rem;
-      text-transform: capitalize; /* Sentence case brand */
-      letter-spacing:0.06em;
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: .04em;
+      text-transform: capitalize; /* Shivastras */
     }
-    nav.main-nav a{
-      margin-left:18px; color:var(--muted); text-decoration:none; font-size:.95rem;
-      text-transform: capitalize; /* sentence case */
+    nav.main-nav a {
+      margin-left: 18px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-transform: capitalize;
       transition: color .18s ease, transform .18s ease;
     }
-    nav.main-nav a:hover{ color:var(--text); transform:translateY(-1px); }
+    nav.main-nav a:hover { color: var(--text); transform: translateY(-1px); }
 
-    /* ---------- Hero: centered content ---------- */
+    /* ---------- intro overlay / preloader ---------- */
+    #intro {
+      position: fixed; inset: 0; display:flex; align-items:center; justify-content:center;
+      background: #000; z-index: 4000; transition: opacity .8s ease, visibility .8s;
+    }
+    #intro.hidden { opacity: 0; visibility: hidden; }
+    #intro .label {
+      font-family: "Cormorant Garamond", serif;
+      color: #e9eef7;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    /* ---------- hero: centered ---------- */
     .hero {
-      min-height: calc(100vh - 76px);
-      display:grid;
+      min-height: calc(100vh - var(--header-height));
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap:36px;
-      align-items:center; /* center vertically */
-      padding: 90px 0;
+      gap: 36px;
+      align-items: center; /* centered vertically */
+      padding: 110px 0 80px; /* top space to account for fixed header */
     }
-    @media (max-width:980px){
-      .hero { grid-template-columns:1fr; padding-top:110px; gap:24px; }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-top: 140px; gap: 24px; }
     }
-
-    .hero-left { align-self:center; }
-    .eyebrow { color:var(--accent); font-weight:600; letter-spacing:0.24em; margin-bottom:8px; text-transform:capitalize; font-size:.78rem; }
+    .hero-left { align-self: center; }
+    .eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .24em; text-transform: capitalize; margin-bottom: 8px; font-size: .78rem; }
     .hero-title {
       font-family: "Cormorant Garamond", serif;
-      font-weight:700;
+      font-weight: 700;
+      margin: 6px 0 12px;
       font-size: clamp(2.2rem, 5vw, 3.6rem);
-      line-height:1.02;
-      margin:6px 0 12px;
-      text-transform: capitalize; /* sentence case */
+      line-height: 1.02;
+      text-transform: capitalize;
     }
-    .hero-sub { color:var(--muted); max-width:560px; font-size:1rem; margin-bottom:16px; }
-
+    .hero-sub { color: var(--muted); max-width: 620px; font-size: 1rem; margin-bottom: 16px; }
     .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:8px; }
     .btn {
-      padding:12px 26px; border-radius:999px; border:1px solid rgba(255,255,255,0.04);
-      cursor:pointer; font-weight:700; text-transform:capitalize;
-      color:var(--text); background:transparent;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.04);
+      cursor:pointer;
+      font-weight:700;
+      text-transform: capitalize;
+      background: transparent;
+      color: var(--text);
     }
-    .btn-primary { background:var(--accent); border-color:transparent; color:white; box-shadow:0 8px 30px rgba(59,130,246,0.12); }
+    .btn-primary { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 10px 40px rgba(59,130,246,0.12); }
 
-    .hero-meta { margin-top:16px; color:var(--muted); font-size:.92rem; text-transform:capitalize; }
+    .hero-meta { margin-top: 16px; color: var(--muted); font-size: .92rem; text-transform: capitalize; }
 
-    /* ---------- Visual card (image) ---------- */
+    /* ---------- visual card ---------- */
     .hero-right { display:flex; align-items:center; justify-content:center; position:relative; }
     .halo {
       position:absolute; width:360px; height:360px; border-radius:999px; z-index:0;
       background: radial-gradient(circle, rgba(59,130,246,0.32), transparent 60%);
-      filter: blur(14px); transform:translateY(8px); pointer-events:none; animation: haloPulse 5s ease-in-out infinite;
+      filter: blur(14px); transform: translateY(8px);
+      animation: haloPulse 5s ease-in-out infinite;
+      pointer-events: none;
     }
-    @keyframes haloPulse { 0%,100%{ transform: translateY(8px) scale(1); opacity:0.95 } 50%{ transform: translateY(14px) scale(1.06); opacity:0.45 } }
+    @keyframes haloPulse { 0%,100%{ transform: translateY(8px) scale(1); opacity: 0.95 } 50%{ transform: translateY(14px) scale(1.06); opacity: 0.45 } }
 
     .visual-card {
-      width:460px; max-width:92%; border-radius:var(--radius-xl); overflow:hidden;
+      width: 480px; max-width: 92%;
+      border-radius: var(--radius-xl);
+      padding: 20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px; box-shadow: 0 30px 120px rgba(0,0,0,0.8), 0 0 100px var(--accent-soft);
-      transform-style:preserve-3d; transition: transform .45s cubic-bezier(.2,.9,.3,1);
+      box-shadow: 0 30px 120px rgba(0,0,0,0.8), 0 0 100px var(--accent-soft);
+      transition: transform .45s cubic-bezier(.2,.9,.3,1);
     }
-    .visual-card:hover{ transform: translateY(-8px) rotate3d(0.02,-0.02,0,3.8deg); }
-    .visual-frame{ border-radius:16px; overflow:hidden; background: linear-gradient(120deg,#06060a,#0c0d12); }
-    .visual-frame img{ width:100%; display:block; transform: translateY(0); transition: transform .6s; }
-    .visual-caption{ position:absolute; left:24px; bottom:18px; font-size:.82rem; color:var(--muted); text-transform:capitalize; }
+    .visual-card:hover { transform: translateY(-8px) rotate3d(0.02,-0.02,0,3.8deg); }
+    .visual-frame { border-radius: 18px; overflow:hidden; background: linear-gradient(120deg,#06060a,#0c0d12); }
+    .visual-frame img { width: 100%; height: auto; display:block; }
 
-    /* ---------- Story / content flow ---------- */
-    section.story { padding:72px 0; }
-    .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
-    @media (max-width:940px){ .two-col{ grid-template-columns:1fr } }
-    .panel{ padding:22px; border-radius:12px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); }
+    .visual-caption { position:absolute; left:24px; bottom:20px; font-size:0.82rem; color:var(--muted); }
 
-    .feature{ display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
-    .feature .icon{ width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#07070d; border:1px solid rgba(255,255,255,0.03); }
+    /* ---------- content sections ---------- */
+    section { padding: 64px 0; }
+    .story { padding-top: 38px; }
 
-    .specs { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px; }
+    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+    @media (max-width: 940px) { .two-col { grid-template-columns: 1fr; } }
 
-    /* ---------- Gallery ---------- */
-    .gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px; }
-    @media (max-width:940px){ .gallery{ grid-template-columns:1fr } }
-    .gallery img{ width:100%; height:320px; object-fit:cover; border-radius:12px; transition:transform .35s, filter .35s; filter:brightness(.96); }
-    .gallery img:hover { transform: translateY(-6px); filter:brightness(1.12); }
+    .panel {
+      padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.03);
+    }
 
-    /* ---------- Survey: responsive, engaging ---------- */
-    .survey-wrap { max-width:800px; margin:0 auto; padding:26px; border-radius:14px; background:linear-gradient(135deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006)); border:1px solid rgba(255,255,255,0.03); box-shadow:0 20px 80px rgba(0,0,0,0.75); }
+    .feature { display:flex; gap:12px; margin-bottom:12px; align-items:flex-start; }
+    .feature .icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#07070d; border:1px solid rgba(255,255,255,0.03); }
+
+    /* ---------- gallery ---------- */
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+    @media (max-width: 940px) { .gallery { grid-template-columns: 1fr; } }
+    .gallery img { width:100%; height: 320px; object-fit: cover; border-radius: 12px; filter: brightness(.96); transition: transform .35s, filter .35s; }
+    .gallery img:hover { transform: translateY(-6px); filter: brightness(1.12); }
+
+    /* ---------- survey (responsive, polished) ---------- */
+    .survey-wrap {
+      max-width: 920px; margin: 0 auto; padding: 28px;
+      border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+      border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 20px 80px rgba(0,0,0,0.75);
+    }
     .survey-grid { display:grid; gap:12px; }
     .row { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    @media (max-width:720px){ .row{ grid-template-columns: 1fr } }
-    input,select,textarea { padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background: rgba(10,12,15,0.6); color:var(--text); font-size:0.95rem; width:100%; }
-    textarea{ min-height:120px; resize:vertical; }
-    .consent { display:flex; gap:8px; align-items:flex-start; margin-top:10px; font-size:.95rem; color:var(--muted); }
-    .consent a{ color:var(--accent); text-decoration:underline; }
+    @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
 
-    /* ---------- Experience aura game (desktop + mobile playable) ---------- */
-    #gameModal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9)); z-index:3500; visibility:hidden; opacity:0; transition:opacity .28s, visibility .28s; }
-    #gameModal.active{ visibility:visible; opacity:1; }
-    .game-card { width:520px; max-width:94%; padding:22px; border-radius:16px; background:linear-gradient(180deg,#05060a,#0b0d12); border:1px solid rgba(255,255,255,0.03); box-shadow:0 40px 140px rgba(0,0,0,0.85); text-align:center; }
+    input, select, textarea {
+      width:100%;
+      padding: 12px 14px; border-radius: 10px;
+      border:1px solid rgba(255,255,255,0.04); background: rgba(10,12,15,0.6);
+      color: var(--text); font-size: .95rem;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .consent { display:flex; gap:8px; align-items:flex-start; margin-top:10px; color: var(--muted); font-size: .95rem; }
+    .consent a { color: var(--accent); text-decoration: underline; }
+
+    /* ---------- popup game ---------- */
+    #gameModal {
+      position: fixed; inset:0; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
+      z-index: 3500; visibility: hidden; opacity: 0; transition: opacity .28s ease, visibility .28s ease;
+    }
+    #gameModal.active { visibility: visible; opacity: 1; }
+    .game-card {
+      width: 560px; max-width: 96%; padding: 22px; border-radius: 16px;
+      background: linear-gradient(180deg, #05060a, #0b0d12);
+      border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 40px 140px rgba(0,0,0,0.85);
+      text-align: center;
+    }
     .game-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-    .game-instructions { color:var(--muted); margin-bottom:10px; }
-    .energy-area { position:relative; height:360px; border-radius:12px; overflow:hidden; background:linear-gradient(180deg,#06060a,#0b0d12); border:1px solid rgba(255,255,255,0.02); display:flex; align-items:center; justify-content:center; }
-    .energy-core { width:160px; height:160px; border-radius:999px; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.06), rgba(59,130,246,0.5) 30%, rgba(12,22,44,0.6) 100%); box-shadow:0 12px 48px rgba(59,130,246,0.18), 0 0 140px rgba(59,130,246,0.12); transition: transform .08s ease, box-shadow .08s ease, filter .08s ease; }
+    .game-instructions { color: var(--muted); margin-bottom:10px; }
+    .energy-area { position:relative; height:360px; border-radius: 12px; overflow:hidden; display:flex; align-items:center; justify-content:center; border: 1px solid rgba(255,255,255,0.02); background: linear-gradient(180deg,#06060a,#0b0d12); }
+    .energy-core { width:160px; height:160px; border-radius:999px; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.06), rgba(59,130,246,0.5) 30%, rgba(12,22,44,0.6) 100%); box-shadow: 0 12px 48px rgba(59,130,246,0.18), 0 0 140px rgba(59,130,246,0.12); transition: transform .08s, box-shadow .08s; }
 
-    /* cursor aura element for desktop; on mobile it is hidden and touch moves are used */
-    .cursor-aura { position:fixed; pointer-events:none; z-index:5000; width:48px; height:48px; border-radius:999px; transform:translate(-50%,-50%); transition: width .06s linear, height .06s linear, opacity .12s; background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.95), rgba(59,130,246,0.25) 40%, rgba(59,130,246,0.06) 70%, transparent 100%); mix-blend-mode:screen; filter: blur(6px); opacity:0.9; }
-    @media (max-width:720px){ .cursor-aura{ display:none; } }
+    /* cursor aura */
+    .cursor-aura {
+      position: fixed; pointer-events:none; z-index:5000; width:48px; height:48px;
+      border-radius:999px; transform: translate(-50%,-50%); transition: width .06s linear, height .06s linear, opacity .12s;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.95), rgba(59,130,246,0.25) 40%, rgba(59,130,246,0.06) 70%, transparent 100%);
+      mix-blend-mode: screen; filter: blur(6px); opacity: 0.9;
+    }
+    @media (max-width:720px) { .cursor-aura { display:none; } }
 
-    /* small helpers */
-    .muted { color:var(--muted); }
+    /* ---------- small helpers ---------- */
+    .muted { color: var(--muted); }
     .center { text-align:center; }
     .visible { opacity:1; transform:none; transition: all .6s ease; }
 
-    @media (max-width:720px){
-      .hero-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
-      .visual-card { width:100%; }
-      .game-card { width:95%; }
-    }
+    footer { padding: 36px 0; text-align:center; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.02); margin-top: 30px; }
   </style>
 </head>
-
 <body>
 
-  <!-- intro -->
+  <!-- intro overlay -->
   <div id="intro"><div class="label">shivastras</div></div>
 
-  <!-- cursor aura (desktop) -->
+  <!-- cursor aura for desktop -->
   <div id="cursorAura" class="cursor-aura" aria-hidden="true"></div>
 
   <!-- header -->
@@ -211,12 +267,13 @@
   </header>
 
   <main>
-    <!-- HERO (centered) -->
+
+    <!-- HERO -->
     <section class="hero container" id="heroSection" role="region" aria-label="Hero">
       <div class="hero-left">
         <div class="eyebrow">Divine power · modern artifact</div>
         <h1 class="hero-title">Wear your calm. Carry your power.</h1>
-        <p class="hero-sub">A dark-luxury ring crafted from sacred geometry, gemstone resonance and modern precision. It is designed to be a daily anchor — a reminder to return to presence and focus.</p>
+        <p class="hero-sub">A dark-luxury ring crafted from sacred geometry, gemstone resonance and modern precision. Designed to be a daily anchor — a reminder to return to focus.</p>
 
         <div class="cta-row">
           <button class="btn btn-primary" onclick="document.getElementById('survey').scrollIntoView({behavior:'smooth'})">Take the survey</button>
@@ -226,10 +283,9 @@
         <div class="hero-meta">coming soon</div>
       </div>
 
-      <div class="hero-right">
-        <div class="halo" aria-hidden="true" style="right:8%; top:8%"></div>
-
-        <div class="visual-card" id="visualCard" aria-hidden="false">
+      <div class="hero-right" aria-hidden="false">
+        <div class="halo" aria-hidden="true" style="right:6%; top:10%"></div>
+        <div class="visual-card" id="visualCard">
           <div class="visual-frame">
             <img id="heroImage" src="assets/images/hero.jpg" alt="Shivastras ring hero">
           </div>
@@ -239,15 +295,16 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="story container reveal" aria-labelledby="aboutHeading">
+    <section id="about" class="container story" aria-labelledby="aboutHeading">
       <div class="two-col">
         <div>
-          <h2 id="aboutHeading" class="caps">What is Shivastras</h2>
+          <h2 id="aboutHeading">What is Shivastras</h2>
           <p class="muted">Not a gadget. Not a trend. A wearable object that invites small, daily pauses — bringing attention back to what matters.</p>
 
           <div style="margin-top:18px"></div>
+
           <div class="feature">
-            <div class="icon">🔷</div>
+            <div class="icon" aria-hidden="true">🔷</div>
             <div>
               <h4 style="margin:0">Grounding gemstone core</h4>
               <p class="muted" style="margin-top:6px">A carefully chosen obsidian node tuned for clarity and presence.</p>
@@ -255,21 +312,21 @@
           </div>
 
           <div class="feature">
-            <div class="icon">⚙️</div>
+            <div class="icon" aria-hidden="true">⚙️</div>
             <div>
               <h4 style="margin:0">Precision craft</h4>
-              <p class="muted" style="margin-top:6px">Balanced weight and comfortable daily wear, finished in matte dark tones.</p>
+              <p class="muted" style="margin-top:6px">Balanced weight and comfortable daily wear, finished in matte black metal and a polished gemstone inset.</p>
             </div>
           </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" aria-hidden="false">
           <h3 style="margin-top:0">How it works</h3>
-          <p class="muted">A designed experience: small tactile triggers and symbolic geometry act as a persistent reminder for attention and calm.</p>
+          <p class="muted">This is a designed experience: small tactile triggers and symbolic geometry act as a persistent reminder for attention and calm.</p>
 
           <div class="specs" style="margin-top:12px;">
             <div class="panel"><strong>Core</strong><div class="muted">Obsidian blue</div></div>
-            <div class="panel"><strong>Metal</strong><div class="muted">Matte precision alloy</div></div>
+            <div class="panel"><strong>Metal</strong><div class="muted">Matte black precision alloy</div></div>
             <div class="panel"><strong>Finish</strong><div class="muted">Satin / polished options</div></div>
             <div class="panel"><strong>Edition</strong><div class="muted">First series</div></div>
           </div>
@@ -277,58 +334,59 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="container reveal" aria-labelledby="galleryHeading" style="padding-top:36px;">
-      <h2 id="galleryHeading" class="center" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem">Gallery</h2>
-      <p class="center muted" style="margin-top:6px">Shivastras in shadow, metal and light</p>
+    <!-- GALLERY (final: includes gallery3.jpeg) -->
+    <section id="gallery" class="container" aria-labelledby="galleryHeading" style="padding-top:36px;">
+      <h2 id="galleryHeading" class="center" style="font-family:'Cormorant Garamond',serif; font-size:1.8rem;">Gallery</h2>
+      <p class="center muted" style="margin-top:6px;">Shivastras in shadow, metal and light</p>
 
-      <div class="gallery" style="margin-top:18px;">
-        <img src="assets/images/hero.jpg" alt="front view">
-        <img src="assets/images/gallery1.jpg" alt="angle view">
-        <img src="assets/images/gallery2.jpg" alt="lifestyle">
+      <div class="gallery" aria-hidden="false">
+        <img src="assets/images/gallery1.jpg" alt="Shivastras gallery angle view">
+        <img src="assets/images/gallery2.jpg" alt="Shivastras lifestyle view">
+        <!-- FINAL corrected ring image you will upload -->
+        <img src="assets/images/gallery3.jpeg" alt="Shivastras corrected ring - close up">
       </div>
     </section>
 
-    <!-- STORY / narrative -->
-    <section class="story container reveal" style="padding-top:64px;">
+    <!-- STORY -->
+    <section class="container story" style="padding-top:48px;">
       <div class="two-col">
         <div class="panel">
           <h3 style="margin-top:0">Wearing the ring</h3>
-          <p class="muted">Use it as a micro ritual: three slow breaths, touch the ring, return to the present. Over time, this practice becomes an anchor.</p>
+          <p class="muted">Use it as a micro ritual: three slow breaths, touch the ring, and return to the present. Over time, this small practice becomes a stable anchor in daily life.</p>
         </div>
 
         <div>
-          <h3 style="margin-bottom:8px">Design notes</h3>
-          <p class="muted">Subtle trishula-inspired geometry and a hidden inner mark. The ring is discreet, intentional and built for daily life.</p>
+          <h3>Design notes</h3>
+          <p class="muted">Subtle trishula-inspired geometry, a hidden inner mark on the band, and a balance between presence and discretion.</p>
         </div>
       </div>
     </section>
 
-    <!-- SURVEY -->
-    <section id="survey" class="container reveal" style="padding-top:56px;padding-bottom:80px;">
+    <!-- SURVEY (full responsive) -->
+    <section id="survey" class="container" style="padding-top:56px;padding-bottom:80px;">
       <div class="survey-wrap" role="form" aria-labelledby="surveyHeading">
         <div class="center" style="margin-bottom:12px;">
           <div class="caps muted">Customer interest survey</div>
           <h2 id="surveyHeading" style="margin:8px 0 6px; font-family:'Cormorant Garamond',serif">Take the survey</h2>
-          <p class="muted" style="font-size:.95rem">Take the survey and stand a chance to win the first Shivastras ring</p>
+          <p class="muted" style="font-size:.95rem">Take the survey and stand a chance to win the first Shivastras ring.</p>
         </div>
 
-        <!-- Replace action with your Formspree endpoint -->
+        <!-- NOTE: replace action with your real Formspree endpoint -->
         <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" class="survey-grid" novalidate>
           <div class="row">
-            <input name="name" type="text" placeholder="Full name" required>
-            <input name="email" type="email" placeholder="Email address" required>
+            <input name="name" type="text" placeholder="Full name" required aria-label="Full name">
+            <input name="email" type="email" placeholder="Email address" required aria-label="Email address">
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-            <select name="would_buy" required>
+            <select name="would_buy" required aria-label="Would you consider buying">
               <option value="" disabled selected>Would you consider buying?</option>
               <option>Yes - definitely</option>
               <option>Maybe - curious</option>
               <option>No - not for me</option>
             </select>
 
-            <select name="expected_price" required>
+            <select name="expected_price" required aria-label="What price would you expect">
               <option value="" disabled selected>What price would you expect?</option>
               <option>₹999 – ₹1499</option>
               <option>₹1499 – ₹1999</option>
@@ -339,7 +397,7 @@
 
           <div style="margin-top:12px;">
             <label class="muted" style="display:block;margin-bottom:6px;">What would you use this ring for?</label>
-            <select name="use_case" required>
+            <select name="use_case" required aria-label="Primary use">
               <option value="" disabled selected>Select primary use</option>
               <option>Daily ritual / mindfulness</option>
               <option>Style / fashion</option>
@@ -350,25 +408,25 @@
 
           <div style="margin-top:12px;">
             <label class="muted" style="display:block;margin-bottom:6px;">Features you'd like</label>
-            <textarea name="features" placeholder="Features you'd like to see (materials, finishes, sizes, etc.)"></textarea>
+            <textarea name="features" placeholder="Features you'd like to see (materials, finishes, sizes, etc.)" aria-label="Features you'd like"></textarea>
           </div>
 
           <div style="margin-top:12px;">
             <label class="muted" style="display:block;margin-bottom:6px;">Why does this idea interest you?</label>
-            <textarea name="why" placeholder="Briefly tell us why"></textarea>
+            <textarea name="why" placeholder="Briefly tell us why" aria-label="Why does this idea interest you"></textarea>
           </div>
 
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-            <select name="ring_size">
+            <select name="ring_size" aria-label="Ring size">
               <option value="" disabled selected>Ring size (optional)</option>
               <option>7</option><option>8</option><option>9</option><option>10</option>
             </select>
-            <input name="heard_from" type="text" placeholder="Where did you hear about us? (Instagram / Friend)">
+            <input name="heard_from" type="text" placeholder="Where did you hear about us? (Instagram / Friend)" aria-label="Where did you hear about us">
           </div>
 
-          <!-- Consent (required) -->
+          <!-- Consent - required -->
           <div class="consent" style="margin-top:12px;">
-            <input type="checkbox" id="consentCheckbox" name="consent" value="agreed" required>
+            <input type="checkbox" id="consentCheckbox" name="consent" value="agreed" required aria-required="true" />
             <label for="consentCheckbox">I agree to the <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a> and consent to receive communication from Shivastras via email or WhatsApp.</label>
           </div>
 
@@ -380,91 +438,92 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- Game modal (experience aura) -->
-  <div id="gameModal" aria-hidden="true" role="dialog" aria-label="Experience aura">
-    <div class="game-card" role="document" aria-live="polite">
-      <div class="game-top">
-        <div>
-          <div style="font-size:.82rem;color:var(--muted);text-transform:capitalize">Experience aura</div>
-          <h3 style="margin:6px 0 0; font-family:'Cormorant Garamond',serif">Stabilize the core</h3>
+    <!-- GAME POPUP (experience aura) -->
+    <div id="gameModal" aria-hidden="true" role="dialog" aria-label="Experience aura">
+      <div class="game-card" role="document" aria-live="polite">
+        <div class="game-top">
+          <div>
+            <div style="font-size:.82rem;color:var(--muted);text-transform:capitalize">Experience aura</div>
+            <h3 style="margin:6px 0 0; font-family:'Cormorant Garamond',serif">Stabilize the core</h3>
+          </div>
+          <button id="closeGameBtn" aria-label="Close" style="background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer">✕</button>
         </div>
-        <button id="closeGameBtn" aria-label="Close" style="background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer">✕</button>
-      </div>
 
-      <div class="game-instructions muted">Move your cursor or touch the screen near the core — the aura intensifies. Tap the core when the glow peaks to stabilize energy.</div>
+        <div class="game-instructions muted">Move your cursor or touch near the core — the aura intensifies. Tap the core when the glow peaks to stabilize energy.</div>
 
-      <div class="energy-area" id="energyArea">
-        <div class="energy-core" id="energyCore" role="button" aria-label="energy core"></div>
-      </div>
+        <div class="energy-area" id="energyArea">
+          <div class="energy-core" id="energyCore" role="button" aria-label="energy core" tabindex="0"></div>
+        </div>
 
-      <div style="margin-top:12px;color:var(--muted)">Energy stabilized: <span id="auraScore">0</span></div>
+        <div style="margin-top:12px;color:var(--muted)">Energy stabilized: <span id="auraScore">0</span></div>
 
-      <div style="margin-top:12px; display:flex; gap:10px; justify-content:center;">
-        <button class="btn" onclick="closeGameModal()">Close</button>
+        <div style="margin-top:12px; display:flex; gap:10px; justify-content:center;">
+          <button class="btn" onclick="closeGameModal()">Close</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer style="padding:36px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:30px;">
+  </main>
+
+  <footer>
     © 2025 Shivastras — a modern artifact of presence
   </footer>
 
-  <!-- ---------- Scripts: interactions, game, cursor aura, responsive survey ---------- -->
+  <!-- ---------- Scripts: interactions & logic ---------- -->
   <script>
-    /* ---------- preloader ---------- */
+    /***** Preloader hide ********/
     window.addEventListener('load', () => {
-      setTimeout(()=> document.getElementById('intro').classList.add('hidden'), 300);
+      setTimeout(() => document.getElementById('intro').classList.add('hidden'), 260);
     });
 
-    /* ---------- reveal on scroll ---------- */
+    /***** Reveal on scroll (light) *******/
     (function(){
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
+      const revealEls = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('visible'));
+        return;
+      }
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            o.unobserve(e.target);
           }
         });
       }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach(n => observer.observe(n));
+      document.querySelectorAll('.reveal').forEach(n => obs.observe(n));
     })();
 
-    /* ---------- hero micro parallax (centered) ---------- */
+    /***** Hero micro parallax & card tilt ******/
     (function(){
       const heroImage = document.getElementById('heroImage');
       const visualCard = document.getElementById('visualCard');
-      if (!heroImage || !visualCard) return;
+      if (heroImage && visualCard) {
+        window.addEventListener('scroll', () => {
+          const sc = window.scrollY || window.pageYOffset;
+          heroImage.style.transform = `translateY(${sc * 0.03}px)`;
+        });
 
-      window.addEventListener('scroll', () => {
-        const sc = window.scrollY || window.pageYOffset;
-        heroImage.style.transform = `translateY(${sc * 0.03}px)`;
-      });
-
-      visualCard.addEventListener('mousemove', (ev) => {
-        const r = visualCard.getBoundingClientRect();
-        const dx = (ev.clientX - r.left) / r.width - 0.5;
-        const dy = (ev.clientY - r.top) / r.height - 0.5;
-        visualCard.style.transform = `rotateX(${dy * 5}deg) rotateY(${dx * -6}deg) translateZ(0)`;
-      });
-      visualCard.addEventListener('mouseleave', () => visualCard.style.transform = '');
+        visualCard.addEventListener('mousemove', (ev) => {
+          const r = visualCard.getBoundingClientRect();
+          const dx = (ev.clientX - r.left) / r.width - 0.5;
+          const dy = (ev.clientY - r.top) / r.height - 0.5;
+          visualCard.style.transform = `rotateX(${dy * 5}deg) rotateY(${dx * -6}deg) translateZ(0)`;
+        });
+        visualCard.addEventListener('mouseleave', () => visualCard.style.transform = '');
+      }
     })();
 
-    /* ---------- cursor aura: hybrid behavior (desktop + mobile touch) ---------- */
+    /***** Cursor aura: hybrid (desktop + mobile touch) ******/
     (function(){
       const aura = document.getElementById('cursorAura');
       let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
       let lastMove = Date.now();
 
-      // Desktop: move aura with mouse
+      // Desktop: follow mouse
       window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        aura.style.left = mouseX + 'px';
-        aura.style.top = mouseY + 'px';
+        mouseX = e.clientX; mouseY = e.clientY;
+        aura.style.left = mouseX + 'px'; aura.style.top = mouseY + 'px';
         aura.style.opacity = '0.95';
         lastMove = Date.now();
       });
@@ -474,31 +533,28 @@
         const t = e.touches[0];
         if (!t) return;
         mouseX = t.clientX; mouseY = t.clientY;
-        aura.style.left = mouseX + 'px';
-        aura.style.top = mouseY + 'px';
+        aura.style.left = mouseX + 'px'; aura.style.top = mouseY + 'px';
         aura.style.opacity = '0.95';
       }, { passive: true });
 
       // fade aura when idle
-      setInterval(()=> {
+      setInterval(() => {
         if (Date.now() - lastMove > 2200) aura.style.opacity = '0.45';
       }, 800);
 
-      // proximity mapping to energy core (both desktop and mobile)
+      // proximity mapping relative to energy core
       function updateProximity() {
         const core = document.getElementById('energyCore');
         if (!core) return;
         const rect = core.getBoundingClientRect();
         const cx = rect.left + rect.width/2;
         const cy = rect.top + rect.height/2;
-        const dx = mouseX - cx;
-        const dy = mouseY - cy;
+        const dx = mouseX - cx, dy = mouseY - cy;
         const dist = Math.sqrt(dx*dx + dy*dy);
         const max = Math.max(window.innerWidth, window.innerHeight);
         const normalized = Math.max(0, 1 - (dist / (max * 0.35))); // 0..1
 
-        // aura size & blur
-        const auraSize = 48 + (normalized * 160); // 48 -> ~208
+        const auraSize = 48 + (normalized * 160);
         aura.style.width = auraSize + 'px';
         aura.style.height = auraSize + 'px';
         aura.style.filter = `blur(${6 - normalized * 4}px)`;
@@ -512,11 +568,11 @@
       }
 
       window.addEventListener('mousemove', updateProximity);
-      window.addEventListener('touchmove', (e) => { const t=e.touches[0]; if(t){ mouseX=t.clientX; mouseY=t.clientY; updateProximity(); } }, { passive:true });
+      window.addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) { mouseX = t.clientX; mouseY = t.clientY; updateProximity(); } }, { passive: true });
       setInterval(updateProximity, 60);
     })();
 
-    /* ---------- game logic (works on desktop + mobile): tap when aura peaks ---------- */
+    /***** Game modal logic (desktop + mobile touch playable) ******/
     (function(){
       const modal = document.getElementById('gameModal');
       const core = document.getElementById('energyCore');
@@ -536,36 +592,38 @@
         active = false;
       };
 
-      // auto open once per load
-      setTimeout(()=>{ openGameModal(); }, 11000);
+      // Auto open once per page load (user can close)
+      setTimeout(() => { window.openGameModal(); }, 11000);
 
-      // tap/click core increases score — best when aura is near peak (user behavior)
-      function onCoreActivate(){
-        if(!active) return;
+      // increase score when core tapped/clicked
+      function activateCore(){
+        if (!active) return;
         score++;
         scoreNode.textContent = score;
         core.style.transform = 'scale(0.95)';
         setTimeout(()=> core.style.transform = '', 120);
       }
 
-      core.addEventListener('click', onCoreActivate);
-      core.addEventListener('touchstart', (e) => { onCoreActivate(); e.preventDefault(); }, { passive: false });
+      core.addEventListener('click', activateCore);
+      core.addEventListener('touchstart', (e) => { activateCore(); e.preventDefault(); }, { passive: false });
 
-      closeBtn.addEventListener('click', ()=> window.closeGameModal());
-      document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') window.closeGameModal(); });
+      closeBtn.addEventListener('click', () => window.closeGameModal());
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') window.closeGameModal(); });
     })();
 
-    /* ---------- survey UX: friendly confirmation ---------- */
+    /***** Survey UI: lightweight confirmation (Formspree does submission) ******/
     (function(){
       const form = document.getElementById('surveyForm');
-      if(!form) return;
-      form.addEventListener('submit', (e) => {
-        // let Formspree handle posting; show UI confirmation
+      if (!form) return;
+      form.addEventListener('submit', function(e){
+        // Allow network to send; show user feedback after a short delay
         setTimeout(()=> {
-          try { alert('thank you — your answers were submitted'); } catch (err) {}
+          try { alert('Thank you — your answers were submitted.'); } catch(err) {}
         }, 700);
       });
     })();
   </script>
+
+  <!-- End of page -->
 </body>
 </html>
