@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Shivastras — Wear your calm. Carry your power.</title>
+  <title>Shivastras — wear your calm. carry your power.</title>
 
-  <!-- Meta description -->
-  <meta name="description" content="Shivastras — a modern ritual ring concept blending sacred geometry with future calm technology. Help shape it by taking the survey." />
+  <!-- Meta -->
+  <meta name="description" content="Shivastras — a modern ritual ring concept that blends symbolic geometry with future calm technology. Help shape it by taking the survey." />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-931CYMYD3V"></script>
@@ -17,35 +17,32 @@
     gtag('config', 'G-931CYMYD3V');
   </script>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts: Inter for UI, Cinzel for logo, Cormorant Garamond for main titles -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* LONG FULL STYLES — Apple‑inspired layout
-       NOTE: Everything here is mobile‑first, clean, premium
-       Using: dark‑luxury palette + soft gradients + sharp typography. */
-
-    /* ------------- TOKENS ------------- */
+    /* ---------- tokens ---------- */
     :root{
-      --bg-1: #010112;
-      --bg-2: #05060d;
-      --text: #f5f7fb;
-      --muted: #9aa3ad;
-      --accent: #3b82f6;
-      --accent-soft: rgba(59,130,246,0.16);
-      --accent-soft-strong: rgba(59,130,246,0.26);
-      --radius-xl: 24px;
-      --radius-lg: 14px;
-      --header-h: 76px;
-      --container: 1200px;
+      --bg-1:#010112;
+      --bg-2:#050610;
+      --text:#f5f7fb;
+      --muted:#9aa3ad;
+      --accent:#3b82f6;
+      --accent-soft:rgba(59,130,246,0.16);
+      --accent-soft-strong:rgba(59,130,246,0.24);
+      --radius-xl:24px;
+      --radius-lg:14px;
+      --header-h:76px;
+      --container:1200px;
     }
 
-    *{ box-sizing:border-box; }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
     body{
       margin:0;
-      background: radial-gradient(circle at 10% 10%, #0b1220 0%, #02010a 45%, #000 100%);
+      background:radial-gradient(circle at 10% 10%,#0b1220 0%,#02010a 45%,#000 100%);
       color:var(--text);
-      font-family:Inter, system-ui, sans-serif;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
       -webkit-font-smoothing:antialiased;
       line-height:1.6;
       overflow-x:hidden;
@@ -54,124 +51,157 @@
 
     .container{max-width:var(--container);margin:0 auto;padding:0 22px;}
 
-    /* ------------- HEADER ------------- */
+    /* ---------- cursor aura ---------- */
+    .cursor-aura{
+      position:fixed;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      pointer-events:none;
+      z-index:1200;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle at 30% 30%,rgba(59,130,246,0.95),rgba(59,130,246,0.25) 40%,rgba(59,130,246,0.05) 70%,transparent 100%);
+      mix-blend-mode:screen;
+      filter:blur(6px);
+      opacity:0;
+      transition:opacity .18s linear,width .08s linear,height .08s linear,filter .08s linear;
+    }
+    @media (max-width:768px){
+      .cursor-aura{display:none;}
+    }
+
+    /* ---------- header ---------- */
     header.site-header{
       position:fixed;
-      inset:auto 0 0 0;
-      top:0;
+      top:0;left:0;right:0;
       height:var(--header-h);
       display:flex;
       align-items:center;
       justify-content:space-between;
       padding:0 22px;
-      background:linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,0.08));
+      background:linear-gradient(180deg,rgba(0,0,0,0.75),rgba(0,0,0,0.1));
       backdrop-filter:blur(12px);
       border-bottom:1px solid rgba(255,255,255,0.06);
-      z-index:999;
+      z-index:1000;
     }
     .brand{
-      font-family:"Cormorant Garamond", serif;
-      font-size:1.14rem;
+      font-family:"Cinzel",serif;
       font-weight:700;
-      text-transform:capitalize;
-      letter-spacing:.06em;
+      font-size:1.25rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
     }
     nav.main-nav a{
       margin-left:18px;
-      font-size:.95rem;
       color:var(--muted);
+      font-size:.95rem;
+      text-decoration:none;
       text-transform:capitalize;
-      transition:color .18s ease;
+      transition:color .18s ease,transform .18s ease;
     }
-    nav.main-nav a:hover{color:var(--text);}
+    nav.main-nav a:hover{
+      color:var(--text);
+      transform:translateY(-1px);
+    }
 
     main{padding-top:var(--header-h);}
 
-    /* ------------- HERO ------------- */
+    /* ---------- hero ---------- */
     .hero{
       min-height:calc(100vh - var(--header-h));
       display:grid;
-      grid-template-columns:1.1fr 1fr;
+      grid-template-columns:1.08fr 1fr;
       gap:40px;
       align-items:center;
-      padding:90px 0 60px;
+      padding:96px 0 72px;
     }
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr;padding-top:130px;}
+    @media (max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:130px;
+        padding-bottom:48px;
+      }
     }
+
     .eyebrow{
       color:var(--accent);
-      font-size:.8rem;
       font-weight:600;
       letter-spacing:.22em;
+      font-size:.8rem;
       text-transform:uppercase;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
     .hero-title{
-      font-family:"Cormorant Garamond", serif;
-      font-size:clamp(2.1rem,5vw,3.4rem);
+      font-family:"Cormorant Garamond",serif;
       font-weight:700;
-      margin:0 0 12px;
+      font-size:clamp(2.1rem,5vw,3.5rem);
+      margin:0 0 10px;
       text-transform:capitalize;
+      line-height:1.04;
     }
     .tag-pill{
       display:inline-flex;
-      gap:6px;
       align-items:center;
+      gap:6px;
       padding:3px 10px;
       border-radius:999px;
-      font-size:.78rem;
       border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.02);
       color:var(--muted);
-      margin-bottom:14px;
+      font-size:.78rem;
+      margin-bottom:12px;
     }
     .hero-sub{
-      max-width:620px;
       color:var(--muted);
-      margin-bottom:18px;
+      max-width:640px;
+      margin:0 0 18px;
+      font-size:1rem;
     }
     .cta-row{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:10px;
+      margin-top:6px;
     }
     .btn{
       padding:12px 26px;
       border-radius:999px;
-      font-weight:600;
-      font-size:.95rem;
       border:1px solid rgba(255,255,255,0.08);
       background:transparent;
       color:var(--text);
+      font-weight:600;
+      font-size:.95rem;
       cursor:pointer;
       text-transform:capitalize;
+      transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
     }
     .btn:hover{transform:translateY(-1px);}
     .btn-primary{
       background:var(--accent);
       border-color:var(--accent);
-      color:white;
-      box-shadow:0 12px 48px rgba(59,130,246,0.35);
+      color:#fff;
+      box-shadow:0 14px 50px rgba(59,130,246,0.32);
     }
     .btn-outline-blue{
       border-color:var(--accent-soft-strong);
       color:var(--accent);
-      background:rgba(17,24,39,0.6);
+      background:rgba(17,24,39,0.7);
     }
     .btn-outline-blue:hover{
       background:var(--accent-soft-strong);
       color:#fff;
     }
     .meta{
-      margin-top:18px;
-      font-size:.9rem;
+      margin-top:16px;
       color:var(--muted);
+      font-size:.9rem;
     }
+
     .hero-right{
-      display:flex;
-      justify-content:center;
       position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     .halo{
       position:absolute;
@@ -180,127 +210,213 @@
       border-radius:999px;
       background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
       filter:blur(18px);
-      animation:haloPulse 6s ease-in-out infinite;
       pointer-events:none;
+      animation:haloPulse 6s ease-in-out infinite;
     }
     @keyframes haloPulse{
       0%,100%{transform:scale(1);opacity:.95;}
       50%{transform:scale(1.06);opacity:.5;}
     }
+
     .visual-card{
       width:520px;
-      border-radius:var(--radius-xl);
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-      padding:18px;
-      box-shadow:0 20px 80px rgba(0,0,0,0.75);
+      max-width:100%;
+      border-radius:50%;
+      padding:22px;
+      background:radial-gradient(circle at 20% 0%,rgba(59,130,246,0.35),rgba(2,6,23,0.98));
+      box-shadow:0 26px 120px rgba(0,0,0,0.85);
+      position:relative;
+      overflow:hidden;
+      transition:transform .45s cubic-bezier(.2,.9,.3,1),box-shadow .45s;
     }
     .visual-frame{
-      border-radius:16px;
+      border-radius:50%;
       overflow:hidden;
-      background:radial-gradient(circle at 20% 0%,rgba(59,130,246,0.2),#020617);
+      background:transparent;
+    }
+    .visual-frame img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .visual-vignette{
+      position:absolute;
+      inset:-6%;
+      border-radius:50%;
+      background:radial-gradient(circle,transparent 40%,rgba(2,6,23,0.9) 95%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
     }
     .visual-caption{
-      margin-top:8px;
+      position:absolute;
+      bottom:16px;
+      left:22px;
       font-size:.82rem;
       color:var(--muted);
+      text-transform:capitalize;
     }
 
-    /* ------------- SECTIONS ------------- */
+    @media (max-width:900px){
+      .visual-card{width:360px;}
+    }
+    @media (max-width:600px){
+      .visual-card{width:300px;}
+    }
+
+    /* ---------- generic sections ---------- */
     section{margin-top:32px;}
     .card{
       background:rgba(255,255,255,0.012);
-      border:1px solid rgba(255,255,255,0.04);
       border-radius:var(--radius-lg);
+      border:1px solid rgba(255,255,255,0.04);
       padding:24px;
     }
     .section-title{
-      font-family:"Cormorant Garamond", serif;
+      font-family:"Cormorant Garamond",serif;
       font-size:1.5rem;
-      margin-bottom:4px;
+      margin:0 0 4px;
+      text-transform:capitalize;
     }
     .section-sub{
+      margin:0 0 6px;
       font-size:.95rem;
       color:var(--muted);
-      margin-bottom:8px;
+    }
+    .hint{
+      margin-top:4px;
+      font-size:.84rem;
+      color:var(--muted);
     }
 
-    /* ------------- ABOUT ICON GRID ------------- */
+    /* ---------- about / features ---------- */
     .about-grid{
       display:grid;
-      grid-template-columns:1.1fr 1fr;
-      gap:26px;
+      grid-template-columns:1.05fr 1fr;
+      gap:24px;
+      align-items:flex-start;
     }
-    @media(max-width:900px){
+    @media (max-width:900px){
       .about-grid{grid-template-columns:1fr;}
     }
-    .feature-list{margin-top:12px;display:grid;gap:14px;}
-    .feature-item{display:flex;gap:12px;}
-    .feature-icon-wrapper{
-      width:40px;height:40px;
-      border-radius:999px;
-      background:radial-gradient(circle,rgba(59,130,246,0.2),transparent);
-      border:1px solid rgba(59,130,246,0.3);
-      display:flex;align-items:center;justify-content:center;
+
+    .feature-list{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
     }
-    .feature-icon{color:var(--accent);font-size:1.1rem;}
-    .feature-text-title{font-size:.96rem;font-weight:600;}
-    .feature-text-body{font-size:.9rem;color:var(--muted);}
+    .feature-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .feature-icon-wrapper{
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      border:1px solid rgba(59,130,246,0.4);
+      background:radial-gradient(circle,rgba(59,130,246,0.22),transparent 60%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    .feature-icon{
+      font-size:1.1rem;
+      color:var(--accent);
+    }
+    .feature-text-title{
+      font-size:.96rem;
+      font-weight:600;
+      margin-bottom:2px;
+      text-transform:none;
+    }
+    .feature-text-body{
+      font-size:.9rem;
+      color:var(--muted);
+    }
 
     .spec-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
-      margin-top:12px;
+      margin-top:8px;
     }
-    @media(max-width:600px){.spec-grid{grid-template-columns:1fr;}}
-
+    @media (max-width:640px){
+      .spec-grid{grid-template-columns:1fr;}
+    }
     .spec-card{
       padding:12px;
       border-radius:10px;
       border:1px solid rgba(255,255,255,0.04);
-      background:rgba(15,23,42,0.7);
+      background:rgba(15,23,42,0.75);
       font-size:.9rem;
     }
-    .spec-card strong{display:block;margin-bottom:4px;}
+    .spec-card strong{
+      display:block;
+      margin-bottom:4px;
+    }
 
-    /* ------------- STEPS SCROLLER ------------- */
+    /* ---------- how it could work (steps with icons) ---------- */
     .steps-strip{
       display:flex;
       gap:14px;
       overflow-x:auto;
-      padding:10px 0;
+      padding-top:8px;
+      padding-bottom:4px;
       scrollbar-width:thin;
     }
+    .steps-strip::-webkit-scrollbar{
+      height:4px;
+    }
+    .steps-strip::-webkit-scrollbar-track{
+      background:rgba(15,23,42,0.9);
+    }
+    .steps-strip::-webkit-scrollbar-thumb{
+      background:var(--accent-soft);
+      border-radius:999px;
+    }
+
     .step-pill{
-      min-width:240px;
+      min-width:230px;
       padding:12px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,0.06);
-      background:rgba(15,23,42,0.88);
-      font-size:.9rem;
+      background:rgba(15,23,42,0.9);
       display:flex;
       gap:10px;
       align-items:flex-start;
+      font-size:.9rem;
+      color:var(--muted);
     }
-    .step-index{
-      width:20px;height:20px;
+    .step-icon-circle{
+      width:22px;
+      height:22px;
       border-radius:999px;
       background:var(--accent);
-      color:white;
-      font-size:.75rem;
-      display:flex;align-items:center;justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.9rem;
+      color:#fff;
       flex-shrink:0;
     }
+    .step-text strong{
+      display:block;
+      margin-bottom:2px;
+      color:var(--text);
+      font-weight:600;
+    }
 
-    /* ------------- GALLERY ------------- */
+    /* ---------- gallery ---------- */
     .gallery{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:16px;
-      margin-top:14px;
+      margin-top:12px;
     }
-    @media(max-width:900px){.gallery{grid-template-columns:1fr;}}
-
+    @media (max-width:900px){
+      .gallery{grid-template-columns:1fr;}
+    }
     .gallery img{
       width:100%;
       height:320px;
@@ -308,567 +424,514 @@
       border-radius:12px;
     }
 
-    /* ------------- EXPERIENCE AURA ------------- */
-    .experience-grid{
-      display:grid;
-      grid-template-columns:1.1fr 1fr;
-      gap:20px;
-      align-items:center;
-    }
-    @media(max-width:900px){.experience-grid{grid-template-columns:1fr;}}
-
-    .aura-area{
-      border-radius:16px;
-      padding:18px;
-      background:radial-gradient(circle at 50% 20%,rgba(59,130,246,0.2),rgba(3,6,18,1));
-      border:1px solid rgba(59,130,246,0.45);
-    }
-    .aura-ring-shell{
-      width:260px;height:260px;
-      max-width:70vw;
-      margin:0 auto;
-      border-radius:999px;
-      background:radial-gradient(circle,rgba(15,23,42,0.8),rgba(3,7,18,1));
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 0 60px rgba(59,130,246,0.2);
-      position:relative;
-    }
-    .aura-glow{
-      position:absolute;inset:0;
-      background:radial-gradient(circle,rgba(59,130,246,0.4),transparent 60%);
-      mix-blend-mode:screen;
-      opacity:.5;
-      transition:opacity .1s linear,transform .1s linear;
-    }
-    .aura-meter{margin-top:16px;font-size:.9rem;color:var(--muted);}
-    .aura-bar{
-      width:100%;height:8px;border-radius:999px;
-      background:rgba(15,23,42,0.9);
-      overflow:hidden;margin-top:4px;
-    }
-    .aura-fill{
-      width:0%;height:100%;
-      background:linear-gradient(90deg,var(--accent),#8b5cf6);
-      transition:width .08s linear;
-    }
-
-    /* ------------- SURVEY ------------- */
+    /* ---------- survey ---------- */
     .survey-wrap{
       max-width:960px;
       margin:0 auto;
-      background:linear-gradient(135deg,rgba(15,23,42,0.9),rgba(15,23,42,0.75));
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(255,255,255,0.05);
       padding:24px;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(135deg,rgba(15,23,42,0.94),rgba(15,23,42,0.8));
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 20px 80px rgba(0,0,0,0.75);
     }
     .survey-grid{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:26px;
-      margin-top:14px;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:16px;
     }
-    @media(max-width:900px){.survey-grid{grid-template-columns:1fr;}}
 
     .form-grid-two{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
     }
-    @media(max-width:600px){.form-grid-two{grid-template-columns:1fr;}}
+    @media (max-width:640px){
+      .form-grid-two{grid-template-columns:1fr;}
+    }
 
     label.small-label{
+      display:block;
       font-size:.86rem;
       color:var(--muted);
       margin-bottom:4px;
-      display:block;
+      text-transform:none;
     }
     input,select,textarea{
       width:100%;
       border-radius:10px;
       padding:11px 13px;
       font-size:.95rem;
-      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      border:1px solid rgba(148,163,184,0.35);
       background:rgba(15,23,42,0.9);
-      border:1px solid rgba(148,163,184,0.32);
+      color:var(--text);
       outline:none;
+      transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
     }
     input:focus,select:focus,textarea:focus{
       border-color:var(--accent);
-      background:rgba(15,23,42,1);
       box-shadow:0 0 0 1px rgba(59,130,246,0.6);
+      background:rgba(15,23,42,1);
     }
-    textarea{min-height:110px;}
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
 
     .consent-row{
       display:flex;
-      gap:8px;
       align-items:flex-start;
-      font-size:.86rem;
+      gap:6px;
       margin-top:10px;
+      font-size:.86rem;
       color:var(--muted);
     }
-    .consent-row a{color:var(--accent);text-decoration:underline;}
-    .hint{
-      font-size:.84rem;
-      color:var(--muted);
-      margin-top:4px;
+    .consent-row input[type="checkbox"]{
+      width:16px;
+      height:16px;
+      margin-top:3px;
+      cursor:pointer;
+    }
+    .consent-row span{
+      display:block;
+      line-height:1.45;
+    }
+    .consent-row strong{
+      font-weight:600;
+    }
+    .consent-row a{
+      color:var(--accent);
+      text-decoration:underline;
     }
 
-    /* ------------- FOOTER ------------- */
+    @media (max-width:640px){
+      .card{padding:20px;}
+      .survey-wrap{padding:20px;}
+    }
+
+    /* ---------- footer ---------- */
     footer{
+      padding:34px 0;
       text-align:center;
-      padding:36px 0;
-      font-size:.85rem;
       color:var(--muted);
-      margin-top:36px;
+      font-size:.85rem;
       border-top:1px solid rgba(255,255,255,0.08);
+      margin-top:36px;
     }
   </style>
 </head>
-
 <body>
 
-<header class="site-header">
-  <div class="brand">Shivastras</div>
-  <nav class="main-nav">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#survey">Survey</a>
-  </nav>
-</header>
+  <!-- cursor aura -->
+  <div id="cursorAura" class="cursor-aura" aria-hidden="true"></div>
 
-<main>
-  <div class="container">
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <div>
-        <div class="eyebrow">Divine power · modern artifact</div>
-        <h1 class="hero-title">Wear your calm. Carry your power.</h1>
+  <!-- header -->
+  <header class="site-header">
+    <div class="brand">Shivastras</div>
+    <nav class="main-nav" aria-label="main navigation">
+      <a href="#about">About</a>
+      <a href="#how">How it works</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#survey">Survey</a>
+    </nav>
+  </header>
 
-        <div class="tag-pill">
-          <span>•</span>
-          concept launch · help shape the first edition
+  <main>
+    <div class="container">
+      <!-- hero -->
+      <section class="hero" id="top">
+        <div>
+          <div class="eyebrow">divine power · modern artifact</div>
+          <h1 class="hero-title">Wear your calm. Carry your power.</h1>
+          <div class="tag-pill">
+            <span>•</span>
+            Concept launch · Help shape the first edition
+          </div>
+          <p class="hero-sub">
+            Shivastras is a dark luxury ritual ring concept. It imagines a future where a simple, physical gesture helps you slow down and return to yourself — without more apps or notifications.
+          </p>
+          <div class="cta-row">
+            <button class="btn btn-primary" onclick="document.getElementById('survey').scrollIntoView({behavior:'smooth'})">
+              Take the survey
+            </button>
+            <button class="btn btn-outline-blue" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+              View gallery
+            </button>
+          </div>
+          <div class="meta">
+            Concept stage · Transparent exploration
+          </div>
         </div>
 
-        <p class="hero-sub">
-          Shivastras is a dark‑luxury ritual ring concept. Imagine a future where a simple touch can help you breathe deeper,
-          slow down, and return to focus — without another screen, app, or notification.
+        <div class="hero-right">
+          <div class="halo" aria-hidden="true"></div>
+          <div class="visual-card" id="heroVisual">
+            <div class="visual-frame">
+              <img src="assets/images/hero.jpg" alt="Shivastras hero ring view">
+            </div>
+            <div class="visual-vignette" aria-hidden="true"></div>
+            <div class="visual-caption">Shivastras — obsidian core in matte black shell</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- about -->
+      <section id="about" class="card">
+        <h2 class="section-title">What Shivastras is</h2>
+        <p class="section-sub">
+          Shivastras is a modern ritual object. It blends symbolic geometry with the idea of calm technology — tools that help you slow down, not speed up.
         </p>
 
-        <div class="cta-row">
-          <button class="btn btn-primary"
-            onclick="document.getElementById('survey').scrollIntoView({behavior:'smooth'})">
-            Take the survey
-          </button>
-
-          <button class="btn btn-outline-blue"
-            onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">
-            Experience aura
-          </button>
-        </div>
-
-        <div class="meta">concept stage · transparent exploration</div>
-      </div>
-
-      <div class="hero-right">
-        <div class="halo"></div>
-        <div class="visual-card">
-          <div class="visual-frame">
-            <img src="assets/images/hero.jpg" alt="Shivastras hero image">
-          </div>
-          <div class="visual-caption">Shivastras — obsidian core in matte black shell</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="card">
-      <div class="section-title">What Shivastras is</div>
-      <p class="section-sub">
-        A modern ritual object — rooted in symbolic geometry and imagined with future calm technology.
-        The goal is not to add more noise to your life, but to create moments of stillness you can feel.
-      </p>
-
-      <div class="about-grid">
-        <div>
-          <p class="section-sub" style="margin-top:6px;">
-            Everything here is early exploration. Your feedback shapes what becomes real.
-          </p>
-
-          <div class="feature-list">
-            <div class="feature-item">
-              <div class="feature-icon-wrapper"><span class="feature-icon">🌡️</span></div>
-              <div>
-                <div class="feature-text-title">Thermal cues (concept)</div>
-                <div class="feature-text-body">
-                  A future version may explore gentle warm/cool pulses to trigger a calming response — like a physical “pause” button.
-                </div>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon-wrapper"><span class="feature-icon">💡</span></div>
-              <div>
-                <div class="feature-text-title">Breathing light rhythm</div>
-                <div class="feature-text-body">
-                  Imagine a hidden light band that breathes with you — a subtle visual pattern guiding your inhale and exhale.
-                </div>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon-wrapper"><span class="feature-icon">🕉️</span></div>
-              <div>
-                <div class="feature-text-title">Symbolic geometry</div>
-                <div class="feature-text-body">
-                  The form is inspired by sacred patterns — a reminder of inner power, not external validation.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="spec-grid">
-            <div class="spec-card">
-              <strong>Core material</strong>
-              Obsidian blue gemstone — symbolic clarity.
-            </div>
-            <div class="spec-card">
-              <strong>Shell</strong>
-              Matte black alloy, tuned for everyday comfort.
-            </div>
-            <div class="spec-card">
-              <strong>Future tech</strong>
-              Exploring haptics + visual calm cues.
-            </div>
-            <div class="spec-card">
-              <strong>Purpose</strong>
-              Help people slow down, not speed up.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW TO USE -->
-    <section class="card" style="margin-top:26px;">
-      <div class="section-title">How it could work</div>
-      <p class="section-sub">
-        A vision of a simple ritual for modern life — powered by touch.
-      </p>
-
-      <div class="steps-strip">
-        <div class="step-pill">
-          <div class="step-index">1</div>
+        <div class="about-grid">
           <div>
-            <strong>Wear it</strong><br>
-            A weight you forget — until you need it.
-          </div>
-        </div>
-
-        <div class="step-pill">
-          <div class="step-index">2</div>
-          <div>
-            <strong>Tap once</strong><br>
-            A physical pause signal — like a reminder to breathe.
-          </div>
-        </div>
-
-        <div class="step-pill">
-          <div class="step-index">3</div>
-          <div>
-            <strong>Slow light</strong><br>
-            Visual inhale/exhale rhythm (concept).
-          </div>
-        </div>
-
-        <div class="step-pill">
-          <div class="step-index">4</div>
-          <div>
-            <strong>Calm resets</strong><br>
-            Moments that build a bigger habit.
-          </div>
-        </div>
-      </div>
-
-      <p class="hint" style="margin-top:12px;">
-        This is a transparent concept — no promises until we have prototypes. Survey responses decide what happens next.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE AURA -->
-    <section id="experience" class="card" style="margin-top:26px;">
-      <div class="section-title">Experience aura</div>
-      <p class="section-sub">
-        A simple interactive preview of what calm technology could feel like — subtle, responsive, and never overwhelming.
-      </p>
-
-      <div class="experience-grid" style="margin-top:12px;">
-        <div>
-          <p class="section-sub">Move your cursor or thumb around the ring.</p>
-          <ul style="margin:8px 0 0 20px; font-size:.9rem;color:var(--muted);">
-            <li><strong>Relevant</strong> — the interaction supports calm.</li>
-            <li><strong>Original</strong> — inspired by rituals, not UI.</li>
-            <li><strong>Transparent</strong> — labeled as a concept.</li>
-            <li><strong>Navigable</strong> — works on mobile easily.</li>
-          </ul>
-        </div>
-
-        <div class="aura-area" id="auraArea">
-          <div class="aura-ring-shell" id="auraRing">
-            <div class="aura-glow" id="auraGlow"></div>
-            <img src="assets/images/gallery3.jpeg" alt="Shivastras aura ring">
-          </div>
-          <div class="aura-meter">
-            <span>Energy level</span>
-            <div class="aura-bar">
-              <div class="aura-fill" id="auraFill"></div>
-            </div>
-            <div class="hint">Move around the ring — energy rises as you get closer.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="card" style="margin-top:26px;">
-      <div class="section-title">Gallery</div>
-      <p class="section-sub">Concept visuals of obsidian, metal and light.</p>
-
-      <div class="gallery">
-        <img src="assets/images/gallery1.jpg" alt="Angle view">
-        <img src="assets/images/gallery2.jpg" alt="Lifestyle">
-        <img src="assets/images/gallery3.jpeg" alt="Close-up view corrected ring">
-      </div>
-    </section>
-
-    <!-- SURVEY -->
-    <section id="survey" style="margin-top:32px;margin-bottom:20px;">
-      <div class="survey-wrap">
-        <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-          <div>
-            <div class="section-sub" style="text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;">
-              Community · Insight · Interest
-            </div>
-            <h3 class="section-title" style="margin-top:4px;">Help shape the first edition</h3>
             <p class="section-sub">
-              This survey helps us understand what matters to you — so we can build something real, and prove interest to partners.
+              This is an open concept. Your feedback helps decide what becomes real and what stays as a sketch.
             </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <span class="feature-icon">🌡️</span>
+                </div>
+                <div>
+                  <div class="feature-text-title">Gentle temperature cues (concept)</div>
+                  <div class="feature-text-body">
+                    A future version may explore soft warm or cool pulses on the inner band. The idea is to give your body a small signal to pause and reset.
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <span class="feature-icon">💡</span>
+                </div>
+                <div>
+                  <div class="feature-text-title">Breathing light rhythm</div>
+                  <div class="feature-text-body">
+                    Imagine a thin, hidden light ring that slowly brightens and softens in a breathing pattern. It is there to mirror a calm inhale and exhale, not to grab your attention.
+                  </div>
+                </div>
+              </div>
+
+              <div class="feature-item">
+                <div class="feature-icon-wrapper">
+                  <span class="feature-icon">🕉️</span>
+                </div>
+                <div>
+                  <div class="feature-text-title">Symbolic geometry and form</div>
+                  <div class="feature-text-body">
+                    The lines and edges are inspired by sacred patterns. The intention is simple: a reminder that calm and power already exist within you.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div style="text-align:right;min-width:160px;">
-            <button class="btn btn-primary"
-              onclick="document.getElementById('surveyForm').scrollIntoView({behavior:'smooth'})">
-              Start survey
-            </button>
-            <div class="hint">2–3 minutes · no spam</div>
-          </div>
-        </div>
-
-        <div class="survey-grid">
-          <!-- FORM -->
-          <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" novalidate>
-            <div class="form-grid-two">
-              <div>
-                <label class="small-label">Full name</label>
-                <input type="text" name="name" placeholder="Full name" required>
-              </div>
-              <div>
-                <label class="small-label">Email</label>
-                <input type="email" name="email" placeholder="Email address" required>
-              </div>
-            </div>
-
-            <div class="form-grid-two" style="margin-top:12px;">
-              <div>
-                <label class="small-label">City</label>
-                <input type="text" name="city" placeholder="City (optional)">
-              </div>
-              <div>
-                <label class="small-label">Age range</label>
-                <select name="age">
-                  <option value="" selected>Prefer not to say</option>
-                  <option>18–24</option>
-                  <option>25–34</option>
-                  <option>35–44</option>
-                  <option>45+</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="margin-top:14px;">
-              <label class="small-label">What excites you most?</label>
-              <select name="interest" required>
-                <option value="" disabled selected>Select one</option>
-                <option>Feeling calmer on demand</option>
-                <option>A ritual instead of another app</option>
-                <option>Tech‑enabled jewelry</option>
-                <option>Geometry & symbolic meaning</option>
-                <option>Gift for someone else</option>
-              </select>
-            </div>
-
-            <div style="margin-top:12px;">
-              <label class="small-label">Where would you use it?</label>
-              <select name="context">
-                <option value="" selected>(optional)</option>
-                <option>Work or study</option>
-                <option>Commute</option>
-                <option>Evening / wind down</option>
-                <option>Meditation</option>
-                <option>Everywhere</option>
-              </select>
-            </div>
-
-            <div class="form-grid-two" style="margin-top:14px;">
-              <div>
-                <label class="small-label">Ideal price range</label>
-                <select name="price" required>
-                  <option value="" disabled selected>Select a range</option>
-                  <option>₹999–₹1499</option>
-                  <option>₹1499–₹1999</option>
-                  <option>₹1999–₹2999</option>
-                  <option>₹3000+</option>
-                </select>
-              </div>
-              <div>
-                <label class="small-label">How likely to buy?</label>
-                <select name="intent" required>
-                  <option value="" disabled selected>Select</option>
-                  <option>Definitely</option>
-                  <option>Maybe</option>
-                  <option>Curious</option>
-                  <option>Not for me</option>
-                </select>
-              </div>
-            </div>
-
-            <div style="margin-top:14px;">
-              <label class="small-label">Which features matter?</label>
-              <textarea name="features" placeholder="Example: thermal cues, breathing light, battery, sizes, materials"></textarea>
-            </div>
-
-            <div style="margin-top:12px;">
-              <label class="small-label">If this existed today, how would it help you?</label>
-              <textarea name="why" placeholder="Short answer (optional)"></textarea>
-            </div>
-
-            <div class="form-grid-two" style="margin-top:14px;">
-              <div>
-                <label class="small-label">Where did you hear about us?</label>
-                <select name="source">
-                  <option value="" selected>(optional)</option>
-                  <option>Instagram</option>
-                  <option>Friend</option>
-                  <option>Search</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div>
-                <label class="small-label">Instagram handle (optional)</label>
-                <input type="text" name="igtag" placeholder="@username">
-              </div>
-            </div>
-
-            <div class="consent-row">
-              <input type="checkbox" name="consent" required>
-              <span>
-                <strong>I agree</strong> that my responses may be used to shape Shivastras and to receive updates about prototypes and launches.
-                I understand aggregated data may be shared with potential partners. See <a href="terms.html">terms</a>.
-              </span>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="margin-top:16px;">Submit survey</button>
-            <div class="hint">Thank you — transparency builds trust.</div>
-          </form>
-
-          <!-- WHY SECTION -->
           <div>
-            <div class="section-sub" style="font-weight:500;">Why this matters</div>
-            <p class="hint">
-              Every answer shapes the product roadmap and helps us prove real interest with real data:
-            </p>
-            <ul style="margin:8px 0 0 20px;font-size:.88rem;color:var(--muted);">
-              <li><strong>Design</strong> — understand what you want built first.</li>
-              <li><strong>Community</strong> — early supporters-in-waiting.</li>
-              <li><strong>Investor proof</strong> — honest signals, not hype.</li>
-            </ul>
-            <p class="hint" style="margin-top:10px;">
-              We are early, transparent, and building with intention — not rushing.
-            </p>
+            <div class="spec-grid">
+              <div class="spec-card">
+                <strong>Core material</strong>
+                Obsidian blue gemstone — chosen for its grounding symbolism.
+              </div>
+              <div class="spec-card">
+                <strong>Shell</strong>
+                Matte black alloy for balanced weight and daily comfort.
+              </div>
+              <div class="spec-card">
+                <strong>Future technology</strong>
+                Exploring haptics, thermal cues and light patterns in a small, wearable form.
+              </div>
+              <div class="spec-card">
+                <strong>Purpose</strong>
+                Help you create a small, repeatable ritual so calm becomes a habit.
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-</main>
+      </section>
 
-<footer>
-  © 2025 Shivastras — an open exploration of calm technology
-</footer>
+      <!-- how it could work -->
+      <section id="how" class="card">
+        <h2 class="section-title">How it could work</h2>
+        <p class="section-sub">
+          A simple flow that turns a ring into a small tool for attention.
+        </p>
 
+        <div class="steps-strip" aria-label="how Shivastras could work">
+          <div class="step-pill">
+            <div class="step-icon-circle">☝️</div>
+            <div class="step-text">
+              <strong>Wear it on your finger</strong>
+              The weight and shape are designed to sit quietly on your hand until you need it.
+            </div>
+          </div>
 
-<!-- INTERACTION SCRIPT -->
-<script>
-  (function(){
-    const area = document.getElementById('auraArea');
-    const ring = document.getElementById('auraRing');
-    const glow = document.getElementById('auraGlow');
-    const fill = document.getElementById('auraFill');
+          <div class="step-pill">
+            <div class="step-icon-circle">👆</div>
+            <div class="step-text">
+              <strong>Tap once as a signal</strong>
+              A simple tap becomes a label for a pause. Over time, the gesture itself can trigger a calmer state.
+            </div>
+          </div>
 
-    if(!area || !ring || !glow || !fill) return;
+          <div class="step-pill">
+            <div class="step-icon-circle">💫</div>
+            <div class="step-text">
+              <strong>Let the ring respond</strong>
+              Future versions may respond with soft light or gentle cues that invite three deep breaths.
+            </div>
+          </div>
 
-    let center = { x:0, y:0 };
+          <div class="step-pill">
+            <div class="step-icon-circle">🫁</div>
+            <div class="step-text">
+              <strong>Use it as a daily anchor</strong>
+              Small, repeated pauses add up. The ring is there to support the habit, not replace it.
+            </div>
+          </div>
+        </div>
 
-    function updateCenter(){
-      const rect = ring.getBoundingClientRect();
-      center.x = rect.left + rect.width/2;
-      center.y = rect.top + rect.height/2;
-    }
-    updateCenter();
-    window.addEventListener('resize', updateCenter);
+        <p class="hint">
+          This is a vision, not a finished product. Your answers in the survey help decide which ideas to develop first.
+        </p>
+      </section>
 
-    function handlePoint(x,y){
-      const dx = x - center.x;
-      const dy = y - center.y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const max = Math.max(window.innerWidth, window.innerHeight) * 0.3;
-      const t = Math.max(0, 1 - (dist / max));
-      fill.style.width = Math.round(t * 100) + "%";
-      ring.querySelector("img").style.transform = "scale(" + (1 + t*0.35) + ")";
-      glow.style.opacity = 0.4 + t*0.35;
-      glow.style.transform = "scale(" + (1 + t*0.2) + ")";
-    }
+      <!-- gallery -->
+      <section id="gallery" class="card">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">
+          A short look at metal, stone and light in the Shivastras concept.
+        </p>
 
-    area.addEventListener('mousemove', e => handlePoint(e.clientX, e.clientY));
-    area.addEventListener('touchmove', e => {
-      const t = e.touches[0]; if(t) handlePoint(t.clientX, t.clientY);
-    }, {passive:true});
+        <div class="gallery">
+          <img src="assets/images/gallery1.jpg" alt="Shivastras angle view">
+          <img src="assets/images/gallery2.jpg" alt="Shivastras lifestyle view">
+          <img src="assets/images/gallery3.jpeg" alt="Shivastras close up with corrected ring form">
+        </div>
+      </section>
 
-    area.addEventListener('mouseleave', () => {
-      fill.style.width = "0%";
-      ring.querySelector("img").style.transform = "scale(1)";
-      glow.style.opacity = 0.4;
-      glow.style.transform = "scale(1)";
+      <!-- survey -->
+      <section id="survey" style="margin-top:32px;margin-bottom:20px;">
+        <div class="survey-wrap">
+          <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div>
+              <h2 class="section-title">Help shape the first edition</h2>
+              <p class="section-sub">
+                This survey helps us understand who cares, what matters and how Shivastras should evolve. The same data also shows investors there is real, measured interest.
+              </p>
+            </div>
+            <div style="text-align:right;min-width:180px;">
+              <button class="btn btn-primary" onclick="document.getElementById('surveyForm').scrollIntoView({behavior:'smooth'})">
+                Take the survey
+              </button>
+              <div class="hint">Around two to three minutes · no spam</div>
+            </div>
+          </div>
+
+          <div class="survey-grid">
+            <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" novalidate>
+              <div class="form-grid-two">
+                <div>
+                  <label class="small-label">Full name</label>
+                  <input type="text" name="name" placeholder="Full name" required>
+                </div>
+                <div>
+                  <label class="small-label">Email</label>
+                  <input type="email" name="email" placeholder="Email address" required>
+                </div>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:12px;">
+                <div>
+                  <label class="small-label">City</label>
+                  <input type="text" name="city" placeholder="City (optional)">
+                </div>
+                <div>
+                  <label class="small-label">Age range</label>
+                  <select name="age">
+                    <option value="" selected>Prefer not to say</option>
+                    <option>18–24</option>
+                    <option>25–34</option>
+                    <option>35–44</option>
+                    <option>45+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <label class="small-label">What excites you most about Shivastras?</label>
+                <select name="interest" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option>Feeling calmer and more grounded</option>
+                  <option>Having a ritual instead of an app</option>
+                  <option>Tech enabled jewellery</option>
+                  <option>The meaning and story behind it</option>
+                  <option>Gift for someone else</option>
+                </select>
+              </div>
+
+              <div style="margin-top:12px;">
+                <label class="small-label">Where would you mostly use it?</label>
+                <select name="context">
+                  <option value="" selected>(optional)</option>
+                  <option>Work or study</option>
+                  <option>Commute</option>
+                  <option>Evening or wind down</option>
+                  <option>Meditation or practice</option>
+                  <option>All day</option>
+                </select>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:14px;">
+                <div>
+                  <label class="small-label">What price range feels right?</label>
+                  <select name="price" required>
+                    <option value="" disabled selected>Select a range</option>
+                    <option>₹999 – ₹1499</option>
+                    <option>₹1499 – ₹1999</option>
+                    <option>₹1999 – ₹2999</option>
+                    <option>₹3000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="small-label">How likely would you be to buy?</label>
+                  <select name="intent" required>
+                    <option value="" disabled selected>Select</option>
+                    <option>Definitely</option>
+                    <option>Maybe</option>
+                    <option>Curious</option>
+                    <option>Not for me</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <label class="small-label">Which features matter most to you?</label>
+                <textarea name="features" placeholder="For example: temperature cues, breathing light, battery, sizes, materials, app or no app"></textarea>
+              </div>
+
+              <div style="margin-top:12px;">
+                <label class="small-label">If this existed today, how would it help you?</label>
+                <textarea name="why" placeholder="Short answer (optional) — this helps us explain Shivastras in real language."></textarea>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:14px;">
+                <div>
+                  <label class="small-label">Where did you hear about Shivastras?</label>
+                  <select name="source">
+                    <option value="" selected>(optional)</option>
+                    <option>Instagram</option>
+                    <option>Friend or community</option>
+                    <option>Search</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="small-label">Instagram handle (optional)</label>
+                  <input type="text" name="instagram" placeholder="@username">
+                </div>
+              </div>
+
+              <div class="consent-row">
+                <input type="checkbox" id="consent" name="consent" required>
+                <span>
+                  <strong>I agree</strong> that my responses may be used for Shivastras product research and to contact me about launches, prototypes and community updates. I understand anonymised, combined data may be shared with potential investors. I have read and understood the <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a>.
+                </span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top:16px;">Submit survey</button>
+              <div class="hint">
+                We respect your time and attention. You can ask to be removed from our list at any point.
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Shivastras — an open exploration of a modern ritual ring
+  </footer>
+
+  <!-- scripts -->
+  <script>
+    // smooth scroll for nav
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click',function(e){
+        const id = this.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
     });
-  })();
 
-  // Submit feedback confirmation
-  (function(){
-    const form = document.getElementById('surveyForm');
-    if(!form) return;
-    form.addEventListener('submit', ()=>{
-      const btn = form.querySelector('button[type="submit"]');
-      if(btn){
-        btn.disabled = true;
-        btn.textContent = "Submitting…";
+    // cursor aura + hero boost
+    (function(){
+      const aura = document.getElementById('cursorAura');
+      const heroVisual = document.getElementById('heroVisual');
+      if(!aura || !heroVisual) return;
+
+      let lastMove = 0;
+
+      function updateAura(e){
+        const x = e.clientX;
+        const y = e.clientY;
+        aura.style.left = x + 'px';
+        aura.style.top = y + 'px';
+        aura.style.opacity = '0.9';
+        lastMove = Date.now();
+
+        const rect = heroVisual.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = x - cx;
+        const dy = y - cy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const max = Math.max(rect.width, rect.height) * 1.1;
+        const t = Math.max(0, 1 - dist / max); // 0..1 when near the ring
+
+        const size = 46 + t * 120;
+        aura.style.width = size + 'px';
+        aura.style.height = size + 'px';
+        aura.style.filter = 'blur(' + (6 - t*3) + 'px)';
+
+        const scale = 1 + t * 0.18;
+        const shadowStrength = 0.65 + t * 0.6;
+        heroVisual.style.transform = 'translateY(' + (-6 * t) + 'px) scale(' + scale + ')';
+        heroVisual.style.boxShadow = '0 26px 120px rgba(0,0,0,' + shadowStrength + '), 0 0 ' + (80 + t*120) + 'px rgba(59,130,246,' + (0.06 + t*0.25) + ')';
       }
-      setTimeout(()=>{ alert("Thank you — your answers were submitted."); },800);
-    });
-  })();
-</script>
 
+      window.addEventListener('mousemove',updateAura,{passive:true});
+
+      // fade aura gently when idle
+      setInterval(function(){
+        if(Date.now() - lastMove > 1800){
+          aura.style.opacity = '0.0';
+        }
+      },600);
+    })();
+
+    // survey submit UX
+    (function(){
+      const form = document.getElementById('surveyForm');
+      if(!form) return;
+      form.addEventListener('submit',function(){
+        const btn = form.querySelector('button[type="submit"]');
+        if(btn){
+          btn.disabled = true;
+          btn.textContent = 'Submitting…';
+        }
+        setTimeout(function(){
+          try{
+            alert('Thank you — your answers were submitted.');
+          }catch(e){}
+        },800);
+      });
+    })();
+  </script>
 </body>
 </html>
