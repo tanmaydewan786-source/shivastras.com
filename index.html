@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivastras — wear your calm, carry your power</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shivastras — wear your calm. carry your power.</title>
 
-  <!-- Google analytics -->
+  <!-- meta -->
+  <meta name="description" content="Shivastras — a modern ritual ring concept that blends symbolic geometry with future calm technology. Help shape it by taking the survey." />
+
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-931CYMYD3V"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,401 +17,941 @@
     gtag('config', 'G-931CYMYD3V');
   </script>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ------------------ Tokens ------------------ */
     :root{
-      --bg:#000000;
-      --text:#f6f6f7;
-      --muted:#9ea4ad;
+      --bg-1:#010112;
+      --bg-2:#050610;
+      --text:#f5f7fb;
+      --muted:#9aa3ad;
       --accent:#3b82f6;
-      --accent-soft:rgba(59,130,246,0.3);
-      --radius:14px;
+      --accent-soft:rgba(59,130,246,0.16);
+      --accent-soft-strong:rgba(59,130,246,0.24);
+      --radius-xl:24px;
+      --radius-lg:14px;
+      --header-h:76px;
+      --container:1200px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0;}
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
     body{
-      font-family:Inter,Arial,sans-serif;
-      background:var(--bg);
+      margin:0;
+      background:radial-gradient(circle at 10% 10%,#0b1220 0%,#02010a 45%,#000 100%);
       color:var(--text);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      -webkit-font-smoothing:antialiased;
       line-height:1.6;
       overflow-x:hidden;
     }
     img{max-width:100%;display:block;}
 
-    /* ------------------ Loading Screen ------------------ */
-    #loader{
+    .container{max-width:var(--container);margin:0 auto;padding:0 22px;}
+
+    /* intro / loader */
+    #intro{
       position:fixed;
       inset:0;
-      background:#000;
       display:flex;
       align-items:center;
       justify-content:center;
-      flex-direction:column;
-      z-index:3000;
-      transition:opacity .7s ease,visibility .7s ease;
+      background:#000;
+      z-index:1500;
+      transition:opacity .8s ease,visibility .8s ease;
     }
-    #loader.hide{opacity:0;visibility:hidden;}
-    #loader .logo{
-      font-family:"Cormorant Garamond",serif;
+    #intro.hidden{
+      opacity:0;
+      visibility:hidden;
+    }
+    .intro-logo{
+      font-family:"Cinzel",serif;
       font-weight:400;
-      font-size:2rem;
-      color:var(--text);
-      letter-spacing:0.12em;
+      font-size:1.3rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      color:#f9fafb;
     }
 
-    /* ------------------ Header ------------------ */
-    header{
-      width:100%;
-      padding:18px 26px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+    /* cursor aura */
+    .cursor-aura{
       position:fixed;
-      top:0;
-      left:0;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      pointer-events:none;
+      z-index:1200;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle at 30% 30%,rgba(59,130,246,0.95),rgba(59,130,246,0.25) 40%,rgba(59,130,246,0.05) 70%,transparent 100%);
+      mix-blend-mode:screen;
+      filter:blur(6px);
+      opacity:0;
+      transition:opacity .18s linear,width .08s linear,height .08s linear,filter .08s linear;
+    }
+    @media (max-width:768px){
+      .cursor-aura{display:none;}
+    }
+
+    /* header */
+    header.site-header{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:var(--header-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 22px;
+      background:none;          /* no transparent bar */
+      border-bottom:none;
       z-index:1000;
-      background:transparent;
     }
     .brand{
-      font-family:"Cormorant Garamond",serif;
-      font-weight:400;
-      font-size:1.4rem;
-      letter-spacing:0.06em;
-      color:var(--text);
+      font-family:"Cinzel",serif;
+      font-weight:400;          /* regular, not bold */
+      font-size:1.2rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
     }
-    nav a{
-      color:var(--muted);
+    nav.main-nav a{
       margin-left:18px;
+      color:var(--muted);
+      font-size:.95rem;
       text-decoration:none;
       text-transform:capitalize;
-      font-size:.95rem;
-      transition:color .2s ease;
+      transition:color .18s ease,transform .18s ease;
     }
-    nav a:hover{ color:var(--text); }
+    nav.main-nav a:hover{
+      color:var(--text);
+      transform:translateY(-1px);
+    }
 
-    /* ------------------ Hero ------------------ */
+    main{padding-top:var(--header-h);}
+
+    /* hero */
     .hero{
-      min-height:100vh;
+      min-height:calc(100vh - var(--header-h));
+      display:grid;
+      grid-template-columns:1.08fr 1fr;
+      gap:40px;
+      align-items:center;
+      padding:96px 0 72px;
+    }
+    @media (max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+        padding-top:132px;
+        padding-bottom:52px;
+      }
+    }
+    .eyebrow{
+      color:var(--accent);
+      font-weight:600;
+      letter-spacing:.22em;
+      font-size:.8rem;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .hero-title{
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      font-size:clamp(2.1rem,5vw,3.5rem);
+      margin:0 0 10px;
+      text-transform:capitalize;
+      line-height:1.04;
+    }
+    .tag-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:.78rem;
+      margin-bottom:12px;
+    }
+    .hero-sub{
+      color:var(--muted);
+      max-width:640px;
+      margin:0 0 18px;
+      font-size:1rem;
+    }
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .btn{
+      padding:12px 26px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:transparent;
+      color:var(--text);
+      font-weight:600;
+      font-size:.95rem;
+      cursor:pointer;
+      text-transform:capitalize;
+      transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+    }
+    .btn:hover{transform:translateY(-1px);}
+    .btn-outline-blue{
+      border-color:var(--accent-soft-strong);
+      color:var(--accent);
+      background:rgba(17,24,39,0.7);
+    }
+    .btn-outline-blue:hover{
+      background:var(--accent-soft-strong);
+      color:#fff;
+    }
+    .meta{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .hero-right{
+      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      padding:140px 20px 80px;
-      text-align:center;
-      position:relative;
     }
-    .hero h1{
-      font-family:"Cormorant Garamond",serif;
-      font-size:clamp(2.4rem,6vw,4rem);
-      text-transform:capitalize;
-      font-weight:600;
-      margin-bottom:12px;
-    }
-    .hero p.sub{
-      color:var(--muted);
-      max-width:520px;
-      margin:auto;
-      font-size:1rem;
-      margin-bottom:24px;
-    }
-    .btn{
-      display:inline-block;
-      padding:12px 28px;
-      border-radius:999px;
-      border:none;
-      font-weight:600;
-      cursor:pointer;
-      background:var(--accent);
-      color:#fff;
-      text-transform:capitalize;
-      font-size:1rem;
-      transition:background .2s ease;
-    }
-    .btn:hover{ background:#225fbe; }
-
-    /* ------------------ Ring Background ------------------ */
-    .ring-bg{
+    .halo{
       position:absolute;
-      top:50%;
-      left:50%;
-      width:580px;
-      height:580px;
-      transform:translate(-50%,-60%);
-      background:url("assets/images/hero.jpg") center/cover no-repeat;
-      opacity:0.9;
-      filter:brightness(1.2);
-      border-radius:50%;
-      mix-blend-mode:screen;
-      transition:filter .3s ease, box-shadow .3s ease;
-    }
-    .hero:hover .ring-bg{
-      box-shadow:0 0 120px var(--accent-soft);
-      filter:brightness(1.35);
-    }
-
-    /* ------------------ Cursor Glow ------------------ */
-    #cursorGlow{
-      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:999px;
+      background:radial-gradient(circle,rgba(59,130,246,0.28),transparent 65%);
+      filter:blur(20px);
       pointer-events:none;
-      width:26px;
-      height:26px;
-      background:radial-gradient(circle,rgba(59,130,246,0.8),transparent 70%);
-      border-radius:50%;
-      z-index:2000;
-      mix-blend-mode:screen;
-      transition:transform .18s,opacity .18s;
-      opacity:0;
+      animation:haloPulse 7s ease-in-out infinite;
+    }
+    @keyframes haloPulse{
+      0%,100%{transform:scale(1);opacity:.95;}
+      50%{transform:scale(1.05);opacity:.55;}
     }
 
-    /* ------------------ Section ------------------ */
-    section{
-      max-width:1100px;
-      margin:0 auto;
-      padding:80px 20px;
+    /* hero visual — ring submerged, no obvious card shape */
+    .visual-card{
+      width:520px;
+      max-width:100%;
+      position:relative;
+      padding:0;
+      background:transparent;
+      box-shadow:none;
+      border-radius:0;
+      overflow:visible;
     }
-    section h2{
-      font-family:"Cormorant Garamond",serif;
-      font-size:2rem;
-      text-transform:capitalize;
-      font-weight:600;
-      text-align:center;
-      margin-bottom:40px;
+    .visual-frame{
+      border-radius:26px;
+      overflow:hidden;
     }
-
-    /* ------------------ Icon Grid ------------------ */
-    .icon-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:26px;
-      text-align:center;
-    }
-    .icon-item{
-      padding:16px;
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:var(--radius);
-      background:rgba(255,255,255,0.02);
-    }
-    .icon-item img{
-      width:38px;
-      margin:0 auto 12px;
-      opacity:0.8;
-    }
-    .icon-item p{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    /* ------------------ Gallery ------------------ */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:18px;
-      margin-top:20px;
-    }
-    .gallery img{
-      border-radius:var(--radius);
-      height:280px;
+    .visual-frame img{
+      width:100%;
+      height:auto;
+      display:block;
       object-fit:cover;
     }
+    .visual-fade{
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 50% 20%,transparent 38%,rgba(0,0,0,0.7) 100%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+    .visual-caption{
+      margin-top:8px;
+      font-size:.82rem;
+      color:var(--muted);
+      text-transform:capitalize;
+      text-align:left;
+      align-self:flex-start;
+    }
+    @media (max-width:900px){
+      .visual-card{width:360px;}
+    }
+    @media (max-width:600px){
+      .visual-card{width:300px;}
+    }
 
-    /* ------------------ How it works ------------------ */
-    .steps{
-      display:flex;
-      justify-content:center;
-      flex-wrap:wrap;
-      gap:32px;
-      margin-top:20px;
+    /* generic section cards */
+    section{margin-top:32px;}
+    .card{
+      background:rgba(255,255,255,0.012);
+      border-radius:var(--radius-lg);
+      border:1px solid rgba(255,255,255,0.04);
+      padding:24px;
     }
-    .step{
-      text-align:center;
-      max-width:220px;
+    @media (max-width:640px){
+      .card{padding:20px;}
     }
-    .step img{
-      width:52px;
-      margin:0 auto 10px;
+    .section-title{
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.5rem;
+      margin:0 0 4px;
+      text-transform:capitalize;
     }
-    .step p{color:var(--muted);}
-
-    /* ------------------ Form ------------------ */
-    .survey-wrap{
-      max-width:700px;
-      margin:0 auto;
-      background:rgba(255,255,255,0.03);
-      padding:30px;
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,0.05);
-    }
-    form{
-      display:grid;
-      gap:14px;
-    }
-    input,select,textarea{
-      width:100%;
-      padding:12px;
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:var(--radius);
-      color:var(--text);
+    .section-sub{
+      margin:0 0 8px;
       font-size:.95rem;
+      color:var(--muted);
     }
-    textarea{ min-height:100px; }
-    .consent{
+    .hint{
+      margin-top:4px;
+      font-size:.84rem;
+      color:var(--muted);
+    }
+
+    /* what Shivastras is — 10 icons grid */
+    .feature-grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:16px;
+    }
+    @media (max-width:900px){
+      .feature-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media (max-width:480px){
+      .feature-grid{grid-template-columns:1fr;}
+    }
+
+    .feature-tile{
+      padding:12px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.05);
+      background:rgba(6,10,25,0.9);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-height:84px;
+    }
+    .feature-tile-top{
       display:flex;
       align-items:center;
+      gap:8px;
+    }
+    .feature-icon-circle{
+      width:26px;
+      height:26px;
+      border-radius:999px;
+      background:radial-gradient(circle,rgba(59,130,246,0.45),rgba(15,23,42,0.95));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1rem;
+      flex-shrink:0;
+    }
+    .feature-tile-title{
+      font-size:.9rem;
+      font-weight:600;
+    }
+    .feature-tile-text{
+      font-size:.84rem;
+      color:var(--muted);
+    }
+
+    /* how it could work — simpler */
+    .steps-wrap{
+      margin-top:12px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .step-row{
+      display:flex;
+      align-items:flex-start;
       gap:8px;
       font-size:.9rem;
       color:var(--muted);
     }
-
-    footer{
-      text-align:center;
-      padding:40px 20px;
-      color:var(--muted);
-      font-size:.85rem;
+    .step-icon-small{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.95);
+      border:1px solid rgba(255,255,255,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.9rem;
+      flex-shrink:0;
+    }
+    .step-row strong{
+      display:block;
+      color:var(--text);
+      margin-bottom:1px;
     }
 
-    /* ------------------ Mobile ------------------ */
-    @media(max-width:700px){
-      .steps{ gap:24px; }
-      .brand{font-size:1.2rem;}
-      nav a{margin-left:10px;}
-      .hero{padding-top:120px;}
+    /* gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-top:12px;
+    }
+    @media (max-width:900px){
+      .gallery{grid-template-columns:1fr;}
+    }
+    .gallery img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    /* survey */
+    .survey-wrap{
+      max-width:960px;
+      margin:0 auto;
+      padding:24px;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(135deg,rgba(15,23,42,0.94),rgba(15,23,42,0.82));
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 20px 80px rgba(0,0,0,0.75);
+    }
+    .survey-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:16px;
+    }
+    .form-grid-two{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:640px){
+      .form-grid-two{grid-template-columns:1fr;}
+    }
+
+    label.small-label{
+      display:block;
+      font-size:.86rem;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+    input,select,textarea{
+      width:100%;
+      border-radius:10px;
+      padding:11px 13px;
+      font-size:.95rem;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      border:1px solid rgba(148,163,184,0.35);
+      background:rgba(15,23,42,0.9);
+      color:var(--text);
+      outline:none;
+      transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(59,130,246,0.6);
+      background:rgba(15,23,42,1);
+    }
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .consent-row{
+      display:flex;
+      align-items:flex-start;
+      gap:6px;
+      margin-top:10px;
+      font-size:.86rem;
+      color:var(--muted);
+    }
+    .consent-row input[type="checkbox"]{
+      width:16px;
+      height:16px;
+      margin-top:3px;
+      cursor:pointer;
+    }
+    .consent-row span{
+      display:block;
+      line-height:1.45;
+    }
+    .consent-row strong{
+      font-weight:600;
+    }
+    .consent-row a{
+      color:var(--accent);
+      text-decoration:underline;
+    }
+
+    footer{
+      padding:34px 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:.85rem;
+      margin-top:36px;
+      border-top:1px solid rgba(255,255,255,0.08);
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Loader -->
-  <div id="loader">
-    <div class="logo">shivastras</div>
+  <!-- intro loader -->
+  <div id="intro">
+    <div class="intro-logo">Shivastras</div>
   </div>
 
-  <!-- Cursor glow -->
-  <div id="cursorGlow"></div>
+  <!-- cursor aura -->
+  <div id="cursorAura" class="cursor-aura" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header>
-    <div class="brand">shivastras</div>
-    <nav>
+  <!-- header -->
+  <header class="site-header">
+    <div class="brand">Shivastras</div>
+    <nav class="main-nav" aria-label="main navigation">
       <a href="#about">About</a>
+      <a href="#how">How it works</a>
       <a href="#gallery">Gallery</a>
       <a href="#survey">Survey</a>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="ring-bg"></div>
-    <h1>wear your calm, carry your power</h1>
-    <p class="sub">a minimal ring inspired by ancient symbols, made modern — a small daily ritual to help you pause, breathe and return to yourself</p>
-    <a href="#survey" class="btn">experience aura</a>
-  </section>
-
-  <!-- What is shivastras -->
-  <section id="about">
-    <h2>what is shivastras</h2>
-    <div class="icon-grid">
-      <div class="icon-item"><p>tap ritual — touch that helps you pause</p></div>
-      <div class="icon-item"><p>daily anchor — moments of calm</p></div>
-      <div class="icon-item"><p>symbolic design — inspired by ancient geometry</p></div>
-      <div class="icon-item"><p>personal meaning — becomes your ritual</p></div>
-      <div class="icon-item"><p>built for daily wear</p></div>
-      <div class="icon-item"><p>visual focus point — helps attention</p></div>
-      <div class="icon-item"><p>feels natural — nothing extra</p></div>
-      <div class="icon-item"><p>a small practice, big change</p></div>
-      <div class="icon-item"><p>gentle reminder — take a breath</p></div>
-      <div class="icon-item"><p>designed to be simple</p></div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section>
-    <h2>how it could work</h2>
-    <div class="steps">
-      <div class="step"><p>wear it daily</p></div>
-      <div class="step"><p>tap twice to start a moment</p></div>
-      <div class="step"><p>take three slow breaths</p></div>
-      <div class="step"><p>use it as a reminder</p></div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>gallery</h2>
-    <div class="gallery">
-      <img src="assets/images/gallery1.jpg" alt="angle view">
-      <img src="assets/images/gallery2.jpg" alt="close view">
-      <img src="assets/images/gallery3.jpeg" alt="lifestyle">
-    </div>
-  </section>
-
-  <!-- Survey -->
-  <section id="survey">
-    <h2>help shape the first edition</h2>
-    <div class="survey-wrap">
-      <form action="https://formspree.io/f/YOUR-ID" method="POST">
-        <input name="name" type="text" placeholder="full name" required>
-        <input name="email" type="email" placeholder="email address" required>
-        <input name="country" type="text" placeholder="country" required>
-
-        <select name="interest">
-          <option value="" disabled selected>how likely to buy?</option>
-          <option>yes — very likely</option>
-          <option>maybe — curious</option>
-          <option>not sure</option>
-        </select>
-
-        <select name="price">
-          <option value="" disabled selected>expected price</option>
-          <option>₹999 – ₹1499</option>
-          <option>₹1499 – ₹1999</option>
-          <option>₹1999 – ₹2999</option>
-          <option>₹3000+</option>
-        </select>
-
-        <textarea name="why" placeholder="why does this idea interest you?"></textarea>
-
-        <div class="consent">
-          <input type="checkbox" name="consent" required>
-          <label>I agree to the terms</label>
+  <main>
+    <div class="container">
+      <!-- hero -->
+      <section class="hero" id="top">
+        <div>
+          <div class="eyebrow">divine power · modern artifact</div>
+          <h1 class="hero-title">Wear your calm. Carry your power.</h1>
+          <div class="tag-pill">
+            <span>•</span>
+            Concept launch · Help shape the first edition
+          </div>
+          <p class="hero-sub">
+            Shivastras is a dark luxury ritual ring concept. It imagines a future where a simple physical gesture helps you slow down and return to yourself, without more apps or notifications.
+          </p>
+          <div class="cta-row">
+            <!-- only one hero button as requested -->
+            <button class="btn btn-outline-blue" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+              View gallery
+            </button>
+          </div>
+          <div class="meta">
+            Concept stage · Transparent exploration
+          </div>
         </div>
 
-        <button type="submit" class="btn">submit</button>
-      </form>
+        <div class="hero-right">
+          <div class="halo" aria-hidden="true"></div>
+          <div class="visual-card" id="heroVisual">
+            <div class="visual-frame">
+              <img src="assets/images/hero.jpg" alt="Shivastras hero ring view">
+            </div>
+            <div class="visual-fade" aria-hidden="true"></div>
+          </div>
+          <p class="visual-caption">shivastras — obsidian core in matte black shell</p>
+        </div>
+      </section>
+
+      <!-- what Shivastras is -->
+      <section id="about" class="card">
+        <h2 class="section-title">What Shivastras is</h2>
+        <p class="section-sub">
+          Shivastras is a modern ritual object. It blends symbolic geometry with the idea of calm technology — tools that help you slow down, not speed up.
+        </p>
+        <p class="section-sub">
+          This is a concept. Your feedback helps decide what we should actually build.
+        </p>
+
+        <div class="feature-grid" aria-label="Shivastras features and benefits">
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🧘</div>
+              <div class="feature-tile-title">Tap ritual</div>
+            </div>
+            <div class="feature-tile-text">
+              A simple touch that reminds you to pause when the day gets noisy.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">📿</div>
+              <div class="feature-tile-title">Daily anchor</div>
+            </div>
+            <div class="feature-tile-text">
+              A small object you carry every day that quietly holds a meaning for you.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🪬</div>
+              <div class="feature-tile-title">Symbolic shape</div>
+            </div>
+            <div class="feature-tile-text">
+              Edges and lines inspired by ancient geometry so it feels intentional, not random.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🌡️</div>
+              <div class="feature-tile-title">Gentle cues (concept)</div>
+            </div>
+            <div class="feature-tile-text">
+              A future version may use soft warm or cool sensations as a small signal to slow down.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">💡</div>
+              <div class="feature-tile-title">Breathing light (concept)</div>
+            </div>
+            <div class="feature-tile-text">
+              Slow light patterns could mirror a calm inhale and exhale instead of flashing alerts.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🔕</div>
+              <div class="feature-tile-title">Less noise</div>
+            </div>
+            <div class="feature-tile-text">
+              Built around quiet cues and small rituals, not endless notifications or screens.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🎁</div>
+              <div class="feature-tile-title">Gift of presence</div>
+            </div>
+            <div class="feature-tile-text">
+              A way to give someone you care about a reminder to return to themselves.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">⚖️</div>
+              <div class="feature-tile-title">Built for daily wear</div>
+            </div>
+            <div class="feature-tile-text">
+              Dark, minimal and designed to blend into your style without shouting for attention.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🧩</div>
+              <div class="feature-tile-title">Personal meaning</div>
+            </div>
+            <div class="feature-tile-text">
+              Over time, the ring becomes your own symbol for focus, calm and inner power.
+            </div>
+          </div>
+
+          <div class="feature-tile">
+            <div class="feature-tile-top">
+              <div class="feature-icon-circle">🤝</div>
+              <div class="feature-tile-title">Built with you</div>
+            </div>
+            <div class="feature-tile-text">
+              This project moves forward only if people like you are interested enough to shape it.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- how it could work -->
+      <section id="how" class="card">
+        <h2 class="section-title">How it could work</h2>
+        <p class="section-sub">
+          A short flow that turns the ring into a simple tool for attention.
+        </p>
+
+        <div class="steps-wrap">
+          <div class="step-row">
+            <div class="step-icon-small">☝️</div>
+            <div>
+              <strong>Wear it on your finger</strong>
+              You get used to the feel and weight, so it is always there when you need a small reset.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-icon-small">👆</div>
+            <div>
+              <strong>Tap once as your signal</strong>
+              One tap becomes your personal cue to pause, breathe and notice what you are feeling.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-icon-small">💫</div>
+            <div>
+              <strong>Let the ring respond (concept)</strong>
+              A future version may respond with soft light or gentle cues that support three slow breaths.
+            </div>
+          </div>
+
+          <div class="step-row">
+            <div class="step-icon-small">🫁</div>
+            <div>
+              <strong>Repeat until it becomes a habit</strong>
+              Small moments add up. The goal is to make calm something you can access on demand.
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">
+          This is a vision, not a finished product. The survey tells us what should move from sketch to prototype.
+        </p>
+      </section>
+
+      <!-- gallery -->
+      <section id="gallery" class="card">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-sub">
+          A brief look at metal, stone and light in the Shivastras concept.
+        </p>
+
+        <div class="gallery">
+          <img src="assets/images/gallery1.jpg" alt="Shivastras angle view">
+          <img src="assets/images/gallery2.jpg" alt="Shivastras lifestyle view">
+          <img src="assets/images/gallery3.jpeg" alt="Shivastras close up with corrected ring form">
+        </div>
+      </section>
+
+      <!-- survey -->
+      <section id="survey" style="margin-top:32px;margin-bottom:20px;">
+        <div class="survey-wrap">
+          <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <div>
+              <h2 class="section-title">Help shape the first edition</h2>
+              <p class="section-sub">
+                This survey shows us who cares, what matters and how Shivastras should evolve. The same data helps us prove real interest to future partners and investors.
+              </p>
+            </div>
+            <div style="text-align:right;min-width:180px;">
+              <button class="btn btn-outline-blue" onclick="document.getElementById('surveyForm').scrollIntoView({behavior:'smooth'})">
+                Go to survey
+              </button>
+              <div class="hint">Around two to three minutes · no spam</div>
+            </div>
+          </div>
+
+          <div class="survey-grid">
+            <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" novalidate>
+              <div class="form-grid-two">
+                <div>
+                  <label class="small-label">Full name</label>
+                  <input type="text" name="name" placeholder="Full name" required>
+                </div>
+                <div>
+                  <label class="small-label">Email</label>
+                  <input type="email" name="email" placeholder="Email address" required>
+                </div>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:12px;">
+                <div>
+                  <label class="small-label">City</label>
+                  <input type="text" name="city" placeholder="City (optional)">
+                </div>
+                <div>
+                  <label class="small-label">Country</label>
+                  <input type="text" name="country" placeholder="Country (optional)">
+                </div>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:12px;">
+                <div>
+                  <label class="small-label">Age range</label>
+                  <select name="age">
+                    <option value="" selected>Prefer not to say</option>
+                    <option>18–24</option>
+                    <option>25–34</option>
+                    <option>35–44</option>
+                    <option>45+</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="small-label">What excites you most about Shivastras?</label>
+                  <select name="interest" required>
+                    <option value="" disabled selected>Select one</option>
+                    <option>Feeling calmer and more grounded</option>
+                    <option>Having a ritual instead of an app</option>
+                    <option>Tech enabled jewellery</option>
+                    <option>The meaning and story behind it</option>
+                    <option>Gift for someone else</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top:12px;">
+                <label class="small-label">Where would you mostly use it?</label>
+                <select name="context">
+                  <option value="" selected>(optional)</option>
+                  <option>Work or study</option>
+                  <option>Commute</option>
+                  <option>Evening or wind down</option>
+                  <option>Meditation or practice</option>
+                  <option>All day</option>
+                </select>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:14px;">
+                <div>
+                  <label class="small-label">What price range feels right?</label>
+                  <select name="price" required>
+                    <option value="" disabled selected>Select a range</option>
+                    <option>₹999 – ₹1499</option>
+                    <option>₹1499 – ₹1999</option>
+                    <option>₹1999 – ₹2999</option>
+                    <option>₹3000+</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="small-label">How likely would you be to buy?</label>
+                  <select name="intent" required>
+                    <option value="" disabled selected>Select</option>
+                    <option>Definitely</option>
+                    <option>Maybe</option>
+                    <option>Curious</option>
+                    <option>Not for me</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <label class="small-label">Which features matter most to you?</label>
+                <textarea name="features" placeholder="For example: temperature cues, breathing light, battery, sizes, materials, app or no app"></textarea>
+              </div>
+
+              <div style="margin-top:12px;">
+                <label class="small-label">If this existed today, how would it help you?</label>
+                <textarea name="why" placeholder="Short answer (optional) — this helps us describe Shivastras in real language."></textarea>
+              </div>
+
+              <div class="form-grid-two" style="margin-top:14px;">
+                <div>
+                  <label class="small-label">Where did you hear about Shivastras?</label>
+                  <select name="source">
+                    <option value="" selected>(optional)</option>
+                    <option>Instagram</option>
+                    <option>Friend or community</option>
+                    <option>Search</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="small-label">Instagram handle (optional)</label>
+                  <input type="text" name="instagram" placeholder="@username">
+                </div>
+              </div>
+
+              <div class="consent-row">
+                <input type="checkbox" id="consent" name="consent" required>
+                <span>
+                  <strong>I agree</strong> that my responses may be used for Shivastras product research and to contact me about launches, prototypes and community updates. I understand anonymised, combined data may be shared with potential investors. I have read and understood the <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a>.
+                </span>
+              </div>
+
+              <button type="submit" class="btn btn-outline-blue" style="margin-top:16px;">Submit survey</button>
+              <div class="hint">
+                We respect your time and attention. You can ask to be removed from our list at any point.
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
 
   <footer>
-    © 2025 shivastras — concept launch
+    © 2025 Shivastras — an open exploration of a modern ritual ring
   </footer>
 
-  <!-- Scripts -->
   <script>
-    /* loader */
-    window.addEventListener('load',()=>{
-      setTimeout(()=>{ document.getElementById('loader').classList.add('hide'); },400);
+    // intro loader
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        var intro = document.getElementById('intro');
+        if(intro){ intro.classList.add('hidden'); }
+      }, 400);
     });
 
-    /* cursor glow */
-    const glow=document.getElementById('cursorGlow');
-    window.addEventListener('mousemove',(e)=>{
-      glow.style.opacity='1';
-      glow.style.transform=`translate(${e.clientX-13}px,${e.clientY-13}px)`;
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click',function(e){
+        const id = this.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
     });
 
-    /* hero glow amplify */
-    const hero=document.querySelector('.hero');
-    hero.addEventListener('mousemove',(e)=>{
-      glow.style.transform=`translate(${e.clientX-18}px,${e.clientY-18}px) scale(1.6)`;
-    });
-    hero.addEventListener('mouseleave',()=>{
-      glow.style.transform=`scale(1)`;
-    });
+    // cursor aura: simple glow that amplifies near center of hero ring
+    (function(){
+      const aura = document.getElementById('cursorAura');
+      const heroVisual = document.getElementById('heroVisual');
+      if(!aura || !heroVisual) return;
+
+      let lastMove = 0;
+
+      function handleMove(e){
+        const x = e.clientX;
+        const y = e.clientY;
+        aura.style.left = x + 'px';
+        aura.style.top = y + 'px';
+        aura.style.opacity = '0.9';
+        lastMove = Date.now();
+
+        const rect = heroVisual.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height/2;
+
+        const dx = x - cx;
+        const dy = y - cy;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const max = Math.max(rect.width, rect.height) * 0.7;
+        const t = Math.max(0, 1 - dist / max); // 0 far, 1 near center
+
+        const size = 44 + t * 120;
+        aura.style.width = size + 'px';
+        aura.style.height = size + 'px';
+        aura.style.filter = 'blur(' + (6 - t*3) + 'px)';
+      }
+
+      window.addEventListener('mousemove', handleMove, {passive:true});
+
+      setInterval(function(){
+        if(Date.now() - lastMove > 1800){
+          aura.style.opacity = '0';
+        }
+      }, 600);
+    })();
+
+    // survey submit ui
+    (function(){
+      const form = document.getElementById('surveyForm');
+      if(!form) return;
+      form.addEventListener('submit', function(){
+        const btn = form.querySelector('button[type="submit"]');
+        if(btn){
+          btn.disabled = true;
+          btn.textContent = 'Submitting…';
+        }
+        setTimeout(function(){
+          try{
+            alert('Thank you — your answers were submitted.');
+          }catch(e){}
+        }, 800);
+      });
+    })();
   </script>
-
 </body>
 </html>
