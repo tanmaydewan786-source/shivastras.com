@@ -19,7 +19,7 @@
     gtag('config', 'G-931CYMYD3V');
   </script>
 
-  <!-- Razorpay Checkout (for Seed payments) -->
+  <!-- Razorpay Checkout (for optional seed payments) -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <!-- Fonts -->
@@ -205,109 +205,6 @@
       text-transform:capitalize;
     }
 
-    /* ---------- Seed the idea section ---------- */
-    .seed-section{
-      padding:40px 0 60px;
-    }
-    .seed-inner{
-      max-width:880px;
-      margin:0 auto;
-      border-radius:22px;
-      padding:26px 24px 24px;
-      background:radial-gradient(circle at 0% 0%, rgba(59,130,246,0.12), rgba(15,23,42,0.96));
-      border:1px solid rgba(148,163,184,0.45);
-      box-shadow:0 24px 80px rgba(0,0,0,0.85);
-    }
-    .seed-header{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      margin-bottom:18px;
-    }
-    .seed-title{
-      font-family:"Cormorant Garamond",serif;
-      font-size:1.6rem;
-      text-transform:capitalize;
-    }
-    .seed-sub{
-      color:var(--muted);
-      font-size:.95rem;
-      max-width:520px;
-    }
-    .seed-grid{
-      display:grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
-      gap:22px;
-      align-items:flex-start;
-    }
-    @media(max-width:900px){
-      .seed-grid{ grid-template-columns:1fr; }
-    }
-    .seed-benefits{
-      font-size:.92rem;
-      color:var(--muted);
-    }
-    .seed-benefits ul{
-      margin:8px 0 0;
-      padding-left:18px;
-    }
-    .seed-benefits li{ margin-bottom:4px; }
-
-    .seed-form-card{
-      border-radius:16px;
-      background:rgba(15,23,42,0.9);
-      border:1px solid rgba(148,163,184,0.45);
-      padding:16px 16px 18px;
-    }
-    .seed-form-title{
-      font-size:.95rem;
-      margin-bottom:6px;
-      font-weight:600;
-    }
-    .seed-form-note{
-      font-size:.85rem;
-      color:var(--muted);
-      margin-bottom:10px;
-    }
-    .seed-row{
-      display:flex;
-      gap:8px;
-      margin-bottom:8px;
-    }
-    .seed-row input{
-      flex:1;
-    }
-    .seed-amount-wrap{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:10px;
-    }
-    .seed-amount-wrap span{
-      font-size:.9rem;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-    .seed-input{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.7);
-      background:rgba(15,23,42,0.9);
-      color:var(--text);
-      font-size:.9rem;
-      outline:none;
-      width:100%;
-    }
-    .seed-input:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 1px rgba(59,130,246,0.6);
-    }
-    .seed-mini{
-      font-size:.8rem;
-      color:var(--muted);
-      margin-top:6px;
-    }
-
     /* ---------- Sections & content ---------- */
     section.story { padding:72px 0; }
     .two-col{
@@ -378,7 +275,7 @@
       filter:brightness(1.12);
     }
 
-    /* ---------- Survey ---------- */
+    /* ---------- Combined form: feedback + optional seed ---------- */
     .survey-wrap {
       max-width:800px;
       margin:0 auto;
@@ -492,9 +389,7 @@
     <div class="brand">Shivastras</div>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#about">About</a>
-      <a href="#seed">Seed</a>
       <a href="#gallery">Gallery</a>
-      <a href="#story-steps">How it works</a>
       <a href="#survey">Survey</a>
     </nav>
   </header>
@@ -513,7 +408,7 @@
             Experience aura⁺
           </button>
           <button class="btn btn-outline" onclick="document.getElementById('survey').scrollIntoView({behavior:'smooth'})">
-            Take the survey
+            Tell us what you think
           </button>
         </div>
         <div class="hero-meta">concept launch · transparent and early</div>
@@ -529,54 +424,7 @@
       </div>
     </section>
 
-    <!-- SEED THE IDEA -->
-    <section id="seed" class="seed-section container reveal" aria-labelledby="seedHeading">
-      <div class="seed-inner">
-        <div class="seed-header">
-          <div class="muted caps" style="font-size:.85rem;">community micro‑fund</div>
-          <h2 id="seedHeading" class="seed-title">Seed the idea</h2>
-          <p class="seed-sub">
-            contribute ₹1 or more to help turn Shivastras from a concept into a real artifact you can wear. every seed helps us research, prototype and show investors that this idea matters.
-          </p>
-        </div>
-        <div class="seed-grid">
-          <div class="seed-benefits">
-            <strong>what you receive as a seed member</strong>
-            <ul>
-              <li>a digital <strong>founding seed certificate</strong> with your name and seed number.</li>
-              <li>a private <strong>seed letter</strong> sharing the story, philosophy and early sketches.</li>
-              <li>priority updates as we decide what to prototype and when.</li>
-            </ul>
-            <p style="margin-top:10px;">
-              this is not a pre‑order. it is a small contribution to support research and early development.
-            </p>
-          </div>
-          <div class="seed-form-card">
-            <div class="seed-form-title">become a founding seed member</div>
-            <div class="seed-form-note">enter your name, email and any amount from ₹1 upwards.</div>
-            <div class="seed-row">
-              <input class="seed-input" type="text" id="seedName" placeholder="full name">
-            </div>
-            <div class="seed-row">
-              <input class="seed-input" type="email" id="seedEmail" placeholder="email address">
-            </div>
-            <div class="seed-amount-wrap">
-              <span>amount</span>
-              <input class="seed-input" type="number" id="seedAmount" min="1" value="1" style="max-width:140px;">
-              <span>₹</span>
-            </div>
-            <button class="btn btn-primary" style="width:100%; justify-content:center;" type="button" onclick="openSeedCheckout()">
-              Seed the idea
-            </button>
-            <div class="seed-mini">
-              minimum ₹1 · secure payment via razorpay · this is a contribution, not a product purchase.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
+    <!-- ABOUT / WHAT IT IS -->
     <section id="about" class="story container reveal" aria-labelledby="aboutHeading">
       <div class="two-col">
         <div>
@@ -620,7 +468,7 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- GALLERY / EXPERIENCE -->
     <section id="gallery" class="container reveal" aria-labelledby="galleryHeading" style="padding-top:36px;">
       <h2 id="galleryHeading" class="center" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem">Gallery</h2>
       <p class="center muted" style="margin-top:6px">Shivastras in shadow, metal and light</p>
@@ -658,41 +506,46 @@
       </div>
     </section>
 
-    <!-- SURVEY -->
+    <!-- SINGLE FORM: FEEDBACK + OPTIONAL SEED -->
     <section id="survey" class="container reveal" style="padding-top:56px;padding-bottom:80px;">
       <div class="survey-wrap" role="form" aria-labelledby="surveyHeading">
         <div class="center" style="margin-bottom:12px;">
-          <div class="caps muted">Concept interest survey</div>
+          <div class="caps muted">concept feedback · optional seed</div>
           <h2 id="surveyHeading" style="margin:8px 0 6px; font-family:'Cormorant Garamond',serif">Help shape the first edition</h2>
           <p class="muted" style="font-size:.95rem;max-width:520px;margin:0 auto;">
-            answer a few questions to help us design the right product, understand where interest is coming from and show investors that there is a real community behind this idea.
+            tell us what you think about Shivastras. if you’d like, you can also add a small seed amount to support research and prototypes. no pressure, no obligation.
           </p>
         </div>
-        <form id="surveyForm" action="https://formspree.io/f/YOUR-FORM-ID" method="POST" class="survey-grid" novalidate>
+
+        <form id="feedbackForm" class="survey-grid" novalidate>
+          <!-- A. basic details -->
           <div class="row">
             <div>
-              <label class="field-label" for="name">full name</label>
-              <input name="name" id="name" type="text" placeholder="full name" required>
+              <label class="field-label" for="fb_name">full name</label>
+              <input id="fb_name" name="name" type="text" placeholder="full name" required>
             </div>
             <div>
-              <label class="field-label" for="email">email</label>
-              <input name="email" id="email" type="email" placeholder="email address" required>
+              <label class="field-label" for="fb_email">email</label>
+              <input id="fb_email" name="email" type="email" placeholder="email address" required>
             </div>
           </div>
+
           <div class="row">
             <div>
-              <label class="field-label" for="city">city</label>
-              <input name="city" id="city" type="text" placeholder="city (optional)">
+              <label class="field-label" for="fb_country">country</label>
+              <input id="fb_country" name="country" type="text" placeholder="country" required>
             </div>
             <div>
-              <label class="field-label" for="country">country</label>
-              <input name="country" id="country" type="text" placeholder="country" required>
+              <label class="field-label" for="fb_city">city (optional)</label>
+              <input id="fb_city" name="city" type="text" placeholder="city (optional)">
             </div>
           </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+
+          <!-- B. interest + feedback -->
+          <div class="row" style="margin-top:12px;">
             <div>
-              <label class="field-label" for="would_buy">would you consider buying?</label>
-              <select name="would_buy" id="would_buy" required>
+              <label class="field-label" for="fb_would_buy">would you consider buying?</label>
+              <select id="fb_would_buy" name="would_buy" required>
                 <option value="" disabled selected>select one</option>
                 <option>yes - definitely</option>
                 <option>maybe - curious</option>
@@ -700,8 +553,8 @@
               </select>
             </div>
             <div>
-              <label class="field-label" for="expected_price">expected price</label>
-              <select name="expected_price" id="expected_price" required>
+              <label class="field-label" for="fb_price">expected price</label>
+              <select id="fb_price" name="expected_price" required>
                 <option value="" disabled selected>select a range</option>
                 <option>₹999 – ₹1499</option>
                 <option>₹1499 – ₹1999</option>
@@ -710,9 +563,10 @@
               </select>
             </div>
           </div>
+
           <div style="margin-top:12px;">
-            <label class="field-label" for="use_case">what would you use this ring for?</label>
-            <select name="use_case" id="use_case" required>
+            <label class="field-label" for="fb_use">what would you use this ring for?</label>
+            <select id="fb_use" name="use_case" required>
               <option value="" disabled selected>select primary use</option>
               <option>daily ritual / mindfulness</option>
               <option>style / fashion</option>
@@ -721,37 +575,53 @@
               <option>other</option>
             </select>
           </div>
+
           <div style="margin-top:12px;">
-            <label class="field-label" for="features">features you care about</label>
-            <textarea name="features" id="features" placeholder="for example: temperature cues, breathing light, battery life, sizes, materials, app or no app"></textarea>
+            <label class="field-label" for="fb_features">features you care about</label>
+            <textarea id="fb_features" name="features"
+              placeholder="for example: temperature cues, breathing light, battery life, materials, app or no app"></textarea>
           </div>
+
           <div style="margin-top:12px;">
-            <label class="field-label" for="why">if this existed today, how would it help you?</label>
-            <textarea name="why" id="why" placeholder="short answer (optional) — helps us describe Shivastras in your language."></textarea>
+            <label class="field-label" for="fb_why">if this existed today, how would it help you?</label>
+            <textarea id="fb_why" name="why"
+              placeholder="short answer — helps us describe Shivastras in your language."></textarea>
           </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
-            <div>
-              <label class="field-label" for="ring_size">ring size (optional)</label>
-              <select name="ring_size" id="ring_size">
-                <option value="" selected>ring size (optional)</option>
-                <option>7</option><option>8</option><option>9</option><option>10</option>
-              </select>
+
+          <!-- C. optional seed contribution -->
+          <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(148,163,184,0.25);">
+            <div class="muted" style="font-size:.9rem; margin-bottom:6px;">
+              optional · seed the idea with a small contribution
             </div>
-            <div>
-              <label class="field-label" for="heard_from">where did you hear about us?</label>
-              <input name="heard_from" id="heard_from" type="text" placeholder="instagram / friend / community">
+            <div class="row">
+              <div>
+                <label class="field-label" for="fb_seed_amount">seed amount (₹, optional)</label>
+                <input id="fb_seed_amount" name="seed_amount"
+                       type="number" min="1" placeholder="enter a small amount, e.g. 1, 11, 51">
+              </div>
+              <div style="display:flex;align-items:center;">
+                <div class="muted" style="font-size:.85rem;">
+                  this helps us fund research and prototypes. it is not a pre‑order.
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- consent + actions -->
           <div class="consent" style="margin-top:12px;">
-            <input type="checkbox" id="consentCheckbox" name="consent" value="agreed" required>
-            <label for="consentCheckbox">
-              I agree that my responses may be used for Shivastras product research and to contact me about prototypes, launches and community updates. anonymised, combined data may be shared with potential investors. I have read the
-              <a href="terms.html" target="_blank" rel="noopener">terms and conditions</a>.
+            <input type="checkbox" id="fb_consent" name="consent" required>
+            <label for="fb_consent">
+              I agree that my responses may be used for Shivastras product research and to contact me about prototypes, launches and community updates.
             </label>
           </div>
+
           <div style="margin-top:14px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-            <button type="submit" class="btn btn-primary">Submit survey</button>
-            <div class="muted" style="font-size:.9rem">around two to three minutes · no spam</div>
+            <button type="button" class="btn btn-primary" onclick="handleFeedbackSubmit()">
+              Submit and continue
+            </button>
+            <div class="muted" style="font-size:.9rem;">
+              about two to three minutes · seed amount is optional
+            </div>
           </div>
         </form>
       </div>
@@ -846,63 +716,49 @@
       }, 800);
     })();
 
-    /* survey confirmation */
-    (function(){
-      const form = document.getElementById('surveyForm');
-      if(!form) return;
-      form.addEventListener('submit', () => {
-        setTimeout(()=> {
-          try { alert('thank you — your answers were submitted'); } catch (err) {}
-        }, 700);
-      });
-    })();
+    /* combined feedback + optional seed logic */
+    function handleFeedbackSubmit() {
+      const name = document.getElementById('fb_name').value.trim();
+      const email = document.getElementById('fb_email').value.trim();
+      const consent = document.getElementById('fb_consent').checked;
+      const seedField = document.getElementById('fb_seed_amount');
+      const seedRaw = seedField.value.trim();
+      const seedAmount = seedRaw === "" ? NaN : parseInt(seedRaw, 10);
 
-    /* Seed the idea — Razorpay checkout */
-    function openSeedCheckout(){
-      const name = document.getElementById('seedName').value.trim();
-      const email = document.getElementById('seedEmail').value.trim();
-      const amtField = document.getElementById('seedAmount');
-      const amt = parseInt(amtField.value, 10);
+      if (!name) { alert('please add your name.'); return; }
+      if (!email) { alert('please add your email.'); return; }
+      if (!consent) { alert('please accept the consent.'); return; }
 
-      if(!name){
-        alert('please add your name.');
-        return;
+      // TODO: send form data to backend / Formspree if you want
+      // For now we only handle optional seed payment.
+
+      if (!isNaN(seedAmount) && seedAmount >= 1) {
+        // open Razorpay with that amount
+        const options = {
+          key: "RAZORPAY_KEY_ID_HERE", // TODO: replace with your actual Razorpay key
+          amount: seedAmount * 100,    // paise
+          currency: "INR",
+          name: "Shivastras",
+          description: "Seed the idea contribution",
+          handler: function (response){
+            alert("thank you — your feedback and seed have been received.\n\nseed id: " + response.razorpay_payment_id);
+          },
+          prefill: {
+            name: name,
+            email: email
+          },
+          notes: {
+            type: "seed_contribution"
+          },
+          theme: {
+            color: "#3B82F6"
+          }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } else {
+        alert("thank you — your feedback has been received.");
       }
-      if(!email){
-        alert('please add your email.');
-        return;
-      }
-      if(isNaN(amt) || amt < 1){
-        alert('minimum contribution is ₹1.');
-        amtField.focus();
-        return;
-      }
-
-      const options = {
-        key: "RAZORPAY_KEY_ID_HERE", // TODO: replace with your live or test key
-        amount: amt * 100,           // in paise
-        currency: "INR",
-        name: "Shivastras",
-        description: "Seed the idea contribution",
-        image: "",                   // optional logo url
-        handler: function (response){
-          // NOTE: in real use, verify payment on server
-          alert("thank you — your seed has been received.\n\nseed id: " + response.razorpay_payment_id);
-        },
-        prefill: {
-          name: name,
-          email: email
-        },
-        notes: {
-          type: "seed_contribution"
-        },
-        theme: {
-          color: "#3B82F6"
-        }
-      };
-
-      const rzp = new Razorpay(options);
-      rzp.open();
     }
   </script>
 </body>
