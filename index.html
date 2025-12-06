@@ -252,7 +252,7 @@
       color:var(--muted);
     }
 
-    .specs { display:none; } /* keep old spec stuff hidden */
+    .specs { display:none; }
 
     /* ---------- Gallery ---------- */
     .gallery {
@@ -716,7 +716,7 @@
       }, 800);
     })();
 
-    /* combined feedback + optional seed logic with Razorpay */
+    /* combined feedback + optional seed logic with Razorpay + thank you + refresh */
     function handleFeedbackSubmit() {
       const name = document.getElementById('fb_name').value.trim();
       const email = document.getElementById('fb_email').value.trim();
@@ -739,9 +739,12 @@
           currency: "INR",
           name: "Shivastras",
           description: "Seed the idea (concept contribution)",
-          // order_id: "REPLACE_WITH_ORDER_ID_FROM_BACKEND", // optional, if you use Orders API
+          // order_id: "REPLACE_WITH_ORDER_ID_FROM_BACKEND", // optional, for Orders API
           handler: function (response){
             alert("thank you — your feedback and seed have been received.\n\nseed id: " + response.razorpay_payment_id);
+            setTimeout(() => {
+              window.location.reload();
+            }, 800);
           },
           prefill: {
             name: name,
@@ -758,9 +761,13 @@
         rzp.open();
       } else {
         alert("thank you — your feedback has been received.");
+        setTimeout(() => {
+          window.location.reload();
+        }, 800);
       }
     }
   </script>
 </body>
 </html>
+
 
