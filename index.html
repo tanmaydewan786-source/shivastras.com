@@ -252,7 +252,7 @@
       color:var(--muted);
     }
 
-    .specs { display:none; } /* hide any old spec grid if present */
+    .specs { display:none; } /* keep old spec stuff hidden */
 
     /* ---------- Gallery ---------- */
     .gallery {
@@ -339,7 +339,7 @@
     }
 
     /* ---------- Misc ---------- */
-    #gameModal { position:fixed; inset:0; display:none; } /* left so nothing breaks */
+    #gameModal { position:fixed; inset:0; display:none; }
 
     .reveal{
       opacity:0;
@@ -473,7 +473,7 @@
       <h2 id="galleryHeading" class="center" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem">Gallery</h2>
       <p class="center muted" style="margin-top:6px">Shivastras in shadow, metal and light</p>
       <div class="gallery">
-        <img src="assets/images/gallery2.jpg" alt="front view">
+        <img src="assets/images/hero.jpg" alt="front view">
         <img src="assets/images/gallery1.jpg" alt="angle view">
         <img src="assets/images/gallery3.jpeg" alt="lifestyle model wearing ring">
       </div>
@@ -716,7 +716,7 @@
       }, 800);
     })();
 
-    /* combined feedback + optional seed logic */
+    /* combined feedback + optional seed logic with Razorpay */
     function handleFeedbackSubmit() {
       const name = document.getElementById('fb_name').value.trim();
       const email = document.getElementById('fb_email').value.trim();
@@ -729,17 +729,17 @@
       if (!email) { alert('please add your email.'); return; }
       if (!consent) { alert('please accept the consent.'); return; }
 
-      // TODO: send form data to backend / Formspree if you want
-      // For now we only handle optional seed payment.
+      // TODO: optional — send feedback data to your backend / Formspree
 
       if (!isNaN(seedAmount) && seedAmount >= 1) {
-        // open Razorpay with that amount
+        // open Razorpay checkout with dynamic amount
         const options = {
-          key: "RAZORPAY_KEY_ID_HERE", // TODO: replace with your actual Razorpay key
-          amount: seedAmount * 100,    // paise
+          key: "rzp_live_RoGtbs7jNJlehy",   // your live key id
+          amount: seedAmount * 100,         // amount in paise
           currency: "INR",
           name: "Shivastras",
-          description: "Seed the idea contribution",
+          description: "Seed the idea (concept contribution)",
+          // order_id: "REPLACE_WITH_ORDER_ID_FROM_BACKEND", // optional, if you use Orders API
           handler: function (response){
             alert("thank you — your feedback and seed have been received.\n\nseed id: " + response.razorpay_payment_id);
           },
@@ -763,3 +763,4 @@
   </script>
 </body>
 </html>
+
