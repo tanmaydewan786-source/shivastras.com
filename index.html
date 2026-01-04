@@ -1,403 +1,157 @@
+<!-- =========================================================
+ SHIVASTRAS – DIRECT FUNDING PLATFORM (EURO)
+ FILE: /index.html
+ PURPOSE: Kickstarter-style funding homepage (no redirects)
+ ========================================================= -->
 <!DOCTYPE html>
-<!--
-SHIVASTRAS – DIRECT FUNDING WEBSITE (KICKSTARTER-STYLE)
-Founder-first, investor-focused, no redirection.
-This file is intentionally verbose, modular, and extensible.
-You can split into multiple files later.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shivastras — Fund the First Ritual Ring</title>
+  <title>Shivastras Ring — Fund the First Edition</title>
 
-  <!-- ================= SEO & META ================= -->
-  <meta name="description" content="Shivastras is a modern ritual ring blending symbolism, design, and technology. Fund the first limited edition directly from the creators." />
-  <meta name="keywords" content="ritual ring, mindfulness wearable, collectible ring, fund hardware startup, spiritual technology" />
-  <meta property="og:title" content="Shivastras — Fund the First Ritual Ring" />
-  <meta property="og:description" content="A Kickstarter-style funding experience, hosted directly by the creators." />
+  <!-- ================= SEO ================= -->
+  <meta name="description" content="Shivastras is a modern ritual ring inspired by Indian tradition, symbolism, and calm technology. Fund the first limited edition directly from the creators." />
+  <meta name="keywords" content="ritual ring, mindfulness ring, wearable calm, fund hardware startup, luxury wearable" />
+
+  <!-- ================= SOCIAL ================= -->
+  <meta property="og:title" content="Shivastras Ring — A sense of calm without distractions" />
+  <meta property="og:description" content="Support the first limited edition of the Shivastras ritual ring. Independent, founder-led funding." />
   <meta property="og:image" content="assets/images/hero.jpg" />
   <meta property="og:type" content="website" />
 
   <!-- ================= FONTS ================= -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- ================= GLOBAL STYLES ================= -->
-  <style>
-    :root{
-      --bg-main:#02020a;
-      --bg-card:#0b1020;
-      --text-main:#f4f6fb;
-      --text-muted:#9aa3ad;
-      --accent:#3b82f6;
-      --accent-soft:rgba(59,130,246,0.25);
-      --gold:#c9a24d;
-      --radius-lg:18px;
-      --radius-xl:28px;
-      --max-width:1200px;
-    }
-
-    *{ box-sizing:border-box }
-    html,body{ margin:0; padding:0; height:100%; }
-
-    body{
-      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont;
-      background:radial-gradient(circle at top,#0b1220,#000);
-      color:var(--text-main);
-      line-height:1.6;
-      scroll-behavior:smooth;
-    }
-
-    a{ color:inherit; text-decoration:none }
-    img{ max-width:100%; display:block }
-
-    .container{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 22px;
-    }
-
-    /* ================= HEADER ================= */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:1000;
-      background:rgba(0,0,0,0.6);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(255,255,255,0.05);
-    }
-
-    .nav{
-      height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-
-    .brand{
-      font-family:Cinzel, serif;
-      letter-spacing:.18em;
-    }
-
-    .nav-links a{
-      margin-left:22px;
-      font-size:.9rem;
-      color:var(--text-muted);
-    }
-    .nav-links a:hover{ color:var(--text-main) }
-
-    /* ================= HERO ================= */
-    .hero{
-      padding:150px 0 100px;
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:48px;
-      align-items:center;
-    }
-
-    .hero-eyebrow{
-      color:var(--accent);
-      letter-spacing:.25em;
-      font-size:.75rem;
-      font-weight:600;
-      margin-bottom:10px;
-    }
-
-    .hero h1{
-      font-family:"Cormorant Garamond", serif;
-      font-size:3.4rem;
-      margin:0 0 14px;
-    }
-
-    .hero p{
-      color:var(--text-muted);
-      max-width:520px;
-    }
-
-    .cta-row{
-      margin-top:26px;
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      padding:14px 30px;
-      border-radius:999px;
-      font-weight:600;
-      cursor:pointer;
-      border:none;
-      transition:.25s;
-    }
-
-    .btn-primary{
-      background:var(--accent);
-      color:white;
-      box-shadow:0 10px 30px rgba(59,130,246,.3);
-    }
-
-    .btn-secondary{
-      background:transparent;
-      color:white;
-      border:1px solid rgba(255,255,255,.2);
-    }
-
-    .btn:hover{ transform:translateY(-2px) }
-
-    /* ================= HERO VISUAL ================= */
-    .hero-visual{
-      position:relative;
-      border-radius:var(--radius-xl);
-      overflow:hidden;
-      box-shadow:0 40px 120px rgba(0,0,0,.9);
-    }
-
-    .hero-visual img{
-      width:100%;
-      height:auto;
-    }
-
-    /* ================= SECTION BASE ================= */
-    section{ padding:90px 0 }
-
-    h2{
-      font-family:"Cormorant Garamond", serif;
-      font-size:2.4rem;
-      margin-bottom:20px;
-    }
-
-    .muted{ color:var(--text-muted) }
-
-    .card{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius-lg);
-      padding:28px;
-    }
-
-    .grid{
-      display:grid;
-      gap:26px;
-    }
-
-    .grid-3{
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    }
-
-    /* ================= FUNDING PROGRESS ================= */
-    .progress-wrap{
-      margin-top:20px;
-    }
-
-    .progress-bar{
-      height:12px;
-      background:rgba(255,255,255,.08);
-      border-radius:999px;
-      overflow:hidden;
-    }
-
-    .progress-fill{
-      height:100%;
-      width:18%; /* MANUAL */
-      background:linear-gradient(90deg,var(--accent),#6fa3ff);
-    }
-
-    /* ================= REWARDS ================= */
-    .reward{
-      background:linear-gradient(180deg,#0b1020,#05070d);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:18px;
-      padding:26px;
-      position:relative;
-    }
-
-    .reward h3{ margin:0 0 6px }
-    .reward .price{
-      color:var(--gold);
-      font-weight:700;
-      margin-bottom:10px;
-    }
-
-    .reward ul{
-      padding-left:18px;
-      color:var(--text-muted);
-    }
-
-    .reward button{
-      margin-top:16px;
-      width:100%;
-    }
-
-    /* ================= CHECKOUT MODAL ================= */
-    .modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.8);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:5000;
-    }
-
-    .modal.active{ display:flex }
-
-    .modal-box{
-      background:#0b1020;
-      border-radius:18px;
-      padding:30px;
-      width:100%;
-      max-width:420px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .modal-box input{
-      width:100%;
-      margin-bottom:12px;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.1);
-      background:#02020a;
-      color:white;
-    }
-
-    /* ================= FOOTER ================= */
-    footer{
-      padding:50px 0;
-      text-align:center;
-      font-size:.85rem;
-      color:var(--text-muted);
-      border-top:1px solid rgba(255,255,255,.05);
-    }
-
-    @media(max-width:900px){
-      .hero{ grid-template-columns:1fr }
-      .hero h1{ font-size:2.6rem }
-    }
-  </style>
+  <!-- ================= STYLES ================= -->
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="container header-inner">
     <div class="brand">SHIVASTRAS</div>
-    <div class="nav-links">
+    <nav class="nav-links">
       <a href="#vision">Vision</a>
       <a href="#funding">Funding</a>
-      <a href="#rewards">Rewards</a>
-      <a href="#founder">Founder</a>
-    </div>
+      <a href="rewards.html">Rewards</a>
+      <a href="updates.html">Updates</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
   </div>
 </header>
 
-<main>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-grid">
 
-<section class="hero container">
-  <div>
-    <div class="hero-eyebrow">LIMITED FIRST EDITION</div>
-    <h1>Wear your calm.<br>Carry your power.</h1>
-    <p>A modern ritual ring blending symbolism, design, and technology. Fund the first limited edition directly from the creators.</p>
+    <div class="hero-copy">
+      <p class="eyebrow">LIMITED FIRST EDITION</p>
+      <h1>Wear your calm.<br>Carry your power.</h1>
+      <p class="hero-sub">
+        Shivastras is a modern ritual ring inspired by Indian tradition and designed for moments of calm, focus, and self-reflection.
+        We are independently funding the first limited edition.
+      </p>
 
-    <div class="cta-row">
-      <button class="btn btn-primary" onclick="document.getElementById('rewards').scrollIntoView({behavior:'smooth'})">Back this project</button>
-      <button class="btn btn-secondary" onclick="document.getElementById('funding').scrollIntoView({behavior:'smooth'})">View funding status</button>
+      <div class="cta-row">
+        <a href="rewards.html" class="btn btn-primary">Back this project</a>
+        <a href="#funding" class="btn btn-secondary">View funding status</a>
+      </div>
     </div>
-  </div>
 
-  <div class="hero-visual">
-    <img src="assets/images/hero.jpg" alt="Shivastras Ring">
+    <div class="hero-media">
+      <img src="assets/images/hero.jpg" alt="Shivastras Ring Hero" />
+    </div>
+
   </div>
 </section>
 
-<section id="funding" class="container">
-  <h2>Funding progress</h2>
-  <p class="muted">This project is independently funded. Once the goal is reached, production begins.</p>
+<!-- ================= FUNDING SNAPSHOT ================= -->
+<section id="funding" class="section-dark">
+  <div class="container">
+    <h2>Funding progress</h2>
+    <p class="muted">Once the goal is reached, research and prototyping move into the next phase.</p>
 
-  <div class="progress-wrap">
+    <div class="funding-stats">
+      <div>
+        <strong>€9,200</strong>
+        <span>pledged</span>
+      </div>
+      <div>
+        <strong>€50,000</strong>
+        <span>goal</span>
+      </div>
+      <div>
+        <strong id="daysRemaining">—</strong>
+        <span>days remaining</span>
+      </div>
+    </div>
+
     <div class="progress-bar">
-      <div class="progress-fill"></div>
+      <div class="progress-fill" style="width:18%"></div>
     </div>
-    <p class="muted">€9,200 raised of €50,000 goal</p>
+
+    <p class="muted small">All contributions are handled directly by Shivastras. No third-party platform fees.</p>
   </div>
 </section>
 
-<section id="rewards" class="container">
-  <h2>Choose your reward</h2>
-
-  <div class="grid grid-3">
-    <div class="reward">
-      <h3>Supporter Token</h3>
-      <div class="price">€125</div>
-      <ul>
-        <li>Metal Supporter Token</li>
-        <li>Early recognition</li>
-        <li>Project updates</li>
-      </ul>
-      <button class="btn btn-primary" onclick="openModal('Supporter Token','125')">Back this tier</button>
+<!-- ================= VISION ================= -->
+<section id="vision">
+  <div class="container grid-3">
+    <div class="card">
+      <h3>Symbolic Design</h3>
+      <p class="muted">Inspired by geometry, Indian philosophy, and ritual objects meant to ground the wearer.</p>
     </div>
-
-    <div class="reward">
-      <h3>Early Member Token</h3>
-      <div class="price">€250</div>
-      <ul>
-        <li>Distinct Early Member Token</li>
-        <li>Priority updates</li>
-        <li>Early access</li>
-      </ul>
-      <button class="btn btn-primary" onclick="openModal('Early Member Token','250')">Back this tier</button>
+    <div class="card">
+      <h3>Calm Technology</h3>
+      <p class="muted">Exploring light, gesture, and tactile cues to support moments of calm without screens.</p>
     </div>
-
-    <div class="reward">
-      <h3>Contributor Token</h3>
-      <div class="price">€500</div>
-      <ul>
-        <li>Contributor Token</li>
-        <li>Influence design direction</li>
-        <li>In-depth updates</li>
-      </ul>
-      <button class="btn btn-primary" onclick="openModal('Contributor Token','500')">Back this tier</button>
+    <div class="card">
+      <h3>Limited Collectible</h3>
+      <p class="muted">This is not mass-market jewelry. Each edition is intentionally limited and numbered.</p>
     </div>
   </div>
 </section>
 
-<section id="founder" class="container">
-  <div class="card">
-    <h2>About the founder</h2>
-    <p>I’m a global marketing professional at NTT DATA (formerly Dell Services), with experience working on luxury brands like Audi and Mercedes-Benz. Shivastras is built to merge symbolism, design, and intention into a modern collectible brand.</p>
+<!-- ================= CREATOR ================= -->
+<section class="section-dark">
+  <div class="container">
+    <h2>About the creator</h2>
+    <p class="muted">
+      I’m a global marketing professional at NTT DATA (formerly Dell Services), with experience working on luxury brands like Audi and Mercedes-Benz.
+      Shivastras is an independent project exploring how symbolism, design, and intention can coexist in a modern wearable.
+    </p>
   </div>
 </section>
 
-</main>
-
+<!-- ================= FOOTER ================= -->
 <footer>
-  © 2026 Shivastras · Independent funding initiative · Concept stage
+  <div class="container footer-grid">
+    <div>
+      <strong>Shivastras</strong><br>
+      Independent funding initiative
+    </div>
+    <div class="muted">
+      © 2026 Shivastras<br>
+      Concept stage · All funds used for research and development
+    </div>
+  </div>
 </footer>
 
-<!-- ================= MODAL ================= -->
-<div class="modal" id="checkoutModal">
-  <div class="modal-box">
-    <h3 id="modalTitle"></h3>
-    <p class="muted">Contribution amount (€)</p>
-    <input type="number" id="modalAmount" readonly>
-    <input type="text" placeholder="Your name">
-    <input type="email" placeholder="Your email">
-    <button class="btn btn-primary" style="width:100%">Proceed to payment</button>
-    <p class="muted" style="margin-top:10px">Payments via Stripe / Razorpay (to be connected)</p>
-    <button class="btn btn-secondary" style="width:100%;margin-top:10px" onclick="closeModal()">Cancel</button>
-  </div>
-</div>
-
-<script>
-  function openModal(title, amount){
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalAmount').value = amount;
-    document.getElementById('checkoutModal').classList.add('active');
-  }
-
-  function closeModal(){
-    document.getElementById('checkoutModal').classList.remove('active');
-  }
-</script>
+<!-- ================= SCRIPTS ================= -->
+<script src="assets/js/countdown.js"></script>
 
 </body>
 </html>
+
+<!-- =========================================================
+ NEXT FILES TO ADD (WILL BE CREATED NEXT):
+ - /rewards.html  (all 5 tiers, limits, checkout)
+ - /updates.html  (Kickstarter-style updates feed)
+ - /faq.html      (FAQ + Risks & Challenges)
+ - /assets/css/main.css
+ - /assets/js/funding.js
+ - /assets/js/rewards.js
+========================================================= -->
