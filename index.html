@@ -3,218 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivastras Ring – A Sense of Calm Without Distractions</title>
+<title>Shivastras Ring</title>
 
-<!-- ======================================================
-GLOBAL RESET
-====================================================== -->
 <style>
-/* ---------- RESET ---------- */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;scroll-behavior:smooth}
-body{line-height:1.6;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont}
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont;background:#0c0c0c;color:#e0e0e0}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
-button{cursor:pointer;border:none;background:none;font:inherit}
-ul{list-style:none}
+button{border:none;background:none;cursor:pointer}
 
-/* ======================================================
-VARIABLES
-====================================================== */
+/* ================= VARIABLES ================= */
 :root{
-  --bg-main:#05070d;
-  --bg-section:#0b1020;
-  --bg-card:#11162a;
-  --border-soft:rgba(255,255,255,0.08);
-  --text-main:#f5f7fb;
-  --text-muted:#9aa3ad;
-  --accent:#3b82f6;
-  --accent-soft:rgba(59,130,246,0.25);
-  --gold:#c9a24d;
-  --radius-sm:8px;
-  --radius-md:14px;
-  --radius-lg:22px;
-  --radius-xl:32px;
-  --shadow-soft:0 10px 30px rgba(0,0,0,.4);
-  --shadow-heavy:0 40px 120px rgba(0,0,0,.85);
-  --max-width:1200px;
+  --bg-main:#0c0c0c;
+  --bg-section:#121212;
+  --bg-card:#181818;
+  --border-soft:#2a2a2a;
+  --text-main:#e0e0e0;
+  --text-muted:#a0a0a0;
+  --gold:#d4af7f;
+  --accent:#ffffff;
+  --radius:16px;
+  --max-width:1280px;
 }
 
-/* ======================================================
-BASE
-====================================================== */
-body{
-  background:radial-gradient(circle at top,#0b1220,#000);
-  color:var(--text-main);
-}
+/* ================= LAYOUT ================= */
 .container{
   max-width:var(--max-width);
-  margin:0 auto;
+  margin:auto;
   padding:0 24px;
 }
-.section{padding:100px 0}
-.section-dark{background:linear-gradient(180deg,#02020a,#000)}
-h1,h2,h3{
-  font-family:"Cormorant Garamond",serif;
-  letter-spacing:.02em;
-}
-h1{font-size:3.4rem}
-h2{font-size:2.6rem;margin-bottom:16px}
-h3{font-size:1.5rem}
-p{color:var(--text-muted)}
-.small{font-size:.85rem}
+section{padding:100px 0}
+.section-dark{background:var(--bg-section)}
 
-/* ======================================================
-HEADER
-====================================================== */
+/* ================= HEADER ================= */
 header{
   position:fixed;
   top:0;left:0;right:0;
-  z-index:1000;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(12px);
+  z-index:100;
+  background:rgba(12,12,12,.85);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border-soft);
 }
 .header-inner{
-  height:80px;
+  height:72px;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
-.brand{
-  font-family:Cinzel,serif;
-  letter-spacing:.22em;
+.logo{
+  letter-spacing:.25em;
+  font-weight:500;
 }
 nav a{
-  margin-left:22px;
+  margin-left:24px;
   font-size:.9rem;
   color:var(--text-muted);
 }
 nav a:hover{color:var(--text-main)}
 
-/* ======================================================
-HERO
-====================================================== */
+/* ================= HERO ================= */
 .hero{
-  padding:160px 0 120px;
+  padding-top:160px;
 }
 .hero-grid{
   display:grid;
-  grid-template-columns:1.1fr .9fr;
+  grid-template-columns:1.2fr .8fr;
   gap:64px;
   align-items:center;
 }
-.eyebrow{
-  color:var(--accent);
-  letter-spacing:.3em;
-  font-size:.75rem;
+.hero h1{
+  font-size:3.2rem;
+  font-weight:400;
+  margin-bottom:16px;
+}
+.hero p{
+  max-width:520px;
+  color:var(--text-muted);
+}
+.hero-image{
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+
+/* ================= PRODUCT STORY ================= */
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+.story-grid h3{
+  margin-bottom:12px;
+  font-weight:500;
+}
+
+/* ================= GALLERY ================= */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+
+/* ================= FUNDING ================= */
+.funding{
+  background:#0a0a0a;
+  border-top:1px solid var(--border-soft);
+}
+.funding h2{
+  font-size:2.4rem;
   margin-bottom:12px;
 }
-.hero p{max-width:520px}
-.hero-media{
-  border-radius:var(--radius-xl);
-  overflow:hidden;
-  box-shadow:var(--shadow-heavy);
-}
-
-/* ======================================================
-BUTTONS
-====================================================== */
-.btn{
-  padding:14px 32px;
-  border-radius:999px;
-  font-weight:600;
-  display:inline-block;
-  margin-top:20px;
-}
-.btn-primary{
-  background:var(--accent);
-  color:white;
-  box-shadow:0 12px 30px rgba(59,130,246,.4);
-}
-.btn-primary:hover{transform:translateY(-2px)}
-.btn-outline{
-  border:1px solid rgba(255,255,255,.2);
-  color:white;
-  margin-left:12px;
-}
-
-/* ======================================================
-FUNDING BAR
-====================================================== */
 .funding-stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
-  margin-bottom:20px;
+  margin:32px 0;
 }
-.funding-stats strong{font-size:1.4rem}
-.progress-bar{
+.funding-stats strong{
+  font-size:1.4rem;
+  color:var(--accent);
+}
+.progress{
   height:14px;
-  background:rgba(255,255,255,.08);
+  background:#1e1e1e;
   border-radius:999px;
   overflow:hidden;
 }
 .progress-fill{
   height:100%;
-  background:linear-gradient(90deg,var(--accent),#6fa3ff);
   width:0%;
+  background:linear-gradient(90deg,#d4af7f,#ffffff);
 }
 
-/* ======================================================
-CARDS
-====================================================== */
-.card{
-  background:linear-gradient(180deg,#0b1020,#060810);
-  border:1px solid var(--border-soft);
-  border-radius:var(--radius-lg);
-  padding:32px;
-  box-shadow:var(--shadow-soft);
-}
-
-/* ======================================================
-REWARDS
-====================================================== */
-.rewards-grid{
+/* ================= REWARDS ================= */
+.rewards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:28px;
+  margin-top:48px;
 }
-.reward-card{
-  background:linear-gradient(180deg,#0b1020,#04060b);
+.reward{
+  background:var(--bg-card);
   border:1px solid var(--border-soft);
-  border-radius:var(--radius-lg);
-  padding:32px;
-  display:flex;
-  flex-direction:column;
+  border-radius:var(--radius);
+  padding:28px;
 }
-.reward-card .price{
+.reward .price{
   color:var(--gold);
-  font-weight:700;
   margin:8px 0;
+  font-size:1.2rem;
 }
-.reward-card ul li{
+.reward ul{
+  margin-top:12px;
+}
+.reward ul li{
   margin-bottom:8px;
   color:var(--text-muted);
 }
 
-/* ======================================================
-FOOTER
-====================================================== */
+/* ================= FOOTER ================= */
 footer{
-  border-top:1px solid var(--border-soft);
   padding:60px 0;
   text-align:center;
   color:var(--text-muted);
+  border-top:1px solid var(--border-soft);
 }
 
-/* ======================================================
-RESPONSIVE
-====================================================== */
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
-  h1{font-size:2.6rem}
   nav{display:none}
+  h1{font-size:2.4rem}
 }
 </style>
 </head>
@@ -223,134 +182,121 @@ RESPONSIVE
 
 <header>
   <div class="container header-inner">
-    <div class="brand">SHIVASTRAS</div>
+    <div class="logo">SHIVASTRAS</div>
     <nav>
       <a href="#story">Story</a>
+      <a href="#design">Design</a>
       <a href="#funding">Funding</a>
-      <a href="#rewards">Rewards</a>
-      <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
 
-<!-- ======================================================
-HERO
-====================================================== -->
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">LIMITED FIRST EDITION</div>
       <h1>Shivastras Ring</h1>
-      <p>A design-led ritual ring created for moments of pause, reflection, and intention. This is not a medical or wellness device.</p>
-      <a href="#rewards" class="btn btn-primary">Back this project</a>
-      <a href="#funding" class="btn btn-outline">View funding</a>
+      <p>
+        A modern ring inspired by Indian symbolism and intentional design.
+        Shivastras is a physical object created for reflection and presence.
+      </p>
     </div>
-    <div class="hero-media">
-      <!-- replace with your real photo -->
-      <img src="hero.jpg" alt="Shivastras Ring">
+    <div class="hero-image">
+      <!-- Replace with your real ring image -->
+      <img src="ring.jpg" alt="Shivastras Ring">
     </div>
   </div>
 </section>
 
-<!-- ======================================================
-FUNDING
-====================================================== -->
-<section id="funding" class="section section-dark">
-  <div class="container">
-    <h2>Funding Progress</h2>
-    <div class="funding-stats">
-      <div><strong id="raised">€9,200</strong><p>pledged</p></div>
-      <div><strong>€50,000</strong><p>goal</p></div>
-      <div><strong id="days">—</strong><p>days remaining</p></div>
+<!-- ================= STORY ================= -->
+<section id="story" class="section-dark">
+  <div class="container story-grid">
+    <div>
+      <h3>Symbolic Form</h3>
+      <p>Inspired by geometry, balance, and traditional motifs.</p>
     </div>
-    <div class="progress-bar">
+    <div>
+      <h3>Material Presence</h3>
+      <p>Designed as a tangible object, not a digital distraction.</p>
+    </div>
+    <div>
+      <h3>Limited Creation</h3>
+      <p>Crafted in small batches with intention and care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="design">
+  <div class="container">
+    <div class="gallery">
+      <div><img src="gallery1.jpg"></div>
+      <div><img src="gallery2.jpg"></div>
+      <div><img src="gallery3.jpg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FUNDING ================= -->
+<section id="funding" class="funding">
+  <div class="container">
+    <h2>Funding the First Edition</h2>
+    <p>
+      To move Shivastras from concept to production, we are opening limited
+      support for the first edition. This is not a pre-sale of a medical or
+      wellness device.
+    </p>
+
+    <div class="funding-stats">
+      <div><strong id="raised">€9,200</strong><p>Raised</p></div>
+      <div><strong>€50,000</strong><p>Goal</p></div>
+      <div><strong id="days">—</strong><p>Days left</p></div>
+    </div>
+
+    <div class="progress">
       <div class="progress-fill" id="progress"></div>
     </div>
-  </div>
-</section>
 
-<!-- ======================================================
-STORY
-====================================================== -->
-<section id="story" class="section">
-  <div class="container">
-    <h2>The Story</h2>
-    <p>
-      Shivastras began as a personal exploration of symbolism and intentional design.
-      This ring is a physical object meant to encourage mindful interaction.
-      It does not diagnose, treat, cure, or prevent any medical condition.
-    </p>
-  </div>
-</section>
-
-<!-- ======================================================
-REWARDS
-====================================================== -->
-<section id="rewards" class="section section-dark">
-  <div class="container">
-    <h2>Choose Your Reward</h2>
-    <div class="rewards-grid" id="rewardsGrid"></div>
-  </div>
-</section>
-
-<!-- ======================================================
-FAQ & RISKS
-====================================================== -->
-<section id="faq" class="section">
-  <div class="container">
-    <h2>Risks & Challenges</h2>
-    <p>
-      This project and its rewards are not a replacement for medication, medical treatment,
-      or a doctor’s examination. Shivastras does not claim to diagnose, treat, or cure any
-      medical condition. Production timelines may change.
-    </p>
+    <div class="rewards" id="rewards"></div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Shivastras · Independent funding initiative</p>
+  © 2026 Shivastras · Independent project
 </footer>
 
-<!-- ======================================================
-JAVASCRIPT
-====================================================== -->
 <script>
-const FUNDING={
+const funding={
   goal:50000,
   raised:9200,
   deadline:new Date("2026-03-31"),
   rewards:[
-    {name:"Supporter",price:125,limit:60},
-    {name:"Early Member",price:250,limit:50},
-    {name:"Contributor",price:500,limit:39},
-    {name:"Partner",price:1000,limit:29},
-    {name:"Founder",price:2500,limit:48}
+    {name:"Supporter",price:125},
+    {name:"Early Member",price:250},
+    {name:"Contributor",price:500},
+    {name:"Partner",price:1000},
+    {name:"Founder",price:2500}
   ]
 };
 
-/* funding bar */
 document.getElementById("progress").style.width=
-  Math.min((FUNDING.raised/FUNDING.goal)*100,100)+"%";
+  Math.min((funding.raised/funding.goal)*100,100)+"%";
 
-/* countdown */
-const daysLeft=Math.ceil((FUNDING.deadline-new Date())/86400000);
-document.getElementById("days").innerText=daysLeft;
+document.getElementById("days").innerText=
+  Math.ceil((funding.deadline-new Date())/86400000);
 
-/* rewards */
-const grid=document.getElementById("rewardsGrid");
-FUNDING.rewards.forEach(r=>{
+const rewards=document.getElementById("rewards");
+funding.rewards.forEach(r=>{
   const d=document.createElement("div");
-  d.className="reward-card";
-  d.innerHTML=`
-    <h3>${r.name}</h3>
-    <div class="price">€${r.price}</div>
-    <ul>
-      <li>Limited quantity</li>
-      <li>Project updates</li>
-      <li>Early supporter recognition</li>
-    </ul>
-    <button class="btn btn-primary">Select</button>`;
-  grid.appendChild(d);
+  d.className="reward";
+  d.innerHTML=`<h3>${r.name}</h3>
+               <div class="price">€${r.price}</div>
+               <ul>
+                 <li>Limited availability</li>
+                 <li>Project updates</li>
+                 <li>Early supporter recognition</li>
+               </ul>`;
+  rewards.appendChild(d);
 });
 </script>
 
